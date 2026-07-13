@@ -125,6 +125,7 @@ calme pour les sessions longues.
 | Pawanmuktasana / Surya Namaskara | 5 → quotidien |
 | Repérage des cinq vayus | 7 |
 | Localisation des chakras (points de déclenchement) | 8 |
+| Méditation guidée : conscience des nadis (script complet, trajets montée/descente) | 9 |
 | Visualisation des trajets ida/pingala | 9, 11 |
 | Respiration yogique complète (script guidé) | 10 |
 | Nadi Shodhana (4/4 puis 4/8) + Prana Shuddhi | 11 |

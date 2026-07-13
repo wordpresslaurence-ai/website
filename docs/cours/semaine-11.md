@@ -86,15 +86,18 @@ physique.
 
 ### Script 3 — Superposition de la visualisation ida/pingala
 
-Rappel des trajets (L5) : les points de déclenchement des chakras — muladhara (base de la
-colonne ; col de l'utérus pour les femmes, périnée pour les hommes), swadhisthana (pubis →
-coccyx), manipura (nombril → colonne), anahata (sternum → colonne), vishuddhi (creux de la
-gorge → colonne), ajna (bhrumadhya → centre de la tête ; rester au point avant).
+Rappel des trajets (L5 et script de la semaine 9) : les points de déclenchement des
+chakras — muladhara (plancher pelvien, sans point de déclenchement propre ; col de
+l'utérus pour les femmes, périnée pour les hommes), swadhisthana (pubis → coccyx),
+manipura (nombril → colonne), anahata (sternum → colonne), vishuddhi (creux de la gorge →
+colonne), ajna (bhrumadhya → centre de la tête ; rester au point avant).
 
 - Pingala sort du côté droit de muladhara et entre au côté droit de swadhisthana, ressort à
   gauche de swadhisthana vers la gauche de manipura, à droite de manipura vers la droite
   d'anahata, à gauche d'anahata vers la gauche de vishuddhi, et se termine du côté droit
-  d'ajna. Ida, en miroir, relie les côtés gauches de muladhara et d'ajna.
+  d'ajna. En descente, elle sort du côté droit d'ajna — vishuddhi à gauche, anahata à
+  droite, manipura à gauche, swadhisthana à droite — et rentre au côté droit de muladhara.
+  Ida fait le trajet miroir (sort du côté gauche, entre par le côté gauche).
 - **Inspiration à gauche = ida** : visualisez le trajet d'ida montant de muladhara,
   croisant tous les chakras, se terminant au côté gauche d'ajna.
 - **Expiration à droite = pingala** : le courant descend d'ajna (côté droit), croise les

@@ -1,6 +1,6 @@
 # Module 2 · Semaine 9 — Bindu, Sahasrara et les nadis
 
-**Leçons sources : L18 (Bindu et le nectar d'immortalité), L19 (Sahasrara), L21 (Les nadis, conduits de la Shakti)**
+**Leçons sources : L18 (Bindu et le nectar d'immortalité), L19 (Sahasrara), L21 (Les nadis, conduits de la Shakti), L20 (Méditation guidée : conscience des nadis — script)**
 
 ## Objectifs d'apprentissage
 
@@ -99,32 +99,76 @@ Dans les écritures tantriques, quand vous lisez les trois symboles **soleil, lu
 il s'agit de pingala, ida et sushumna — les trois courants les plus puissants de shakti du
 corps subtil.
 
-### Révision : les trajets croisés d'ida et pingala
-
-(Reprise de L5, en préparation de Nadi Shodhana semaine 11.) Pingala **zigzague** entre les
-chakras : elle sort du côté droit de muladhara et entre par le côté droit de swadhisthana,
-ressort du côté gauche de swadhisthana vers le côté gauche de manipura, ressort à droite de
-manipura vers la droite d'anahata, à gauche d'anahata vers la gauche de vishuddhi, et sort à
-droite de vishuddhi pour se terminer dans le côté droit d'ajna. Ida fait le trajet miroir en
-partant du côté gauche. Le trajet complet sera guidé pas à pas dans la pratique de la
-semaine 11.
-
-## Session LIVE (75 min)
+## Session LIVE (80 min)
 
 | Durée | Séquence |
 |-------|----------|
 | 5 min | Accueil |
-| 10 min | Pratique d'ouverture : localisation des chakras (révision S8) |
+| 5 min | Pratique d'ouverture : localisation des chakras (révision S8) |
 | 15 min | Théorie 1 : bindu, vishuddhi et l'amrit |
 | 15 min | Théorie 2 : sahasrara, maha prana, la conservation naturelle |
 | 15 min | Théorie 3 : les nadis (Motoyama, 72 000, soleil/lune/feu) |
-| 10 min | **Pratique guidée : visualisation des trajets d'ida et pingala** (trajet zigzagué chakra par chakra, montée pingala / descente ida) |
-| 5 min | Consignes |
+| 15 min | **Pratique guidée : méditation de conscience des nadis** (script intégral ci-dessous — vidéo d'origine : 10 min) |
+| 10 min | Retours + consignes |
+
+### Script intégral — Méditation guidée : conscience des nadis (à lire à voix haute)
+
+1. **Installation.** Redressez simplement la colonne, installez-vous confortablement,
+   accordez-vous à votre corps et à votre souffle.
+2. **Localisation des chakras par leurs points de déclenchement.**
+   - Amenez la conscience au **plancher pelvien** — le périnée pour les hommes, le col de
+     l'utérus pour les femmes. C'est l'emplacement de **muladhara**. Muladhara n'a **pas de
+     point de déclenchement** : on utilise ce même point unique pour tous, le plancher
+     pelvien. Vous pouvez y sentir un battement, parfois une sensation sourde, ou une
+     pulsation.
+   - Remontez le long de l'avant du corps jusqu'à l'**os pubien** — le point de
+     déclenchement de **swadhisthana**. Inspirez de l'os pubien vers le coccyx, expirez du
+     coccyx vers l'os pubien : vous pouvez percevoir cette énergie d'extase, de rire
+     joyeux, de plaisir, à swadhisthana.
+   - Montez au **nombril** — point de déclenchement de **manipura**. Inspirez du nombril
+     tout droit vers la colonne vertébrale — éprouvez le chakra lui-même dans la colonne —
+     et expirez vers le nombril. Vous pouvez éprouver le dynamisme, la chaleur, la
+     puissance et la lumière de manipura.
+   - Montez au **sternum**, au centre de la poitrine. Inspirez du sternum tout droit vers
+     la colonne, et de la colonne vers le sternum : devenez conscient de cette énergie
+     expansive, béatifique, tendre et aimante du chakra du cœur, **anahata**.
+   - Montez au **creux de la gorge** — point de déclenchement de **vishuddhi**. Inspirez du
+     creux de la gorge tout droit vers la colonne, et percevez vishuddhi : le silence et
+     l'immobilité de l'espace intérieur.
+   - Montez au **centre des sourcils**, *bhrumadhya* — le point de déclenchement d'**ajna**.
+     Inspirez du centre des sourcils tout droit vers le centre de la tête, et expirez vers
+     le centre des sourcils. Inspirez : *jnana*, la connaissance ; expirez : retour au
+     front.
+   - **Redescendez** : le creux de la gorge, vishuddhi ; le sternum, anahata ; le nombril,
+     manipura ; l'os pubien, swadhisthana ; et enfin le plancher pelvien, muladhara.
+3. **Le trajet de pingala.** Restez à muladhara et visualisez : depuis muladhara, sous la
+   base de la colonne, pingala **sort du côté droit de muladhara et entre dans le côté
+   droit de swadhisthana** ; sort du côté gauche de swadhisthana et entre dans le côté
+   gauche de manipura ; sort du côté droit de manipura et entre dans le côté droit
+   d'anahata ; sort du côté gauche d'anahata et entre dans le côté gauche de vishuddhi ;
+   enfin, sort du côté droit de vishuddhi et entre dans le côté droit d'**ajna**.
+   Maintenant la **redescente** : sort du côté droit d'ajna — vishuddhi à gauche, anahata à
+   droite, manipura à gauche, swadhisthana à droite — et entre dans le côté droit de
+   muladhara. Voici **pingala nadi, la voie solaire de prana shakti**, qui sort du côté
+   droit et entre par le côté droit.
+4. **Le trajet d'ida.** Ramenez la conscience à muladhara. Ida **sort du côté gauche de
+   muladhara et entre dans le côté gauche de swadhisthana** ; sort du côté droit de
+   swadhisthana et entre dans le côté droit de manipura ; sort du côté gauche de manipura
+   et entre dans le côté gauche d'anahata ; sort du côté droit d'anahata et entre dans le
+   côté droit de vishuddhi ; sort du côté gauche de vishuddhi et entre dans le côté gauche
+   d'**ajna**. Redescente : sort du côté gauche d'ajna — vishuddhi à droite, anahata à
+   gauche, manipura à droite, swadhisthana à gauche — et entre dans le côté gauche de
+   muladhara. Voici **ida nadi, la voie lunaire de la force mentale, chitta shakti**.
+5. **Sushumna.** Enfin, sushumna coule par le **centre de la colonne, tout droit vers le
+   haut**, perçant les six chakras — muladhara, swadhisthana, manipura, anahata, vishuddhi,
+   ajna — puis redescend d'ajna à vishuddhi, anahata, manipura, swadhisthana et muladhara.
+6. Voilà les six chakras et les trois nadis : pingala, ida et sushumna. Revenez doucement à
+   la pièce.
 
 ## Session REPLAY de la semaine
 
-- Refaites la visualisation ida/pingala 4 fois dans la semaine, lentement, chakra par
-  chakra.
+- Refaites la méditation de conscience des nadis (script ci-dessus) 4 fois dans la
+  semaine, lentement, chakra par chakra.
 - Point d'attention (enseignement de L5) : d'abord ces voies demandent imagination et
   concentration ; avec la pratique elles deviennent vivement réelles, puis vous repérerez
   les « nœuds » où le flux accroche — emplacements de blocages énergétiques.
@@ -142,9 +186,7 @@ rythme naturel du souffle.
 
 > **Pour aller plus loin** 📚
 > Bindu, sahasrara et le réseau des nadis sont traités dans *Prana Vidya* (Satyananda &
-> Niranjanananda, Bihar School of Yoga). [À VÉRIFIER AVEC L'ENSEIGNANT : la transcription
-> de la leçon « 24. Nadi as Conduit of Shakti » manque dans le document source — vérifier
-> si un contenu supplémentaire sur les nadis doit compléter cette semaine.]
+> Niranjanananda, Bihar School of Yoga).
 
 ## Auto-évaluation
 

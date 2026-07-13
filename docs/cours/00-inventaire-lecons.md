@@ -29,7 +29,7 @@ leçons 9 et 10 a été exclu du contenu pédagogique). Voir les anomalies en ba
 | 17 | 20 | Awakening of the Chakras | L'éveil des chakras | Éveil des chakras un à un (1 760 mots) | Théorie | 2 |
 | 18 | 21 | Bindu and the Nectar of Immortality | Bindu et le nectar d'immortalité | Bindu, point de passage du non-manifesté au manifesté | Théorie | 2 |
 | 19 | 22 | Sahasrara | Sahasrara | Sahasrara, fusion avec l'univers | Théorie | 2 |
-| 20 | 24 ⚠️⚠️ | Nadi as Conduit of Shakti | — | **TRANSCRIPTION MANQUANTE** : le texte est la copie exacte de la fin du n° 19 (Sahasrara, extrait 4:12/4:20 de la même vidéo) | — | 2 |
+| 20 | 24 ✅ | Nadi as Conduit of Shakti (Guided Nadi Awareness Meditation) | Méditation guidée : conscience des nadis | Points de déclenchement des 6 chakras (+ qualité de chacun ; muladhara sans trigger point) ; trajets complets de pingala et ida (montée ET descente) et de sushumna (script, vidéo 10:21) — transcription récupérée a posteriori (le document d'origine contenait un doublon du n° 19) | Pratique guidée | 2 |
 | 21 | 23 | Nadis as Conduits of Shakti | Les nadis, conduits de la Shakti | Nadis = voies subtiles de la Shakti ; recherches du Dr Motoyama ; 72 000 nadis ; ida/pingala/sushumna = lune/soleil/feu | Théorie | 2 |
 | 22 | 25 | Full Yogic Breathing | La respiration yogique complète | Respiration yogique complète (technique) | Pratique | 2 |
 | 23 | 26 | Guided Yogic Meditation | Méditation yogique guidée | Respiration yogique complète en shavasana puis Nadi Shodhana (script guidé, vidéo 13 min) | Pratique guidée | 2 |
@@ -56,10 +56,19 @@ leçons 9 et 10 a été exclu du contenu pédagogique). Voir les anomalies en ba
 
 ## Anomalies détectées
 
-1. **3 transcriptions manquantes (doublons de copier-coller)** — à récupérer auprès de l'enseignant ou à retranscrire depuis les vidéos :
-   - n° 20 (« 24. Nadi as Conduit of Shakti ») : le texte collé est la fin de la leçon « 22. Sahasrara » ;
-   - n° 29 (« 34. Activate Manipura Chakra Meditation », vidéo de 23 min) : le texte collé est celui du n° 28 (vidéo de 51 min) ;
-   - n° 39 (« 46. Awakening the Third Eye Chakra ») : le texte collé est celui du n° 38 (« The Secret of Health »).
+1. **Transcriptions dupliquées** — vérification faite sur la plateforme : les transcriptions
+   affichées par Udemy sous ces vidéos sont elles-mêmes erronées (sous-titres de la leçon
+   voisine rattachés par erreur) :
+   - n° 20 (« 24. Nadi as Conduit of Shakti ») : ✅ **récupérée** (méditation guidée de
+     conscience des nadis, 10:21) et intégrée aux semaines 9 et 11 ;
+   - n° 29 (« 34. Activate Manipura Chakra Meditation », vidéo de 23:34) : ❌ la plateforme
+     affiche le texte du n° 28 (vidéo de 51 min) — récupérable uniquement par
+     retranscription audio ; non bloquant (Agni Mandala, S12, vise le même éveil de
+     Manipura) ;
+   - n° 39 (« 46. Awakening the Third Eye Chakra », vidéo de 3:41) : ❌ la plateforme
+     affiche le texte du n° 38 (« The Secret of Health ») — récupérable uniquement par
+     retranscription audio ; non bloquant (la fiche S18 couvre ajna avec les contenus
+     présents ailleurs).
 2. **Numéros absents de la numérotation d'origine** : 1, 4, 5, 6, 7, 11, 17, 31, 33, 37, 39, 50. Une partie correspond à des leçons sans titre inséré (intro, tradition védique, récap final) ou fusionnées dans les gros segments (n° 15 et n° 41 du tableau) ; il manque probablement 4 à 6 transcriptions par rapport aux 50 leçons annoncées — notamment la **« Prana Awareness Meditation »** de la semaine 1, annoncée dans le descriptif du cours mais introuvable dans le document.
 3. **Doublons de numérotation** : deux « 8 », deux « 10 ».
 4. **Ordre inversé** : « 24 » apparaît avant « 23 » (contenus distincts, il s'agit des parties 1 et 2 du même sujet).
@@ -68,6 +77,7 @@ leçons 9 et 10 a été exclu du contenu pédagogique). Voir les anomalies en ba
 7. **Corps étrangers exclus du contenu** : bloc descriptif Udemy (notes, participants, « What you'll learn », programme 4 semaines) inséré entre les leçons 9 et 10 ; artefacts d'interface (« Lecture », « Arrêt », horodatages « 0:12 / 5:42 »).
 
 **Points ouverts pour l'enseignant** (marqués [À VÉRIFIER] dans les fiches concernées) :
-- fournir les transcriptions réelles des vidéos 34 (Manipura) et 46 (Ajna) ;
+- retranscrire depuis l'audio les vidéos 34 (Manipura, 23:34) et 46 (Ajna, 3:41) — leurs
+  transcriptions Udemy sont erronées ;
 - confirmer si la « Prana Awareness Meditation » (semaine 1) existe en vidéo ;
 - confirmer l'étymologie enseignée (« pra = mouvement, na = constant ») telle quelle dans la transcription.
