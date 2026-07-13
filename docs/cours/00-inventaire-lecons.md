@@ -29,8 +29,8 @@ leçons 9 et 10 a été exclu du contenu pédagogique). Voir les anomalies en ba
 | 17 | 20 | Awakening of the Chakras | L'éveil des chakras | Éveil des chakras un à un (1 760 mots) | Théorie | 2 |
 | 18 | 21 | Bindu and the Nectar of Immortality | Bindu et le nectar d'immortalité | Bindu, point de passage du non-manifesté au manifesté | Théorie | 2 |
 | 19 | 22 | Sahasrara | Sahasrara | Sahasrara, fusion avec l'univers | Théorie | 2 |
-| 20 | 24 ⚠️ | Nadis as Conduits of Shakti (1) | Les nadis, conduits de la Shakti (1) | Les nadis (placé AVANT le n° 23 dans le document) | Théorie | 2 |
-| 21 | 23 ⚠️ | Nadis as Conduits of Shakti (2) | Les nadis, conduits de la Shakti (2) | Suite des nadis (contenus 23/24 distincts, ordre inversé) | Théorie | 2 |
+| 20 | 24 ⚠️⚠️ | Nadi as Conduit of Shakti | — | **TRANSCRIPTION MANQUANTE** : le texte est la copie exacte de la fin du n° 19 (Sahasrara, extrait 4:12/4:20 de la même vidéo) | — | 2 |
+| 21 | 23 | Nadis as Conduits of Shakti | Les nadis, conduits de la Shakti | Nadis = voies subtiles de la Shakti ; recherches du Dr Motoyama ; 72 000 nadis ; ida/pingala/sushumna = lune/soleil/feu | Théorie | 2 |
 | 22 | 25 | Full Yogic Breathing | La respiration yogique complète | Respiration yogique complète (technique) | Pratique | 2 |
 | 23 | 26 | Guided Yogic Meditation | Méditation yogique guidée | Respiration yogique complète en shavasana puis Nadi Shodhana (script guidé, vidéo 13 min) | Pratique guidée | 2 |
 | 24 | 27 | Week 2 Assignment | Consignes de la semaine 2 | Programme de pratique personnelle de la semaine 2 (segment court, 187 mots) | Consigne hebdo | 2 |
@@ -56,7 +56,8 @@ leçons 9 et 10 a été exclu du contenu pédagogique). Voir les anomalies en ba
 
 ## Anomalies détectées
 
-1. **2 transcriptions manquantes (doublons de copier-coller)** — à récupérer auprès de l'enseignant ou à retranscrire depuis les vidéos :
+1. **3 transcriptions manquantes (doublons de copier-coller)** — à récupérer auprès de l'enseignant ou à retranscrire depuis les vidéos :
+   - n° 20 (« 24. Nadi as Conduit of Shakti ») : le texte collé est la fin de la leçon « 22. Sahasrara » ;
    - n° 29 (« 34. Activate Manipura Chakra Meditation », vidéo de 23 min) : le texte collé est celui du n° 28 (vidéo de 51 min) ;
    - n° 39 (« 46. Awakening the Third Eye Chakra ») : le texte collé est celui du n° 38 (« The Secret of Health »).
 2. **Numéros absents de la numérotation d'origine** : 1, 4, 5, 6, 7, 11, 17, 31, 33, 37, 39, 50. Une partie correspond à des leçons sans titre inséré (intro, tradition védique, récap final) ou fusionnées dans les gros segments (n° 15 et n° 41 du tableau) ; il manque probablement 4 à 6 transcriptions par rapport aux 50 leçons annoncées — notamment la **« Prana Awareness Meditation »** de la semaine 1, annoncée dans le descriptif du cours mais introuvable dans le document.
