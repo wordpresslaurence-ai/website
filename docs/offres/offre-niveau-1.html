@@ -1,78 +1,75 @@
 <style>
+  /* Palette Home Harmony — aubergine & or (chaleur, calme, énergie subtile) */
   :root{
-    --sand:#f7f4ee; --surface:#ffffff; --panel:#eef3ee;
-    --green-dark:#3f5844; --green:#6b8e6f; --green-soft:#e8efe8;
-    --gold:#b8863b; --gold-soft:#f3e8d3;
-    --text:#33393a; --muted:#6b7271; --line:#e2e0d7;
-    --shadow:0 12px 34px rgba(63,88,68,.10);
+    --bg:#f4efee; --surface:#ffffff; --panel:#efe7ea;
+    --deep:#43304a; --mid:#7a5e77; --soft:#ece1ea;
+    --gold:#b5852f; --gold-soft:#f2e6cf;
+    --text:#302a2e; --muted:#6e6469; --line:#e6dde1;
+    --shadow:0 12px 34px rgba(67,48,74,.12);
     --radius:16px; --max:1000px;
   }
   @media (prefers-color-scheme:dark){
     :root{
-      --sand:#171d18; --surface:#1f2620; --panel:#232b24;
-      --green-dark:#cfe0d0; --green:#9cbfa0; --green-soft:#2a332b;
-      --gold:#d9a94e; --gold-soft:#33291a;
-      --text:#e7ece7; --muted:#a1aca2; --line:#333b34;
-      --shadow:0 12px 34px rgba(0,0,0,.35);
+      --bg:#1a161b; --surface:#241e27; --panel:#2a2331;
+      --deep:#e6d6ec; --mid:#bda3c0; --soft:#2e2634;
+      --gold:#e0a94e; --gold-soft:#322818;
+      --text:#ece6ea; --muted:#a99fa6; --line:#362c3a;
+      --shadow:0 12px 34px rgba(0,0,0,.42);
     }
   }
   :root[data-theme="dark"]{
-    --sand:#171d18; --surface:#1f2620; --panel:#232b24;
-    --green-dark:#cfe0d0; --green:#9cbfa0; --green-soft:#2a332b;
-    --gold:#d9a94e; --gold-soft:#33291a;
-    --text:#e7ece7; --muted:#a1aca2; --line:#333b34;
-    --shadow:0 12px 34px rgba(0,0,0,.35);
+    --bg:#1a161b; --surface:#241e27; --panel:#2a2331;
+    --deep:#e6d6ec; --mid:#bda3c0; --soft:#2e2634;
+    --gold:#e0a94e; --gold-soft:#322818;
+    --text:#ece6ea; --muted:#a99fa6; --line:#362c3a;
+    --shadow:0 12px 34px rgba(0,0,0,.42);
   }
   :root[data-theme="light"]{
-    --sand:#f7f4ee; --surface:#ffffff; --panel:#eef3ee;
-    --green-dark:#3f5844; --green:#6b8e6f; --green-soft:#e8efe8;
-    --gold:#b8863b; --gold-soft:#f3e8d3;
-    --text:#33393a; --muted:#6b7271; --line:#e2e0d7;
-    --shadow:0 12px 34px rgba(63,88,68,.10);
+    --bg:#f4efee; --surface:#ffffff; --panel:#efe7ea;
+    --deep:#43304a; --mid:#7a5e77; --soft:#ece1ea;
+    --gold:#b5852f; --gold-soft:#f2e6cf;
+    --text:#302a2e; --muted:#6e6469; --line:#e6dde1;
+    --shadow:0 12px 34px rgba(67,48,74,.12);
   }
 
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--sand);color:var(--text);
+  body{margin:0;background:var(--bg);color:var(--text);
     font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
     line-height:1.6;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
-  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--green-dark);
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--deep);
     line-height:1.2;text-wrap:balance;margin:0 0 .5em;}
   h1{font-size:clamp(2.1rem,5.2vw,3.3rem);}
   h2{font-size:clamp(1.55rem,3.4vw,2.1rem);}
   h3{font-size:1.12rem;}
   p{margin:0 0 1rem;}
-  a{color:var(--green-dark);}
+  a{color:var(--deep);}
   .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.14em;
     text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
   .lead{font-size:1.16rem;color:var(--text);max-width:60ch;}
   .muted{color:var(--muted);}
 
-  /* Hero */
   .hero{background:
       radial-gradient(120% 80% at 85% -10%, var(--gold-soft) 0%, transparent 55%),
-      linear-gradient(180deg,var(--panel),var(--sand));
+      linear-gradient(180deg,var(--panel),var(--bg));
     border-bottom:1px solid var(--line);padding:64px 0 56px;}
-  .brand{font-family:Georgia,serif;font-weight:400;color:var(--green-dark);
-    font-size:1.05rem;letter-spacing:.02em;margin-bottom:2.2rem;}
-  .brand b{font-weight:700;}
-  .brand span{color:var(--green);}
+  .brand{font-family:Georgia,serif;color:var(--deep);font-size:1.05rem;
+    letter-spacing:.01em;margin-bottom:2.2rem;}
+  .brand b{font-weight:700;} .brand span{color:var(--mid);}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem;}
-  .btn{display:inline-block;padding:14px 26px;border-radius:999px;
-    font-weight:600;text-decoration:none;font-size:1rem;
-    transition:transform .15s ease,box-shadow .15s ease;}
-  .btn-primary{background:var(--green-dark);color:var(--sand);box-shadow:var(--shadow);}
-  .btn-ghost{border:1.5px solid var(--green);color:var(--green-dark);}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;
+    text-decoration:none;font-size:1rem;transition:transform .15s ease;}
+  .btn-primary{background:var(--deep);color:var(--bg);box-shadow:var(--shadow);}
+  .btn-ghost{border:1.5px solid var(--mid);color:var(--deep);}
   .btn:hover{transform:translateY(-2px);}
   .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.9rem;}
   .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;
     padding:7px 15px;font-size:.86rem;color:var(--muted);}
-  .fact b{color:var(--green-dark);}
+  .fact b{color:var(--deep);}
 
   section{padding:56px 0;}
   section.alt{background:var(--surface);border-block:1px solid var(--line);}
-  .center{text-align:center;}
-  .center .lead{margin-inline:auto;}
+  .center{text-align:center;} .center .lead{margin-inline:auto;}
 
   .grid{display:grid;gap:20px;}
   .g2{grid-template-columns:repeat(2,1fr);}
@@ -82,20 +79,17 @@
 
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px;box-shadow:var(--shadow);}
-  .card h3{color:var(--green-dark);}
   .num{font-family:Georgia,serif;font-size:.95rem;color:var(--gold);font-weight:700;
     letter-spacing:.08em;margin-bottom:.4rem;}
 
   ul.check{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
   ul.check li{position:relative;padding-left:32px;}
   ul.check li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;
-    border-radius:50%;background:var(--green-soft);
-    box-shadow:inset 0 0 0 2px var(--green);}
+    border-radius:50%;background:var(--soft);box-shadow:inset 0 0 0 2px var(--mid);}
   ul.check li::after{content:"";position:absolute;left:5px;top:.6em;width:5px;height:8px;
-    border-right:2px solid var(--green-dark);border-bottom:2px solid var(--green-dark);
+    border-right:2px solid var(--deep);border-bottom:2px solid var(--deep);
     transform:rotate(42deg);}
 
-  /* Pricing */
   .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
   @media(max-width:720px){.prices{grid-template-columns:1fr;}}
   .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -104,11 +98,17 @@
   .tag{position:absolute;top:-13px;left:28px;background:var(--gold);color:#fff;
     font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
     padding:5px 12px;border-radius:999px;}
-  .price .kind{font-weight:700;color:var(--green-dark);font-size:1.05rem;}
-  .amount{font-family:Georgia,serif;font-size:2.5rem;color:var(--green-dark);
+  .price .kind{font-weight:700;color:var(--deep);font-size:1.05rem;}
+  .amount{font-family:Georgia,serif;font-size:2.5rem;color:var(--deep);
     font-variant-numeric:tabular-nums;line-height:1.1;}
   .amount small{font-size:1rem;color:var(--muted);font-family:inherit;}
   .total{font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .was{text-decoration:line-through;color:var(--muted);font-size:1.2rem;
+    font-family:Georgia,serif;margin-right:10px;opacity:.75;}
+  .total .was{font-size:.9rem;margin-right:6px;}
+  .promo{display:inline-block;background:var(--gold);color:#fff;font-size:.72rem;
+    font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 11px;border-radius:999px;align-self:flex-start;margin-bottom:2px;}
   .price ul{margin:.6rem 0 0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:.92rem;}
   .price li{padding-left:20px;position:relative;}
   .price li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700;}
@@ -116,27 +116,25 @@
   .bonus{background:linear-gradient(180deg,var(--gold-soft),var(--surface));
     border:1px solid var(--gold);border-radius:var(--radius);padding:28px;}
   .bonus .eyebrow{color:var(--gold);}
-  .pill{display:inline-block;background:var(--green-dark);color:var(--sand);
+  .pill{display:inline-block;background:var(--deep);color:var(--bg);
     font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:.6rem;}
 
   details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
     padding:4px 20px;margin-bottom:12px;}
-  details summary{cursor:pointer;font-weight:600;color:var(--green-dark);
-    padding:14px 0;list-style:none;}
+  details summary{cursor:pointer;font-weight:600;color:var(--deep);padding:14px 0;list-style:none;}
   details summary::-webkit-details-marker{display:none;}
   details summary::after{content:"+";float:right;color:var(--gold);font-size:1.3rem;line-height:1;}
   details[open] summary::after{content:"–";}
   details p{padding-bottom:14px;margin:0;color:var(--muted);}
 
-  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--green);
-    padding:10px 0 10px 16px;margin:8px 0;background:var(--green-soft);border-radius:0 8px 8px 0;}
-  .placeholder{color:var(--gold);font-weight:700;}
+  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--mid);
+    padding:10px 0 10px 16px;background:var(--soft);border-radius:0 8px 8px 0;}
   footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line);}
-  .cta-band{background:var(--green-dark);color:var(--sand);border-radius:var(--radius);
+
+  .cta-band{background:#3c2b43;color:#f3ece6;border-radius:var(--radius);
     padding:44px;text-align:center;box-shadow:var(--shadow);}
-  .cta-band h2{color:var(--sand);}
-  .cta-band .btn-primary{background:var(--gold);color:#fff;}
-  .cta-band p{color:#dfe7df;max-width:52ch;margin-inline:auto;}
+  .cta-band h2{color:#f7f1ea;} .cta-band .btn-primary{background:var(--gold);color:#fff;}
+  .cta-band p{color:#d9cdd6;max-width:52ch;margin-inline:auto;}
 
   @media(prefers-reduced-motion:no-preference){
     .hero .wrap>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both;}
@@ -149,12 +147,12 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="brand">Home <b>Harmony</b> · <span>École de Prana Vidya</span></div>
+    <div class="brand">Home <b>Harmony</b> · <span>Harmonisation de l'habitat &amp; de l'énergie</span></div>
     <p class="eyebrow">Formation en ligne · 6 mois · Groupe de 20 maximum</p>
     <h1>Prana Vidya — Niveau 1<br>Ressentez, éveillez et faites circuler votre énergie vitale</h1>
     <p class="lead">Six mois pour passer de la théorie à l'expérience directe du prana&nbsp;:
-      apaiser le mental, élever votre énergie, et poser les fondations d'une véritable
-      pratique de guérison — dans la tradition Satyananda / Bihar School of Yoga.</p>
+      apaiser le mental, élever votre énergie, et poser les fondations d'une véritable pratique
+      du souffle et de l'énergie subtile.</p>
     <div class="hero-actions">
       <a href="#reserver" class="btn btn-primary">Réserver ma place</a>
       <a href="#programme" class="btn btn-ghost">Voir le programme</a>
@@ -235,7 +233,7 @@
       <div class="card">
         <h3>Le rythme</h3>
         <ul class="check" style="margin-top:.6rem">
-          <li><b>Une session live</b> hebdomadaire (60–90 min)&nbsp;: théorie, pratique guidée, questions</li>
+          <li><b>Une session live</b> hebdomadaire, d'environ 1h30&nbsp;: théorie, pratique guidée, questions</li>
           <li><b>Une session replay</b> à refaire en autonomie dans la semaine</li>
           <li>Une <b>pratique personnelle</b> quotidienne de 10–20 min</li>
         </ul>
@@ -286,9 +284,10 @@
 
     <div class="prices" style="margin-top:2rem;text-align:left">
       <div class="price">
+        <span class="promo">Lancement · –50 %</span>
         <span class="kind">Tarif solidaire</span>
-        <div class="amount">200&nbsp;€ <small>/ trimestre</small></div>
-        <div class="total">soit 400&nbsp;€ pour les 6 mois</div>
+        <div class="amount"><span class="was">400&nbsp;€</span>200&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total"><span class="was">800&nbsp;€</span>soit 400&nbsp;€ pour les 6 mois</div>
         <ul>
           <li>Pour qui en a besoin, sans justificatif</li>
           <li>Exactement le même programme et le même suivi</li>
@@ -297,9 +296,10 @@
       </div>
       <div class="price feature">
         <span class="tag">Tarif de soutien</span>
+        <span class="promo">Lancement · –50 %</span>
         <span class="kind">Tarif standard</span>
-        <div class="amount">360&nbsp;€ <small>/ trimestre</small></div>
-        <div class="total">soit 720&nbsp;€ pour les 6 mois</div>
+        <div class="amount"><span class="was">720&nbsp;€</span>360&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total"><span class="was">1&nbsp;440&nbsp;€</span>soit 720&nbsp;€ pour les 6 mois</div>
         <ul>
           <li>Le juste prix de la formation</li>
           <li>Vous soutenez aussi l'accès solidaire d'un·e autre participant·e</li>
@@ -307,8 +307,9 @@
         </ul>
       </div>
     </div>
-    <p class="note" style="max-width:60ch;margin:22px auto 0">Places limitées à 20 · Certificat de
-      fin de formation inclus · Bonus « nettoyage du lieu de vie » pour les 7 premières inscriptions.</p>
+    <p class="note" style="max-width:62ch;margin:22px auto 0">Tarif de lancement –50&nbsp;% pour la
+      première session · Places limitées à 20 · Certificat de fin de formation inclus · Bonus
+      « nettoyage du lieu de vie » pour les 7 premières inscriptions.</p>
 
     <div class="hero-actions" style="justify-content:center;margin-top:1.8rem">
       <a href="#contact" class="btn btn-primary">Réserver ma place</a>
@@ -319,12 +320,12 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Une lignée, pas une mode</p>
+    <p class="eyebrow">Une pratique vivante</p>
     <h2>Un enseignement authentique</h2>
-    <p class="lead">Le Prana Vidya est codifié comme une sadhana complète par l'école
-      Satyananda / Bihar School of Yoga, avec des étapes clairement définies qui mènent de
-      l'éveil de l'énergie à sa distribution consciente. Cette formation en transmet la
-      progression pas à pas, en français, sans rien dénaturer.</p>
+    <p class="lead">Le Prana Vidya est une science yogique traditionnelle, codifiée comme une
+      sadhana complète&nbsp;: des étapes clairement définies qui mènent de l'éveil de l'énergie à
+      sa distribution consciente. Cette formation en transmet la progression pas à pas, en
+      français, sans rien dénaturer.</p>
   </div>
 </section>
 
@@ -355,24 +356,24 @@
 <section id="contact">
   <div class="wrap">
     <div class="cta-band">
-      <p class="eyebrow" style="color:#f0d9ad">Prochaine session · 20 places</p>
+      <p class="eyebrow" style="color:#e6c78f">Prochaine session · 20 places</p>
       <h2>Prêt·e à ressentir votre énergie&nbsp;?</h2>
       <p>Réservez votre place ou posez-nous vos questions. Nous vous répondons personnellement.</p>
       <div class="hero-actions" style="justify-content:center;margin-top:1.4rem">
         <a href="mailto:lboudart10@gmail.com" class="btn btn-primary">Réserver / nous écrire</a>
       </div>
-      <p style="margin-top:1rem;font-size:.85rem;color:#cdd8ce">Démarrage&nbsp;:
-        <span style="color:#f0d9ad">[date à compléter]</span> · Jour &amp; heure du live&nbsp;:
-        <span style="color:#f0d9ad">[à compléter]</span></p>
+      <p style="margin-top:1.1rem;font-size:.9rem;color:#e9dbe6">Démarrage&nbsp;:
+        <b style="color:#e6c78f">dimanche 6 septembre</b> · le matin (horaire à préciser) ·
+        sessions d'environ 1h30</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p style="margin:0"><b style="color:var(--green-dark)">Home Harmony</b> · École de Prana Vidya —
-      Harmonisation de l'habitat &amp; de l'énergie, Belgique.</p>
+    <p style="margin:0"><b style="color:var(--deep)">Home Harmony</b> · Harmonisation de l'habitat
+      et de l'énergie — Belgique.</p>
     <p style="margin:.4rem 0 0">Formation de yoga et de méditation. Ne remplace pas un avis ou un
-      traitement médical. Tradition Satyananda / Bihar School of Yoga.</p>
+      traitement médical.</p>
   </div>
 </footer>

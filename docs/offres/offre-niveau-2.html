@@ -1,48 +1,49 @@
 <style>
+  /* Palette Home Harmony — aubergine & or, teinte plus profonde (niveau praticien) */
   :root{
-    --sand:#f5f2ea; --surface:#ffffff; --panel:#ecefe9;
-    --green-dark:#33463a; --green:#5f836a; --green-soft:#e4ece5;
-    --gold:#a9762f; --gold-soft:#f0e4cd;
-    --text:#2f3533; --muted:#666d68; --line:#e0ded4;
-    --shadow:0 12px 34px rgba(40,60,46,.12);
+    --bg:#f2ecec; --surface:#ffffff; --panel:#ebe1e6;
+    --deep:#3a2740; --mid:#6f5470; --soft:#e7dae6;
+    --gold:#a9762f; --gold-soft:#f0e2c9;
+    --text:#2c262b; --muted:#665c64; --line:#e3d9de;
+    --shadow:0 12px 34px rgba(58,39,64,.13);
     --radius:16px; --max:1000px;
   }
   @media (prefers-color-scheme:dark){
     :root{
-      --sand:#141a16; --surface:#1c231e; --panel:#212a23;
-      --green-dark:#caddcd; --green:#93b899; --green-soft:#28312a;
-      --gold:#d7a552; --gold-soft:#2f2717;
-      --text:#e6ebe6; --muted:#9faba1; --line:#313a33;
-      --shadow:0 12px 34px rgba(0,0,0,.4);
+      --bg:#171319; --surface:#211b24; --panel:#28202e;
+      --deep:#e6d3ec; --mid:#b89bbb; --soft:#2c2333;
+      --gold:#dba14b; --gold-soft:#302614;
+      --text:#ebe4ea; --muted:#a89ea6; --line:#342a39;
+      --shadow:0 12px 34px rgba(0,0,0,.45);
     }
   }
   :root[data-theme="dark"]{
-    --sand:#141a16; --surface:#1c231e; --panel:#212a23;
-    --green-dark:#caddcd; --green:#93b899; --green-soft:#28312a;
-    --gold:#d7a552; --gold-soft:#2f2717;
-    --text:#e6ebe6; --muted:#9faba1; --line:#313a33;
-    --shadow:0 12px 34px rgba(0,0,0,.4);
+    --bg:#171319; --surface:#211b24; --panel:#28202e;
+    --deep:#e6d3ec; --mid:#b89bbb; --soft:#2c2333;
+    --gold:#dba14b; --gold-soft:#302614;
+    --text:#ebe4ea; --muted:#a89ea6; --line:#342a39;
+    --shadow:0 12px 34px rgba(0,0,0,.45);
   }
   :root[data-theme="light"]{
-    --sand:#f5f2ea; --surface:#ffffff; --panel:#ecefe9;
-    --green-dark:#33463a; --green:#5f836a; --green-soft:#e4ece5;
-    --gold:#a9762f; --gold-soft:#f0e4cd;
-    --text:#2f3533; --muted:#666d68; --line:#e0ded4;
-    --shadow:0 12px 34px rgba(40,60,46,.12);
+    --bg:#f2ecec; --surface:#ffffff; --panel:#ebe1e6;
+    --deep:#3a2740; --mid:#6f5470; --soft:#e7dae6;
+    --gold:#a9762f; --gold-soft:#f0e2c9;
+    --text:#2c262b; --muted:#665c64; --line:#e3d9de;
+    --shadow:0 12px 34px rgba(58,39,64,.13);
   }
 
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--sand);color:var(--text);
+  body{margin:0;background:var(--bg);color:var(--text);
     font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
     line-height:1.6;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
-  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--green-dark);
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--deep);
     line-height:1.2;text-wrap:balance;margin:0 0 .5em;}
   h1{font-size:clamp(2.1rem,5.2vw,3.3rem);}
   h2{font-size:clamp(1.55rem,3.4vw,2.1rem);}
   h3{font-size:1.12rem;}
   p{margin:0 0 1rem;}
-  a{color:var(--green-dark);}
+  a{color:var(--deep);}
   .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.14em;
     text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
   .lead{font-size:1.16rem;max-width:60ch;}
@@ -50,28 +51,28 @@
 
   .hero{background:
       radial-gradient(130% 90% at 12% -20%, var(--gold-soft) 0%, transparent 52%),
-      linear-gradient(180deg,var(--panel),var(--sand));
+      linear-gradient(180deg,var(--panel),var(--bg));
     border-bottom:1px solid var(--line);padding:64px 0 56px;}
-  .brand{font-family:Georgia,serif;color:var(--green-dark);font-size:1.05rem;margin-bottom:1.4rem;}
-  .brand b{font-weight:700;} .brand span{color:var(--green);}
-  .badge{display:inline-block;background:var(--green-dark);color:var(--sand);
+  .brand{font-family:Georgia,serif;color:var(--deep);font-size:1.05rem;margin-bottom:1.4rem;}
+  .brand b{font-weight:700;} .brand span{color:var(--mid);}
+  .badge{display:inline-block;background:var(--deep);color:var(--bg);
     font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
     padding:6px 14px;border-radius:999px;margin-bottom:1.4rem;}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem;}
   .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;
     text-decoration:none;font-size:1rem;transition:transform .15s ease;}
-  .btn-primary{background:var(--green-dark);color:var(--sand);box-shadow:var(--shadow);}
-  .btn-ghost{border:1.5px solid var(--green);color:var(--green-dark);}
+  .btn-primary{background:var(--deep);color:var(--bg);box-shadow:var(--shadow);}
+  .btn-ghost{border:1.5px solid var(--mid);color:var(--deep);}
   .btn:hover{transform:translateY(-2px);}
   .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.9rem;}
   .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;
     padding:7px 15px;font-size:.86rem;color:var(--muted);}
-  .fact b{color:var(--green-dark);}
+  .fact b{color:var(--deep);}
 
-  .prereq{display:flex;gap:14px;align-items:flex-start;background:var(--green-soft);
+  .prereq{display:flex;gap:14px;align-items:flex-start;background:var(--soft);
     border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;
     padding:16px 20px;margin-top:1.8rem;}
-  .prereq b{color:var(--green-dark);}
+  .prereq b{color:var(--deep);}
 
   section{padding:56px 0;}
   section.alt{background:var(--surface);border-block:1px solid var(--line);}
@@ -91,39 +92,56 @@
   ul.check{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
   ul.check li{position:relative;padding-left:32px;}
   ul.check li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;
-    border-radius:50%;background:var(--green-soft);box-shadow:inset 0 0 0 2px var(--green);}
+    border-radius:50%;background:var(--soft);box-shadow:inset 0 0 0 2px var(--mid);}
   ul.check li::after{content:"";position:absolute;left:5px;top:.6em;width:5px;height:8px;
-    border-right:2px solid var(--green-dark);border-bottom:2px solid var(--green-dark);
+    border-right:2px solid var(--deep);border-bottom:2px solid var(--deep);
     transform:rotate(42deg);}
 
-  .price-solo{background:var(--surface);border:2px solid var(--gold);border-radius:var(--radius);
-    padding:30px;max-width:520px;margin:2rem auto 0;text-align:left;}
-  .price-solo .kind{font-weight:700;color:var(--green-dark);}
-  .amount{font-family:Georgia,serif;font-size:2.4rem;color:var(--green-dark);
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+  @media(max-width:720px){.prices{grid-template-columns:1fr;}}
+  .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:6px;}
+  .price.feature{border:2px solid var(--gold);box-shadow:var(--shadow);position:relative;}
+  .tag{position:absolute;top:-13px;left:28px;background:var(--gold);color:#fff;
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;}
+  .price .kind{font-weight:700;color:var(--deep);font-size:1.05rem;}
+  .amount{font-family:Georgia,serif;font-size:2.5rem;color:var(--deep);
     font-variant-numeric:tabular-nums;line-height:1.1;}
   .amount small{font-size:1rem;color:var(--muted);font-family:inherit;}
-  .placeholder{color:var(--gold);font-weight:700;}
+  .total{font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .was{text-decoration:line-through;color:var(--muted);font-size:1.2rem;
+    font-family:Georgia,serif;margin-right:10px;opacity:.75;}
+  .total .was{font-size:.9rem;margin-right:6px;}
+  .promo{display:inline-block;background:var(--gold);color:#fff;font-size:.72rem;
+    font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 11px;border-radius:999px;align-self:flex-start;margin-bottom:2px;}
+  .price ul{margin:.6rem 0 0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:.92rem;}
+  .price li{padding-left:20px;position:relative;}
+  .price li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700;}
 
   .bonus{background:linear-gradient(180deg,var(--gold-soft),var(--surface));
     border:1px solid var(--gold);border-radius:var(--radius);padding:28px;}
-  .pill{display:inline-block;background:var(--green-dark);color:var(--sand);
+  .bonus .eyebrow{color:var(--gold);}
+  .pill{display:inline-block;background:var(--deep);color:var(--bg);
     font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:.6rem;}
 
   details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
     padding:4px 20px;margin-bottom:12px;}
-  details summary{cursor:pointer;font-weight:600;color:var(--green-dark);padding:14px 0;list-style:none;}
+  details summary{cursor:pointer;font-weight:600;color:var(--deep);padding:14px 0;list-style:none;}
   details summary::-webkit-details-marker{display:none;}
   details summary::after{content:"+";float:right;color:var(--gold);font-size:1.3rem;line-height:1;}
   details[open] summary::after{content:"–";}
   details p{padding-bottom:14px;margin:0;color:var(--muted);}
 
-  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--green);
-    padding:10px 0 10px 16px;background:var(--green-soft);border-radius:0 8px 8px 0;}
+  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--mid);
+    padding:10px 0 10px 16px;background:var(--soft);border-radius:0 8px 8px 0;}
   footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line);}
-  .cta-band{background:var(--green-dark);color:var(--sand);border-radius:var(--radius);
+
+  .cta-band{background:#33223a;color:#f3ece6;border-radius:var(--radius);
     padding:44px;text-align:center;box-shadow:var(--shadow);}
-  .cta-band h2{color:var(--sand);} .cta-band .btn-primary{background:var(--gold);color:#fff;}
-  .cta-band p{color:#dbe4dc;max-width:52ch;margin-inline:auto;}
+  .cta-band h2{color:#f7f1ea;} .cta-band .btn-primary{background:var(--gold);color:#fff;}
+  .cta-band p{color:#d7cbd6;max-width:52ch;margin-inline:auto;}
 
   @media(prefers-reduced-motion:no-preference){
     .hero .wrap>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both;}
@@ -135,7 +153,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="brand">Home <b>Harmony</b> · <span>École de Prana Vidya</span></div>
+    <div class="brand">Home <b>Harmony</b> · <span>Harmonisation de l'habitat &amp; de l'énergie</span></div>
     <span class="badge">Niveau 2 · Praticien de guérison pranique</span>
     <h1>Prana Vidya — Niveau 2<br>Guérir avec le prana</h1>
     <p class="lead">Six mois pour apprendre à diriger consciemment l'énergie et à en faire
@@ -244,7 +262,7 @@
     <div class="grid g2" style="margin-top:1.4rem">
       <div class="card"><h3>Le rythme</h3>
         <ul class="check" style="margin-top:.6rem">
-          <li><b>Une session live</b> hebdomadaire (75–90 min)</li>
+          <li><b>Une session live</b> hebdomadaire, d'environ 1h30</li>
           <li><b>Une session replay</b> à refaire en autonomie</li>
           <li>Une pratique <b>solo</b> + une pratique <b>en binôme</b> chaque semaine</li>
         </ul></div>
@@ -257,35 +275,52 @@
     </div>
 
     <div class="bonus" style="margin-top:26px">
-      <span class="pill">À confirmer avec vous</span>
-      <p class="eyebrow">Bonus</p>
-      <h2 style="margin-top:.2rem">Un bonus praticien pour les premières inscriptions</h2>
-      <p class="muted" style="max-width:62ch">Emplacement réservé pour le bonus du niveau&nbsp;2.
-        Idées adaptées à une cible de professionnels&nbsp;: une <b>supervision individuelle</b> de
-        votre pratique, une <b>séance de nettoyage pranique de votre cabinet / lieu de soin</b>,
-        ou un <b>live de cas pratiques</b> supplémentaire. <span class="placeholder">[à définir]</span></p>
+      <span class="pill">Offre de lancement · 7 premières places</span>
+      <p class="eyebrow">Bonus praticien</p>
+      <h2 style="margin-top:.2rem">Un nettoyage énergétique de votre cabinet, offert</h2>
+      <p class="muted" style="max-width:62ch">Pour les <b>7 premières inscriptions</b>, Home Harmony
+        vous offre une <b>séance de nettoyage pranique de votre cabinet — votre lieu de soin — à
+        distance</b>. Un espace de travail clair soutient la qualité de votre présence et de vos
+        soins&nbsp;: le prolongement naturel de notre métier d'harmonisation des lieux.</p>
     </div>
   </div>
 </section>
 
 <section id="reserver" class="alt">
   <div class="wrap center">
-    <p class="eyebrow">Tarif</p>
+    <p class="eyebrow">Tarifs</p>
     <h2>Investir dans une compétence de praticien</h2>
     <p class="lead">Comme le niveau&nbsp;1, la formation se règle <b>par trimestre</b>, sur les
-      deux trimestres du parcours (6 mois), avec un <b>tarif standard</b> et un <b>tarif
-      solidaire</b>.</p>
+      deux trimestres du parcours (6 mois). Vous choisissez votre tarif <b>en conscience</b>.</p>
 
-    <div class="price-solo">
-      <span class="kind">Tarif de la formation</span>
-      <div class="amount"><span class="placeholder">[montant]</span>&nbsp;€ <small>/ trimestre</small></div>
-      <p class="muted" style="margin:.4rem 0 0">Tarif standard et tarif solidaire —
-        <span class="placeholder">[à définir avec vous]</span>. Réglable en 2 fois (un trimestre
-        à la fois).</p>
+    <div class="prices" style="margin-top:2rem;text-align:left">
+      <div class="price">
+        <span class="promo">Lancement · –50 %</span>
+        <span class="kind">Tarif solidaire</span>
+        <div class="amount"><span class="was">400&nbsp;€</span>200&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total"><span class="was">800&nbsp;€</span>soit 400&nbsp;€ pour les 6 mois</div>
+        <ul>
+          <li>Pour qui en a besoin, sans justificatif</li>
+          <li>Exactement le même programme et le même suivi</li>
+          <li>Réglable en 2 fois (un trimestre à la fois)</li>
+        </ul>
+      </div>
+      <div class="price feature">
+        <span class="tag">Tarif de soutien</span>
+        <span class="promo">Lancement · –50 %</span>
+        <span class="kind">Tarif standard</span>
+        <div class="amount"><span class="was">720&nbsp;€</span>360&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total"><span class="was">1&nbsp;440&nbsp;€</span>soit 720&nbsp;€ pour les 6 mois</div>
+        <ul>
+          <li>Le juste prix de la formation</li>
+          <li>Vous soutenez aussi l'accès solidaire d'un·e autre participant·e</li>
+          <li>Réglable en 2 fois (un trimestre à la fois)</li>
+        </ul>
+      </div>
     </div>
-
-    <p class="note" style="max-width:60ch;margin:22px auto 0;text-align:left">Places limitées à 20 ·
-      Certificat de praticien inclus · Prérequis&nbsp;: niveau&nbsp;1 validé.</p>
+    <p class="note" style="max-width:62ch;margin:22px auto 0;text-align:left">Tarif de lancement
+      –50&nbsp;% pour la première session · Places limitées à 20 · Certificat de praticien inclus ·
+      Prérequis&nbsp;: niveau&nbsp;1 validé · Bonus « nettoyage du cabinet » pour les 7 premières inscriptions.</p>
 
     <div class="hero-actions" style="justify-content:center;margin-top:1.8rem">
       <a href="#contact" class="btn btn-primary">Réserver ma place</a>
@@ -323,6 +358,9 @@
           aucun diagnostic.</p></details>
       <details><summary>Y a-t-il un certificat&nbsp;?</summary>
         <p>Oui, un certificat de praticien est délivré à l'issue de la formation.</p></details>
+      <details><summary>Comment se règle le tarif&nbsp;?</summary>
+        <p>Par trimestre, sur les deux trimestres du parcours (6 mois)&nbsp;: 200&nbsp;€ (solidaire)
+          ou 360&nbsp;€ (standard) par trimestre, au tarif de lancement.</p></details>
     </div>
   </div>
 </section>
@@ -330,25 +368,24 @@
 <section id="contact">
   <div class="wrap">
     <div class="cta-band">
-      <p class="eyebrow" style="color:#e6cf9f">Prochaine session · 20 places</p>
+      <p class="eyebrow" style="color:#e0bd86">Prochaine session · 20 places</p>
       <h2>Prêt·e à faire de l'énergie un outil de soin&nbsp;?</h2>
       <p>Réservez votre place ou posez-nous vos questions. Nous vous répondons personnellement.</p>
       <div class="hero-actions" style="justify-content:center;margin-top:1.4rem">
         <a href="mailto:lboudart10@gmail.com" class="btn btn-primary">Réserver / nous écrire</a>
       </div>
-      <p style="margin-top:1rem;font-size:.85rem;color:#cdd8ce">Démarrage&nbsp;:
-        <span style="color:#e6cf9f">[date à compléter]</span> · Jour &amp; heure du live&nbsp;:
-        <span style="color:#e6cf9f">[à compléter]</span></p>
+      <p style="margin-top:1.1rem;font-size:.9rem;color:#e7dae6">Démarrage&nbsp;:
+        <b style="color:#e0bd86">dimanche 6 mars</b> · le matin (horaire à préciser) ·
+        sessions d'environ 1h30</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p style="margin:0"><b style="color:var(--green-dark)">Home Harmony</b> · École de Prana Vidya —
-      Harmonisation de l'habitat &amp; de l'énergie, Belgique.</p>
+    <p style="margin:0"><b style="color:var(--deep)">Home Harmony</b> · Harmonisation de l'habitat
+      et de l'énergie — Belgique.</p>
     <p style="margin:.4rem 0 0">Formation de yoga et de méditation. Ne remplace pas un avis ou un
-      traitement médical. Toute pratique sur autrui requiert un consentement explicite.
-      Tradition Satyananda / Bihar School of Yoga.</p>
+      traitement médical. Toute pratique sur autrui requiert un consentement explicite.</p>
   </div>
 </footer>
