@@ -1,0 +1,378 @@
+<style>
+  :root{
+    --sand:#f7f4ee; --surface:#ffffff; --panel:#eef3ee;
+    --green-dark:#3f5844; --green:#6b8e6f; --green-soft:#e8efe8;
+    --gold:#b8863b; --gold-soft:#f3e8d3;
+    --text:#33393a; --muted:#6b7271; --line:#e2e0d7;
+    --shadow:0 12px 34px rgba(63,88,68,.10);
+    --radius:16px; --max:1000px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --sand:#171d18; --surface:#1f2620; --panel:#232b24;
+      --green-dark:#cfe0d0; --green:#9cbfa0; --green-soft:#2a332b;
+      --gold:#d9a94e; --gold-soft:#33291a;
+      --text:#e7ece7; --muted:#a1aca2; --line:#333b34;
+      --shadow:0 12px 34px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --sand:#171d18; --surface:#1f2620; --panel:#232b24;
+    --green-dark:#cfe0d0; --green:#9cbfa0; --green-soft:#2a332b;
+    --gold:#d9a94e; --gold-soft:#33291a;
+    --text:#e7ece7; --muted:#a1aca2; --line:#333b34;
+    --shadow:0 12px 34px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"]{
+    --sand:#f7f4ee; --surface:#ffffff; --panel:#eef3ee;
+    --green-dark:#3f5844; --green:#6b8e6f; --green-soft:#e8efe8;
+    --gold:#b8863b; --gold-soft:#f3e8d3;
+    --text:#33393a; --muted:#6b7271; --line:#e2e0d7;
+    --shadow:0 12px 34px rgba(63,88,68,.10);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--sand);color:var(--text);
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--green-dark);
+    line-height:1.2;text-wrap:balance;margin:0 0 .5em;}
+  h1{font-size:clamp(2.1rem,5.2vw,3.3rem);}
+  h2{font-size:clamp(1.55rem,3.4vw,2.1rem);}
+  h3{font-size:1.12rem;}
+  p{margin:0 0 1rem;}
+  a{color:var(--green-dark);}
+  .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+  .lead{font-size:1.16rem;color:var(--text);max-width:60ch;}
+  .muted{color:var(--muted);}
+
+  /* Hero */
+  .hero{background:
+      radial-gradient(120% 80% at 85% -10%, var(--gold-soft) 0%, transparent 55%),
+      linear-gradient(180deg,var(--panel),var(--sand));
+    border-bottom:1px solid var(--line);padding:64px 0 56px;}
+  .brand{font-family:Georgia,serif;font-weight:400;color:var(--green-dark);
+    font-size:1.05rem;letter-spacing:.02em;margin-bottom:2.2rem;}
+  .brand b{font-weight:700;}
+  .brand span{color:var(--green);}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem;}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;
+    font-weight:600;text-decoration:none;font-size:1rem;
+    transition:transform .15s ease,box-shadow .15s ease;}
+  .btn-primary{background:var(--green-dark);color:var(--sand);box-shadow:var(--shadow);}
+  .btn-ghost{border:1.5px solid var(--green);color:var(--green-dark);}
+  .btn:hover{transform:translateY(-2px);}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.9rem;}
+  .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:.86rem;color:var(--muted);}
+  .fact b{color:var(--green-dark);}
+
+  section{padding:56px 0;}
+  section.alt{background:var(--surface);border-block:1px solid var(--line);}
+  .center{text-align:center;}
+  .center .lead{margin-inline:auto;}
+
+  .grid{display:grid;gap:20px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;box-shadow:var(--shadow);}
+  .card h3{color:var(--green-dark);}
+  .num{font-family:Georgia,serif;font-size:.95rem;color:var(--gold);font-weight:700;
+    letter-spacing:.08em;margin-bottom:.4rem;}
+
+  ul.check{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  ul.check li{position:relative;padding-left:32px;}
+  ul.check li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;
+    border-radius:50%;background:var(--green-soft);
+    box-shadow:inset 0 0 0 2px var(--green);}
+  ul.check li::after{content:"";position:absolute;left:5px;top:.6em;width:5px;height:8px;
+    border-right:2px solid var(--green-dark);border-bottom:2px solid var(--green-dark);
+    transform:rotate(42deg);}
+
+  /* Pricing */
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+  @media(max-width:720px){.prices{grid-template-columns:1fr;}}
+  .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:6px;}
+  .price.feature{border:2px solid var(--gold);box-shadow:var(--shadow);position:relative;}
+  .tag{position:absolute;top:-13px;left:28px;background:var(--gold);color:#fff;
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;}
+  .price .kind{font-weight:700;color:var(--green-dark);font-size:1.05rem;}
+  .amount{font-family:Georgia,serif;font-size:2.5rem;color:var(--green-dark);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .amount small{font-size:1rem;color:var(--muted);font-family:inherit;}
+  .total{font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .price ul{margin:.6rem 0 0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:.92rem;}
+  .price li{padding-left:20px;position:relative;}
+  .price li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700;}
+
+  .bonus{background:linear-gradient(180deg,var(--gold-soft),var(--surface));
+    border:1px solid var(--gold);border-radius:var(--radius);padding:28px;}
+  .bonus .eyebrow{color:var(--gold);}
+  .pill{display:inline-block;background:var(--green-dark);color:var(--sand);
+    font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:.6rem;}
+
+  details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:4px 20px;margin-bottom:12px;}
+  details summary{cursor:pointer;font-weight:600;color:var(--green-dark);
+    padding:14px 0;list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";float:right;color:var(--gold);font-size:1.3rem;line-height:1;}
+  details[open] summary::after{content:"–";}
+  details p{padding-bottom:14px;margin:0;color:var(--muted);}
+
+  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--green);
+    padding:10px 0 10px 16px;margin:8px 0;background:var(--green-soft);border-radius:0 8px 8px 0;}
+  .placeholder{color:var(--gold);font-weight:700;}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line);}
+  .cta-band{background:var(--green-dark);color:var(--sand);border-radius:var(--radius);
+    padding:44px;text-align:center;box-shadow:var(--shadow);}
+  .cta-band h2{color:var(--sand);}
+  .cta-band .btn-primary{background:var(--gold);color:#fff;}
+  .cta-band p{color:#dfe7df;max-width:52ch;margin-inline:auto;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .hero .wrap>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both;}
+    .hero .brand{animation-delay:.02s;} .hero .eyebrow{animation-delay:.08s;}
+    .hero h1{animation-delay:.14s;} .hero .lead{animation-delay:.2s;}
+    .hero .hero-actions{animation-delay:.26s;} .hero .facts{animation-delay:.32s;}
+    @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">Home <b>Harmony</b> · <span>École de Prana Vidya</span></div>
+    <p class="eyebrow">Formation en ligne · 6 mois · Groupe de 20 maximum</p>
+    <h1>Prana Vidya — Niveau 1<br>Ressentez, éveillez et faites circuler votre énergie vitale</h1>
+    <p class="lead">Six mois pour passer de la théorie à l'expérience directe du prana&nbsp;:
+      apaiser le mental, élever votre énergie, et poser les fondations d'une véritable
+      pratique de guérison — dans la tradition Satyananda / Bihar School of Yoga.</p>
+    <div class="hero-actions">
+      <a href="#reserver" class="btn btn-primary">Réserver ma place</a>
+      <a href="#programme" class="btn btn-ghost">Voir le programme</a>
+    </div>
+    <div class="facts">
+      <span class="fact"><b>26</b> semaines · 4 modules</span>
+      <span class="fact"><b>1 live</b> + 1 replay / semaine</span>
+      <span class="fact">100&nbsp;% <b>en ligne</b></span>
+      <span class="fact">Accompagnement <b>WhatsApp</b> quotidien</span>
+      <span class="fact"><b>Certificat</b> de fin de formation</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">À qui s'adresse cette formation</p>
+    <h2>Pour les professionnels du bien-être… et toute personne en quête d'énergie</h2>
+    <div class="grid g3" style="margin-top:1.6rem">
+      <div class="card"><h3>Professeurs de yoga</h3><p class="muted">Approfondissez la dimension
+        énergétique de votre enseignement et enrichissez vos cours de pratiques de pranayama,
+        mudra et méditation guidée.</p></div>
+      <div class="card"><h3>Thérapeutes &amp; praticiens</h3><p class="muted">Ajoutez à votre
+        accompagnement des outils fondés sur une lignée&nbsp;: conscience du souffle,
+        auto-régulation, circulation de l'énergie.</p></div>
+      <div class="card"><h3>Toute personne motivée</h3><p class="muted">Aucun prérequis&nbsp;:
+        une entrée guidée, progressive et sûre dans les pratiques subtiles, pour plus de
+        vitalité et de clarté au quotidien.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">La transformation</p>
+    <h2>Ce que vous saurez faire à la fin des 6 mois</h2>
+    <div class="grid g2" style="margin-top:1.6rem">
+      <ul class="check">
+        <li>Percevoir le prana dans votre corps et le distinguer de vos sensations ordinaires</li>
+        <li>Exécuter la respiration yogique complète et Nadi Shodhana pour purifier les nadis et apaiser le mental</li>
+        <li>Activer Manipura (plexus solaire) et attiser votre feu intérieur</li>
+      </ul>
+      <ul class="check">
+        <li>Sentir, faire circuler et rassembler le prana grâce aux méditations guidées (Prana Nidra, Agni Mandala)</li>
+        <li>Suivre l'arc traditionnel du Prana Vidya&nbsp;: éveil → accumulation → distribution</li>
+        <li>Tenir un sadhana quotidien réaliste, en 10 à 20 minutes par jour</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="programme">
+  <div class="wrap">
+    <p class="eyebrow">Le parcours</p>
+    <h2>Quatre modules, un cheminement progressif</h2>
+    <div class="grid g4" style="margin-top:1.6rem">
+      <div class="card"><div class="num">Module 1</div><h3>Conscience du prana</h3>
+        <p class="muted">Qu'est-ce que le prana, colmater ses fuites d'énergie, mode de vie,
+        alimentation et Gayatri mantra.</p></div>
+      <div class="card"><div class="num">Module 2</div><h3>Éveil du prana</h3>
+        <p class="muted">Chakras, nadis et vayus, respiration yogique complète, Nadi Shodhana,
+        Agni Mandala, mudras.</p></div>
+      <div class="card"><div class="num">Module 3</div><h3>Direction du prana</h3>
+        <p class="muted">Éveil d'ajna, mantra et visualisation, méditation guidée pour diriger
+        consciemment le prana.</p></div>
+      <div class="card"><div class="num">Module 4</div><h3>Guérison par le prana</h3>
+        <p class="muted">Les étapes de la guérison pranique et une méditation complète
+        d'auto-guérison.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Comment ça se passe</p>
+    <h2>Un accompagnement vivant, chaque semaine</h2>
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="card">
+        <h3>Le rythme</h3>
+        <ul class="check" style="margin-top:.6rem">
+          <li><b>Une session live</b> hebdomadaire (60–90 min)&nbsp;: théorie, pratique guidée, questions</li>
+          <li><b>Une session replay</b> à refaire en autonomie dans la semaine</li>
+          <li>Une <b>pratique personnelle</b> quotidienne de 10–20 min</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Le soutien au quotidien</h3>
+        <ul class="check" style="margin-top:.6rem">
+          <li>Un <b>groupe WhatsApp privé</b> pour poser vos questions</li>
+          <li>Un <b>conseil de pratique chaque jour</b> pour garder le fil</li>
+          <li>Un groupe <b>limité à 20 personnes</b> pour un suivi réel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Inclus dans la formation</p>
+    <h2>Tout le matériel pour pratiquer sereinement</h2>
+    <div class="grid g3" style="margin-top:1.4rem">
+      <div class="card"><h3>Le manuel PDF</h3><p class="muted">Le classeur complet des 26 semaines&nbsp;:
+        théorie, déroulés minutés, scripts de méditation intégraux.</p></div>
+      <div class="card"><h3>Les méditations audio</h3><p class="muted">Les grandes méditations
+        guidées en MP3, à réécouter autant que vous le souhaitez.</p></div>
+      <div class="card"><h3>Journal &amp; glossaire</h3><p class="muted">Un modèle de journal de
+        pratique à imprimer et un glossaire sanskrit-français.</p></div>
+    </div>
+
+    <div class="bonus" style="margin-top:26px">
+      <span class="pill">Offre de lancement · 7 premières places</span>
+      <p class="eyebrow">Bonus exclusif</p>
+      <h2 style="margin-top:.2rem">Un nettoyage énergétique de votre lieu de vie, offert</h2>
+      <p class="muted" style="max-width:60ch">Pour les <b>7 premières inscriptions</b>, Home Harmony
+        vous offre une <b>séance de nettoyage pranique de votre lieu de vie à distance</b> — parce
+        qu'un habitat clair soutient une pratique claire. Un prolongement naturel de notre métier
+        d'harmonisation de l'habitat.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reserver" class="alt">
+  <div class="wrap center">
+    <p class="eyebrow">Tarifs</p>
+    <h2>Choisissez le tarif qui vous correspond</h2>
+    <p class="lead">La formation se règle <b>par trimestre</b>, sur les deux trimestres du parcours
+      (6 mois). Vous choisissez votre tarif <b>en conscience</b>.</p>
+
+    <div class="prices" style="margin-top:2rem;text-align:left">
+      <div class="price">
+        <span class="kind">Tarif solidaire</span>
+        <div class="amount">200&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total">soit 400&nbsp;€ pour les 6 mois</div>
+        <ul>
+          <li>Pour qui en a besoin, sans justificatif</li>
+          <li>Exactement le même programme et le même suivi</li>
+          <li>Réglable en 2 fois (un trimestre à la fois)</li>
+        </ul>
+      </div>
+      <div class="price feature">
+        <span class="tag">Tarif de soutien</span>
+        <span class="kind">Tarif standard</span>
+        <div class="amount">360&nbsp;€ <small>/ trimestre</small></div>
+        <div class="total">soit 720&nbsp;€ pour les 6 mois</div>
+        <ul>
+          <li>Le juste prix de la formation</li>
+          <li>Vous soutenez aussi l'accès solidaire d'un·e autre participant·e</li>
+          <li>Réglable en 2 fois (un trimestre à la fois)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" style="max-width:60ch;margin:22px auto 0">Places limitées à 20 · Certificat de
+      fin de formation inclus · Bonus « nettoyage du lieu de vie » pour les 7 premières inscriptions.</p>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:1.8rem">
+      <a href="#contact" class="btn btn-primary">Réserver ma place</a>
+      <a href="#faq" class="btn btn-ghost">J'ai une question</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Une lignée, pas une mode</p>
+    <h2>Un enseignement authentique</h2>
+    <p class="lead">Le Prana Vidya est codifié comme une sadhana complète par l'école
+      Satyananda / Bihar School of Yoga, avec des étapes clairement définies qui mènent de
+      l'éveil de l'énergie à sa distribution consciente. Cette formation en transmet la
+      progression pas à pas, en français, sans rien dénaturer.</p>
+  </div>
+</section>
+
+<section id="faq" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Questions fréquentes</p>
+    <h2>Ce que vous vous demandez peut-être</h2>
+    <div style="margin-top:1.4rem">
+      <details><summary>Faut-il une expérience préalable&nbsp;?</summary>
+        <p>Non. Le niveau 1 est conçu comme une entrée guidée et progressive&nbsp;; il convient
+          aux débutants comme aux professeurs et thérapeutes qui veulent des bases solides.</p></details>
+      <details><summary>Que se passe-t-il si je manque un live&nbsp;?</summary>
+        <p>Chaque semaine comprend une session replay&nbsp;; vous rattrapez à votre rythme, et le
+          groupe WhatsApp reste là pour vos questions.</p></details>
+      <details><summary>Combien de temps de pratique par jour&nbsp;?</summary>
+        <p>10 à 20 minutes suffisent pour progresser. Le parcours est pensé pour tenir dans une
+          vie réelle.</p></details>
+      <details><summary>Cette formation soigne-t-elle des maladies&nbsp;?</summary>
+        <p>Non. Il s'agit de yoga et de méditation. La pratique ne remplace ni un diagnostic ni
+          un traitement médical&nbsp;; elle accompagne votre bien-être.</p></details>
+      <details><summary>Comment se règle le tarif&nbsp;?</summary>
+        <p>Par trimestre, sur les deux trimestres du parcours (6 mois)&nbsp;: 200&nbsp;€ (solidaire)
+          ou 360&nbsp;€ (standard) par trimestre.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-band">
+      <p class="eyebrow" style="color:#f0d9ad">Prochaine session · 20 places</p>
+      <h2>Prêt·e à ressentir votre énergie&nbsp;?</h2>
+      <p>Réservez votre place ou posez-nous vos questions. Nous vous répondons personnellement.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:1.4rem">
+        <a href="mailto:lboudart10@gmail.com" class="btn btn-primary">Réserver / nous écrire</a>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:#cdd8ce">Démarrage&nbsp;:
+        <span style="color:#f0d9ad">[date à compléter]</span> · Jour &amp; heure du live&nbsp;:
+        <span style="color:#f0d9ad">[à compléter]</span></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0"><b style="color:var(--green-dark)">Home Harmony</b> · École de Prana Vidya —
+      Harmonisation de l'habitat &amp; de l'énergie, Belgique.</p>
+    <p style="margin:.4rem 0 0">Formation de yoga et de méditation. Ne remplace pas un avis ou un
+      traitement médical. Tradition Satyananda / Bihar School of Yoga.</p>
+  </div>
+</footer>
