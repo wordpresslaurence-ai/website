@@ -116,6 +116,20 @@
   .benefit b{display:block;color:var(--deep);font-size:.97rem;margin-bottom:1px;}
   .benefit span{color:var(--muted);font-size:.87rem;line-height:1.45;}
 
+  .bio{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start;margin-top:1.6rem;}
+  @media(max-width:820px){.bio{grid-template-columns:1fr;}}
+  .bio-text p{margin-bottom:.9rem;}
+  .bio-text .signature{font-family:Georgia,serif;font-size:1.15rem;color:var(--deep);
+    font-style:italic;margin-top:1.2rem;}
+  .avatar{width:112px;height:112px;border-radius:50%;background:var(--soft);
+    display:grid;place-items:center;font-family:Georgia,serif;font-size:2rem;
+    color:var(--mid);border:3px solid var(--gold);margin-bottom:1rem;}
+  .certs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:12px;}
+  .certs li{position:relative;padding-left:30px;font-size:.92rem;line-height:1.45;}
+  .certs li::before{content:"❧";position:absolute;left:2px;top:0;color:var(--gold);}
+  .certs b{color:var(--deep);display:block;}
+  .certs span{color:var(--muted);}
+
   .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
   @media(max-width:720px){.prices{grid-template-columns:1fr;}}
   .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -322,7 +336,48 @@
   </div>
 </section>
 
-<section id="reserver" class="alt">
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Qui suis-je</p>
+    <h2>Laurence Boudart, votre formatrice</h2>
+    <div class="bio">
+      <div class="bio-text">
+        <p>Pendant longtemps, j'ai cherché l'énergie au mauvais endroit. Comme beaucoup, je
+          croyais qu'il fallait <em>faire plus</em>&nbsp;: être plus forte, mieux gérer mon
+          stress, mieux dormir, mieux manger… Malgré tous ces efforts, quelque chose manquait.</p>
+        <p>Ce que j'ignorais alors, c'est que la vitalité ne dépend pas seulement du corps.
+          Elle dépend de la qualité du <b>prana</b> qui circule en nous. Cette découverte a
+          profondément changé ma manière d'aborder la santé.</p>
+        <p>Depuis plusieurs années, je me forme et je pratique les enseignements du yoga
+          traditionnel de l'Inde, au cœur d'une lignée où le prana n'est pas une théorie,
+          mais une expérience vécue au quotidien. Le Prana Vidya m'a appris qu'avant de
+          chercher à guérir le corps, il est essentiel de rétablir la circulation de
+          l'énergie vitale.</p>
+        <p>Aujourd'hui, je transmets cette approche à celles et ceux qui sentent qu'ils ont
+          perdu leur élan intérieur. Non pas pour ajouter une méthode de plus — mais pour
+          leur permettre de retrouver ce qui était déjà là&nbsp;: leur vitalité naturelle.</p>
+        <p class="signature">« Lorsque le prana circule librement, le corps retrouve ses
+          capacités d'autorégulation, le mental s'apaise, et la vie recommence à circuler. »</p>
+      </div>
+      <div class="card">
+        <div class="avatar">LB</div>
+        <h3>Formations &amp; certifications</h3>
+        <ul class="certs">
+          <li><b>Certification Prana Vidya — Niveaux 1 &amp; 2</b>
+            <span>Science yogique du prana et de la guérison pranique</span></li>
+          <li><b>Online Yoga Nidra Certification</b>
+            <span>My Vinyasa Practice — relaxation profonde et méditation guidée</span></li>
+          <li><b>Yoga Nidra Certification Course</b>
+            <span>Programme reconnu Yoga Alliance — Pradeep Sattwamaya</span></li>
+          <li><b>Yoga Nidra Facilitators Course — Teacher Training L1</b>
+            <span>Devatma Saraswati — facilitation et guidage vocal</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reserver">
   <div class="wrap center">
     <p class="eyebrow">Tarifs</p>
     <h2>Choisissez le tarif qui vous correspond</h2>
