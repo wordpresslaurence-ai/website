@@ -188,6 +188,11 @@
   @media (prefers-reduced-motion:reduce){
     .card:hover,.benefit:hover{transform:none;}
   }
+
+  /* ===== révélations au scroll ===== */
+  .rv{opacity:0;transform:translateY(28px);
+    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);}
+  .rv.in{opacity:1;transform:translateY(0);}
 </style>
 
 <header class="hero">
@@ -638,5 +643,53 @@
     window.addEventListener('resize', upd);
     upd();
   }
+})();
+</script>
+
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel = ['section .eyebrow','section h2','section .lead','.card','.benefit',
+             '.price','.bonus','.note','details','.cta-band','.bio-text p','.prereq'];
+  var els = Array.prototype.slice.call(document.querySelectorAll(sel.join(',')));
+  els = els.filter(function(el){ return !el.closest('.hero'); });
+  els.forEach(function(el){
+    var sibs = Array.prototype.filter.call(el.parentElement.children, function(c){
+      return c.classList && c.classList.contains('rv');
+    });
+    el.classList.add('rv');
+    el.style.transitionDelay = Math.min(sibs.length*70, 420) + 'ms';
+  });
+  function reveal(el){
+    el.classList.add('in');
+    setTimeout(function(){
+      el.classList.remove('rv'); el.classList.remove('in');
+      el.style.transitionDelay = '';
+    }, 1400);
+  }
+  var pend = els.slice();
+  function check(){
+    for (var i = pend.length - 1; i >= 0; i--) {
+      var r = pend[i].getBoundingClientRect();
+      if (r.top < window.innerHeight - 30 || r.bottom < 0) {
+        reveal(pend[i]); pend.splice(i,1);
+      }
+    }
+  }
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(function(){ tick = false; check(); }); }
+  }, {passive:true});
+  window.addEventListener('resize', check);
+  /* révéler sans animation ce qui est déjà à l'écran au chargement */
+  pend = pend.filter(function(el){
+    var r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.remove('rv'); el.style.transitionDelay = '';
+      return false;
+    }
+    return true;
+  });
+  check();
 })();
 </script>
