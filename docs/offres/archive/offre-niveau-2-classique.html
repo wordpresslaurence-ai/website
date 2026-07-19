@@ -1,0 +1,525 @@
+<style>
+  /* Palette Home Harmony, aubergine & or, teinte plus profonde (niveau praticien) */
+  :root{
+    --bg:#f2ecec; --surface:#ffffff; --panel:#ebe1e6;
+    --deep:#3a2740; --mid:#6f5470; --soft:#e7dae6;
+    --gold:#a9762f; --gold-soft:#f0e2c9;
+    --text:#2c262b; --muted:#665c64; --line:#e3d9de;
+    --shadow:0 12px 34px rgba(58,39,64,.13);
+    --radius:16px; --max:1000px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#171319; --surface:#211b24; --panel:#28202e;
+      --deep:#e6d3ec; --mid:#b89bbb; --soft:#2c2333;
+      --gold:#dba14b; --gold-soft:#302614;
+      --text:#ebe4ea; --muted:#a89ea6; --line:#342a39;
+      --shadow:0 12px 34px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#171319; --surface:#211b24; --panel:#28202e;
+    --deep:#e6d3ec; --mid:#b89bbb; --soft:#2c2333;
+    --gold:#dba14b; --gold-soft:#302614;
+    --text:#ebe4ea; --muted:#a89ea6; --line:#342a39;
+    --shadow:0 12px 34px rgba(0,0,0,.45);
+  }
+  :root[data-theme="light"]{
+    --bg:#f2ecec; --surface:#ffffff; --panel:#ebe1e6;
+    --deep:#3a2740; --mid:#6f5470; --soft:#e7dae6;
+    --gold:#a9762f; --gold-soft:#f0e2c9;
+    --text:#2c262b; --muted:#665c64; --line:#e3d9de;
+    --shadow:0 12px 34px rgba(58,39,64,.13);
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:Georgia,"Times New Roman",serif;color:var(--deep);
+    line-height:1.2;text-wrap:balance;margin:0 0 .5em;}
+  h1{font-size:clamp(2.1rem,5.2vw,3.3rem);}
+  h2{font-size:clamp(1.55rem,3.4vw,2.1rem);}
+  h3{font-size:1.12rem;}
+  p{margin:0 0 1rem;}
+  a{color:var(--deep);}
+  .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+  .lead{font-size:1.16rem;max-width:60ch;}
+  .muted{color:var(--muted);}
+
+  .hero{background:
+      radial-gradient(130% 90% at 12% -20%, var(--gold-soft) 0%, transparent 52%),
+      linear-gradient(180deg,var(--panel),var(--bg));
+    border-bottom:1px solid var(--line);padding:64px 0 56px;}
+  .brand{font-family:Georgia,serif;color:var(--deep);font-size:1.05rem;margin-bottom:1.4rem;}
+  .brand b{font-weight:700;} .brand span{color:var(--mid);}
+  .badge{display:inline-block;background:var(--deep);color:var(--bg);
+    font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;margin-bottom:1.4rem;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem;}
+  .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:600;
+    text-decoration:none;font-size:1rem;transition:transform .15s ease;}
+  .btn-primary{background:var(--deep);color:var(--bg);box-shadow:var(--shadow);}
+  .btn-ghost{border:1.5px solid var(--mid);color:var(--deep);}
+  .btn:hover{transform:translateY(-2px);}
+  .start-pill{display:inline-block;background:var(--gold-soft);border:1.5px solid var(--gold);
+    color:var(--deep);border-radius:999px;padding:10px 22px;font-size:1rem;margin-top:1.3rem;}
+  .start-pill b{color:var(--deep);}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.9rem;}
+  .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:.86rem;color:var(--muted);}
+  .fact b{color:var(--deep);}
+
+  .prereq{display:flex;gap:14px;align-items:flex-start;background:var(--soft);
+    border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;
+    padding:16px 20px;margin-top:1.8rem;}
+  .prereq b{color:var(--deep);}
+
+  section{padding:56px 0;}
+  section.alt{background:var(--surface);border-block:1px solid var(--line);}
+  .center{text-align:center;} .center .lead{margin-inline:auto;}
+
+  .grid{display:grid;gap:20px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;box-shadow:var(--shadow);}
+  .num{font-family:Georgia,serif;font-size:.95rem;color:var(--gold);font-weight:700;
+    letter-spacing:.08em;margin-bottom:.4rem;}
+
+  ul.check{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+  ul.check li{position:relative;padding-left:32px;}
+  ul.check li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;
+    border-radius:50%;background:var(--soft);box-shadow:inset 0 0 0 2px var(--mid);}
+  ul.check li::after{content:"";position:absolute;left:5px;top:.6em;width:5px;height:8px;
+    border-right:2px solid var(--deep);border-bottom:2px solid var(--deep);
+    transform:rotate(42deg);}
+
+  .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:1.6rem;}
+  @media(max-width:820px){.benefits{grid-template-columns:1fr 1fr;}}
+  @media(max-width:540px){.benefits{grid-template-columns:1fr;}}
+  .benefit{display:flex;gap:13px;align-items:flex-start;background:var(--surface);
+    border:1px solid var(--line);border-radius:12px;padding:15px 16px;}
+  .benefit .ic{flex:0 0 auto;width:38px;height:38px;border-radius:10px;
+    background:var(--gold-soft);display:grid;place-items:center;font-size:1.15rem;}
+  .benefit b{display:block;color:var(--deep);font-size:.97rem;margin-bottom:1px;}
+  .benefit span{color:var(--muted);font-size:.87rem;line-height:1.45;}
+
+  .bio{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start;margin-top:1.6rem;}
+  @media(max-width:820px){.bio{grid-template-columns:1fr;}}
+  .bio-text p{margin-bottom:.9rem;}
+  .bio-text .signature{font-family:Georgia,serif;font-size:1.15rem;color:var(--deep);
+    font-style:italic;margin-top:1.2rem;}
+  .avatar{width:112px;height:112px;border-radius:50%;background:var(--soft);
+    display:grid;place-items:center;font-family:Georgia,serif;font-size:2rem;
+    color:var(--mid);border:3px solid var(--gold);margin-bottom:1rem;}
+  .certs{list-style:none;padding:0;margin:.8rem 0 0;display:grid;gap:12px;}
+  .certs li{position:relative;padding-left:30px;font-size:.92rem;line-height:1.45;}
+  .certs li::before{content:"❧";position:absolute;left:2px;top:0;color:var(--gold);}
+  .certs b{color:var(--deep);display:block;}
+  .certs span{color:var(--muted);}
+
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+  @media(max-width:720px){.prices{grid-template-columns:1fr;}}
+  .price{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:6px;}
+  .price.feature{border:2px solid var(--gold);box-shadow:var(--shadow);position:relative;}
+  .tag{position:absolute;top:-13px;left:28px;background:var(--gold);color:#fff;
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;}
+  .price .kind{font-weight:700;color:var(--deep);font-size:1.05rem;}
+  .amount{font-family:Georgia,serif;font-size:2.5rem;color:var(--deep);
+    font-variant-numeric:tabular-nums;line-height:1.1;}
+  .amount small{font-size:1rem;color:var(--muted);font-family:inherit;}
+  .total{font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .was{text-decoration:line-through;color:var(--muted);font-size:1.2rem;
+    font-family:Georgia,serif;margin-right:10px;opacity:.75;}
+  .total .was{font-size:.9rem;margin-right:6px;}
+  .promo{display:inline-block;background:var(--gold);color:#fff;font-size:.72rem;
+    font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 11px;border-radius:999px;align-self:flex-start;margin-bottom:2px;}
+  .price ul{margin:.6rem 0 0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:.92rem;}
+  .price li{padding-left:20px;position:relative;}
+  .price li::before{content:"·";position:absolute;left:6px;color:var(--gold);font-weight:700;}
+
+  .bonus{background:linear-gradient(180deg,var(--gold-soft),var(--surface));
+    border:1px solid var(--gold);border-radius:var(--radius);padding:28px;}
+  .bonus .eyebrow{color:var(--gold);}
+  .pill{display:inline-block;background:var(--deep);color:var(--bg);
+    font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:.6rem;}
+
+  details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:4px 20px;margin-bottom:12px;}
+  details summary{cursor:pointer;font-weight:600;color:var(--deep);padding:14px 0;list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";float:right;color:var(--gold);font-size:1.3rem;line-height:1;}
+  details[open] summary::after{content:"–";}
+  details p{padding-bottom:14px;margin:0;color:var(--muted);}
+
+  .note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--mid);
+    padding:10px 0 10px 16px;background:var(--soft);border-radius:0 8px 8px 0;}
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line);}
+
+  .cta-band{background:#33223a;color:#f3ece6;border-radius:var(--radius);
+    padding:44px;text-align:center;box-shadow:var(--shadow);}
+  .cta-band h2{color:#f7f1ea;} .cta-band .btn-primary{background:var(--gold);color:#fff;}
+  .cta-band p{color:#d7cbd6;max-width:52ch;margin-inline:auto;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .hero .wrap>*{animation:rise .6s cubic-bezier(.2,.7,.3,1) both;}
+    .hero .badge{animation-delay:.04s;} .hero h1{animation-delay:.14s;}
+    .hero .lead{animation-delay:.2s;} .hero .hero-actions{animation-delay:.26s;}
+    @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">Home <b>Harmony</b> · <span>Harmonisation de l'habitat &amp; de l'énergie</span></div>
+    <span class="badge">Niveau 2 · Praticien de guérison pranique</span>
+    <h1>Prana Vidya · Niveau 2<br>Guérir avec le prana</h1>
+    <p class="lead">Six mois pour apprendre à diriger consciemment l'énergie et à en faire
+      un véritable outil de soin&nbsp;: sur vous-même, puis sur les autres, par le toucher,
+      à distance, et jusqu'aux applications avancées de la tradition.</p>
+    <p class="start-pill">📅 Démarrage&nbsp;: <b>dimanche 4 avril 2027</b>, le matin, sessions d'environ 1h30</p>
+    <div class="hero-actions">
+      <a href="#reserver" class="btn btn-primary">Réserver ma place</a>
+      <a href="#decouverte" class="btn btn-ghost">Essayer une session gratuite</a>
+      <a href="#programme" class="btn btn-ghost">Voir le programme</a>
+    </div>
+    <div class="prereq">
+      <div>🌿</div>
+      <div><b>Prérequis&nbsp;: le niveau&nbsp;1.</b> Ce parcours suppose la maîtrise des bases
+        (vayus, chakras, nadis, Nadi Shodhana, ujjayi, construction du prana à ajna). Les deux
+        niveaux se suivent&nbsp;: le niveau&nbsp;1 se suffit à lui-même, le niveau&nbsp;2 le prolonge.</div>
+    </div>
+    <div class="facts">
+      <span class="fact"><b>26</b> semaines · 4 modules</span>
+      <span class="fact">Pratique <b>en binôme</b> chaque semaine</span>
+      <span class="fact">100&nbsp;% <b>en ligne</b></span>
+      <span class="fact">Accompagnement <b>WhatsApp</b> quotidien</span>
+      <span class="fact"><b>Certificat</b> de praticien</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">À qui s'adresse ce niveau</p>
+    <h2>Pour les professeurs et thérapeutes qui veulent intégrer la guérison énergétique</h2>
+    <div class="grid g2" style="margin-top:1.6rem">
+      <div class="card"><h3>Professeurs de yoga</h3><p class="muted">Ajoutez à votre transmission
+        une science de la guérison structurée, fondée sur une lignée, et des méditations de
+        soin que vous pourrez guider en toute confiance.</p></div>
+      <div class="card"><h3>Thérapeutes &amp; praticiens du soin</h3><p class="muted">Intégrez à votre
+        pratique des protocoles clairs, par le toucher et à distance, avec un cadre éthique
+        rigoureux&nbsp;: consentement, purification, retour de l'énergie.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">La transformation</p>
+    <h2>Ce que vous saurez faire à la fin des 6 mois</h2>
+    <div class="grid g2" style="margin-top:1.6rem">
+      <ul class="check">
+        <li>Dérouler la méthode générale en 7 étapes&nbsp;: sentir, éveiller, bâtir, diriger, purifier, retourner, clore</li>
+        <li>Vous auto-guérir et percevoir le trajet du prana (nadi darshana)</li>
+        <li>Formuler un sankalpa de guérison et le faire découvrir à autrui</li>
+        <li>Guérir par le toucher&nbsp;: nettoyage du corps pranique, soin local, «&nbsp;jump-start&nbsp;»</li>
+      </ul>
+      <ul class="check">
+        <li>Guérir à distance par un objet, une photographie ou une image mentale</li>
+        <li>Intégrer le mantra&nbsp;: les quatre niveaux du son, l'anushthana, la prana pratishtha</li>
+        <li>Comprendre l'éthique du shaktipat et pratiquer une méditation de réception</li>
+        <li>Pratiquer en binôme, dans les deux rôles&nbsp;: guérisseur et receveur</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Ce que la pratique vous apporte</p>
+    <h2>Pour vous, et pour ceux que vous accompagnez</h2>
+    <div class="benefits">
+      <div class="benefit"><div class="ic">🧠</div><div><b>Clarté mentale</b><span>Une concentration plus stable et un mental plus net.</span></div></div>
+      <div class="benefit"><div class="ic">🔥</div><div><b>Meilleure digestion</b><span>Un feu digestif plus régulier et une meilleure assimilation.</span></div></div>
+      <div class="benefit"><div class="ic">⚡</div><div><b>Énergie &amp; vitalité</b><span>Un niveau d'énergie plus haut et plus constant.</span></div></div>
+      <div class="benefit"><div class="ic">🕊️</div><div><b>Moins de stress</b><span>Un mental apaisé et moins réactif.</span></div></div>
+      <div class="benefit"><div class="ic">💡</div><div><b>Intuition &amp; recul</b><span>Des états profonds propices aux prises de conscience.</span></div></div>
+      <div class="benefit"><div class="ic">🌿</div><div><b>Calme intérieur</b><span>Cultiver la paix et desserrer l'emprise de la peur.</span></div></div>
+      <div class="benefit"><div class="ic">💗</div><div><b>Savoir s'auto-guérir</b><span>Soutenir les capacités naturelles de récupération du corps.</span></div></div>
+      <div class="benefit"><div class="ic">🤲</div><div><b>Accompagner les autres</b><span>Diriger le prana pour soutenir vos proches et vos clients.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="programme">
+  <div class="wrap">
+    <p class="eyebrow">Le parcours</p>
+    <h2>Quatre modules, du soi vers les autres</h2>
+    <div class="grid g4" style="margin-top:1.6rem">
+      <div class="card"><div class="num">Module 1</div><h3>Science &amp; auto-guérison</h3>
+        <p class="muted">Les trois stades, les 7 étapes, le sankalpa de guérison, le yoga nidra
+        du sankalpa.</p></div>
+      <div class="card"><div class="num">Module 2</div><h3>Guérir par le toucher</h3>
+        <p class="muted">Préparer le receveur, les 11 passes, soin local et général, purification,
+        séance intégrale.</p></div>
+      <div class="card"><div class="num">Module 3</div><h3>Guérir à distance</h3>
+        <p class="muted">Objet, photo et image mentale&nbsp;; les espaces intérieurs&nbsp;; la
+        grande méditation de guérison.</p></div>
+      <div class="card"><div class="num">Module 4</div><h3>Mantra, objets, shaktipat</h3>
+        <p class="muted">Les quatre niveaux du son, charger des objets, animer un yantra,
+        recevoir le shaktipat.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">La signature de ce niveau</p>
+    <h2>Apprendre en pratiquant à deux</h2>
+    <p class="lead">Chaque semaine, au-delà de votre pratique personnelle, vous pratiquez
+      <b>en binôme</b>, en présentiel ou à distance, en alternant les rôles de guérisseur et
+      de receveur. On n'apprend pas à soigner en théorie&nbsp;: on l'apprend en donnant, en
+      recevant, et en échangeant ses ressentis.</p>
+    <div class="grid g3" style="margin-top:1.4rem">
+      <div class="card"><h3>Donner</h3><p class="muted">Conduire les protocoles complets sur un
+        partenaire, du sankalpa à l'ancrage.</p></div>
+      <div class="card"><h3>Recevoir</h3><p class="muted">Éprouver le soin de l'intérieur pour
+        affiner votre propre pratique.</p></div>
+      <div class="card"><h3>Échanger</h3><p class="muted">Un débriefing croisé structuré après
+        chaque séance, pour progresser vite.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Comment ça se passe</p>
+    <h2>Un accompagnement vivant, chaque semaine</h2>
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="card"><h3>Le rythme</h3>
+        <ul class="check" style="margin-top:.6rem">
+          <li><b>Une session live</b> hebdomadaire, d'environ 1h30</li>
+          <li><b>Une vidéo de formation complémentaire</b> chaque semaine, disponible dans votre espace de formation</li>
+          <li>Une pratique <b>solo</b> + une pratique <b>en binôme</b> chaque semaine</li>
+          <li>26 semaines de cours + <b>3 dimanches de pause</b> en été</li>
+        </ul></div>
+      <div class="card"><h3>Le soutien au quotidien</h3>
+        <ul class="check" style="margin-top:.6rem">
+          <li>Un <b>groupe WhatsApp privé</b> et un conseil chaque jour</li>
+          <li>Un groupe <b>limité à 20 personnes</b></li>
+          <li>Un <b>certificat de praticien</b> à l'issue du parcours</li>
+        </ul></div>
+    </div>
+
+    <div class="bonus" style="margin-top:26px">
+      <span class="pill">Offre de lancement · 7 premières places</span>
+      <p class="eyebrow">Bonus praticien</p>
+      <h2 style="margin-top:.2rem">Un nettoyage énergétique de votre cabinet, offert</h2>
+      <p class="muted" style="max-width:62ch">Pour les <b>7 premières inscriptions</b>, Home Harmony
+        vous offre une <b>séance de nettoyage pranique de votre cabinet, votre lieu de soin, à
+        distance</b>. Un espace de travail clair soutient la qualité de votre présence et de vos
+        soins&nbsp;: le prolongement naturel de notre métier d'harmonisation des lieux.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Qui suis-je</p>
+    <h2>Laurence Boudart, votre formatrice</h2>
+    <div class="bio">
+      <div class="bio-text">
+        <p>Pendant longtemps, j'ai cherché l'énergie au mauvais endroit. Comme beaucoup, je
+          croyais qu'il fallait <em>faire plus</em>&nbsp;: être plus forte, mieux gérer mon
+          stress, mieux dormir, mieux manger… Malgré tous ces efforts, quelque chose manquait.</p>
+        <p>Ce que j'ignorais alors, c'est que la vitalité ne dépend pas seulement du corps.
+          Elle dépend de la qualité du <b>prana</b> qui circule en nous. Cette découverte a
+          profondément changé ma manière d'aborder la santé.</p>
+        <p>Depuis plusieurs années, je me forme et je pratique les enseignements du yoga
+          traditionnel de l'Inde, au cœur d'une lignée où le prana n'est pas une théorie,
+          mais une expérience vécue au quotidien. Le Prana Vidya m'a appris qu'avant de
+          chercher à guérir le corps, il est essentiel de rétablir la circulation de
+          l'énergie vitale.</p>
+        <p>Aujourd'hui, je transmets cette approche à celles et ceux qui sentent qu'ils ont
+          perdu leur élan intérieur, et aux professionnels qui souhaitent l'intégrer à leur
+          accompagnement. Non pas pour ajouter une méthode de plus, mais pour retrouver ce
+          qui était déjà là&nbsp;: la vitalité naturelle.</p>
+        <p class="signature">« Lorsque le prana circule librement, le corps retrouve ses
+          capacités d'autorégulation, le mental s'apaise, et la vie recommence à circuler. »</p>
+      </div>
+      <div class="card">
+        <div class="avatar">LB</div>
+        <h3>Formations &amp; certifications</h3>
+        <ul class="certs">
+          <li><b>Certification Prana Vidya · Niveaux 1 &amp; 2</b>
+            <span>Science yogique du prana et de la guérison pranique</span></li>
+          <li><b>Online Yoga Nidra Certification</b>
+            <span>My Vinyasa Practice, relaxation profonde et méditation guidée</span></li>
+          <li><b>Yoga Nidra Certification Course</b>
+            <span>Programme reconnu Yoga Alliance, Pradeep Sattwamaya</span></li>
+          <li><b>Yoga Nidra Facilitators Course · Teacher Training L1</b>
+            <span>Devatma Saraswati, facilitation et guidage vocal</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reserver">
+  <div class="wrap center">
+    <p class="eyebrow">Tarifs</p>
+    <h2>Investir dans une compétence de praticien</h2>
+    <p class="lead">Un tarif unique et tout compris pour les 6 mois, <b>payable en deux
+      fois</b> (un trimestre à la fois).</p>
+
+    <div class="prices" style="grid-template-columns:1fr;max-width:540px;margin:2rem auto 0;text-align:left">
+      <div class="price feature">
+        <span class="kind">Tarif unique</span>
+        <div class="amount">2 × 260&nbsp;€ <small>(un trimestre à la fois)</small></div>
+        <div class="total">soit 520&nbsp;€ pour les 6 mois</div>
+        <ul>
+          <li><b>20 places maximum</b> par session</li>
+          <li>Tout inclus&nbsp;: lives, vidéos de formation, manuel PDF, méditations audio, groupe WhatsApp</li>
+          <li>Réservation par acompte de 100&nbsp;€, déduit du premier trimestre</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="max-width:66ch;margin:22px auto 0;text-align:left">
+      <p style="margin:0 0 .5rem">📅 <b>Calendrier</b> : du dimanche <b>4 avril 2027</b> au
+        dimanche <b>17 octobre 2027</b>&nbsp;: 26 sessions + 3 dimanches de pause en été
+        (25 juillet, 1ᵉʳ et 8 août). <b>Inscriptions jusqu'au 28 mars 2027.</b></p>
+      <p style="margin:0 0 .5rem">✍️ <b>Réservation</b> : votre place est confirmée à réception
+        d'un acompte de <b>100&nbsp;€</b> (déduit du 1ᵉʳ trimestre). L'ordre d'arrivée des acomptes
+        détermine les 7 bonus « nettoyage du cabinet ». Prérequis&nbsp;: niveau&nbsp;1 validé.</p>
+      <p style="margin:0 0 .5rem">↩️ <b>Annulation</b> : droit de rétractation de <b>14 jours</b>
+        après l'inscription (remboursement intégral). Après le début de la formation, le trimestre
+        entamé est dû&nbsp;; le second trimestre est annulable jusqu'à 2 semaines avant son début.</p>
+      <p style="margin:0">🎧 <b>Replays des lives, vidéos de formation &amp; audios</b> : accessibles pendant toute la formation,
+        puis encore <b>1 an</b> après la fin du parcours.</p>
+    </div>
+
+    <div class="hero-actions" style="justify-content:center;margin-top:1.8rem">
+      <a href="#contact" class="btn btn-primary">Réserver ma place</a>
+      <a href="#faq" class="btn btn-ghost">J'ai une question</a>
+    </div>
+  </div>
+</section>
+
+<section id="decouverte" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Pas encore sûr·e&nbsp;?</p>
+    <h2>Deux façons de découvrir avant de vous engager</h2>
+    <div class="grid g2" style="margin-top:1.6rem">
+      <div class="card">
+        <div class="avatar" style="width:56px;height:56px;font-size:1.4rem;border-width:2px">🎁</div>
+        <h3>Une session découverte gratuite</h3>
+        <p class="muted">Participez à une <b>vraie classe d'essai en ligne</b> orientée soin&nbsp;:
+          théorie, pratique guidée et questions, pour goûter la méthode avant de vous décider.
+          Organisée avant le démarrage de la session (date communiquée par e-mail).</p>
+        <p style="margin-top:1rem"><a class="btn btn-primary"
+          href="mailto:contact@homeharmony.be?subject=Session%20d%C3%A9couverte%20gratuite%20%E2%80%94%20Prana%20Vidya%20Niveau%202&body=Bonjour%20Laurence%2C%0D%0A%0D%0AJe%20souhaite%20participer%20%C3%A0%20la%20session%20d%C3%A9couverte%20gratuite%20du%20Prana%20Vidya%20(Niveau%202%20%E2%80%94%20Gu%C3%A9rir%20avec%20le%20prana).%0D%0A%0D%0AMon%20pr%C3%A9nom%20et%20nom%20%3A%0D%0A%0D%0AMerci%20!">Je réserve ma session gratuite</a></p>
+      </div>
+      <div class="card">
+        <div class="avatar" style="width:56px;height:56px;font-size:1.4rem;border-width:2px">📩</div>
+        <h3>Le programme complet par e-mail</h3>
+        <p class="muted">Recevez le <b>programme détaillé des 26 semaines</b> (modules, protocoles,
+          pratiques en binôme, calendrier) pour le lire tranquillement et décider en connaissance
+          de cause.</p>
+        <p style="margin-top:1rem"><a class="btn btn-ghost"
+          href="mailto:contact@homeharmony.be?subject=Programme%20complet%20%E2%80%94%20Prana%20Vidya%20Niveau%202&body=Bonjour%20Laurence%2C%0D%0A%0D%0AJe%20souhaite%20recevoir%20le%20programme%20complet%20de%20la%20formation%20Prana%20Vidya%20Niveau%202%20(Gu%C3%A9rir%20avec%20le%20prana).%0D%0A%0D%0AMon%20pr%C3%A9nom%20et%20nom%20%3A%0D%0A%0D%0AMerci%20!">Recevoir le programme complet</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Un cadre sûr et éthique</p>
+    <h2>Soigner avec discernement</h2>
+    <p class="lead">Toute pratique sur autrui se fait avec un <b>consentement explicite</b>. Le
+      parcours enseigne systématiquement la purification du praticien et le retour de l'énergie,
+      et rappelle que la guérison pranique <b>accompagne</b>, elle ne remplace jamais un
+      diagnostic ou un traitement médical. Un cadre qui protège autant le receveur que le
+      praticien.</p>
+  </div>
+</section>
+
+<section id="faq" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Questions fréquentes</p>
+    <h2>Ce que vous vous demandez peut-être</h2>
+    <div style="margin-top:1.4rem">
+      <details><summary>Puis-je faire le niveau&nbsp;2 sans le niveau&nbsp;1&nbsp;?</summary>
+        <p>Non&nbsp;: le niveau&nbsp;2 s'appuie sur les fondations du niveau&nbsp;1 (vayus, chakras,
+          nadis, construction du prana à ajna). Le niveau&nbsp;1 reste, lui, accessible à tous.</p></details>
+      <details><summary>La pratique en binôme est-elle obligatoire&nbsp;?</summary>
+        <p>C'est le cœur de ce niveau, et elle se fait en présentiel <b>ou entièrement à
+          distance</b>, nous vous aidons à trouver un binôme au sein du groupe. Le contact
+          physique n'est jamais imposé&nbsp;: chaque binôme définit dès le départ un « contrat de
+          toucher » (ce qui est accepté, ce qui ne l'est pas), révisable à tout moment, et la
+          plupart des protocoles existent en version sans contact.</p></details>
+      <details><summary>Vais-je pouvoir soigner mes clients ensuite&nbsp;?</summary>
+        <p>Vous apprendrez des protocoles complets et un cadre éthique. La guérison pranique
+          complète votre pratique&nbsp;; elle ne se substitue pas aux soins médicaux et n'établit
+          aucun diagnostic.</p></details>
+      <details><summary>Y a-t-il un certificat&nbsp;?</summary>
+        <p>Oui, un certificat de praticien est délivré à l'issue de la formation.</p></details>
+      <details><summary>Comment se passe la réservation et le paiement&nbsp;?</summary>
+        <p>Votre place est confirmée à réception d'un acompte de 100&nbsp;€ (déduit du premier
+          trimestre). Le solde se règle en deux fois, 260&nbsp;€ par trimestre.</p></details>
+      <details><summary>Puis-je annuler&nbsp;? Serai-je remboursé·e&nbsp;?</summary>
+        <p>Vous disposez d'un droit de rétractation de 14 jours après l'inscription, avec
+          remboursement intégral. Après le début de la formation, le trimestre entamé est dû&nbsp;;
+          le second trimestre peut être annulé jusqu'à deux semaines avant son début.</p></details>
+      <details><summary>Comment fonctionne le groupe WhatsApp&nbsp;?</summary>
+        <p>L'accès au groupe est volontaire (votre numéro y est visible des autres participants,
+          20 personnes maximum). Vous y recevez les conseils quotidiens et l'organisation des
+          binômes, et vous pouvez le quitter à tout moment.</p></details>
+      <details><summary>Combien de temps ai-je accès aux replays et aux vidéos&nbsp;?</summary>
+        <p>Pendant toute la formation, puis encore un an après la fin du parcours, replays des
+          lives, vidéos de formation et méditations audio comprises.</p></details>
+      <details><summary>Je suis débordé·e, et si j'abandonne en cours de route&nbsp;?</summary>
+        <p>Le parcours est conçu pour une vie professionnelle bien remplie&nbsp;: chaque live a son
+          replay, trois dimanches de pause sont prévus en été, le binôme et le groupe WhatsApp vous
+          aident à garder le fil, et vous conservez l'accès aux contenus un an après la fin.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-band">
+      <p class="eyebrow" style="color:#e0bd86">Prochaine session · 20 places</p>
+      <h2>Prêt·e à faire de l'énergie un outil de soin&nbsp;?</h2>
+      <p>Réservez votre place ou posez-nous vos questions. Nous vous répondons personnellement.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:1.4rem">
+        <a href="mailto:contact@homeharmony.be" class="btn btn-primary">Réserver / nous écrire</a>
+      </div>
+      <p style="margin-top:1.1rem;font-size:.9rem;color:#e7dae6">Démarrage&nbsp;:
+        <b style="color:#e0bd86">dimanche 4 avril 2027</b> · le matin (horaire à préciser) ·
+        sessions d'environ 1h30<br>
+        <b style="color:#e0bd86">Inscriptions jusqu'au 28 mars 2027</b>, place confirmée à
+        réception de l'acompte de 100&nbsp;€</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0"><b style="color:var(--deep)">Home Harmony</b> · Harmonisation de l'habitat
+      et de l'énergie, Belgique.</p>
+    <p style="margin:.4rem 0 0">Formation de yoga et de méditation. Ne remplace pas un avis ou un
+      traitement médical. Toute pratique sur autrui requiert un consentement explicite.</p>
+  </div>
+</footer>
