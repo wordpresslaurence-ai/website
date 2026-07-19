@@ -192,9 +192,24 @@
     .hero .lead{animation-delay:.2s;} .hero .hero-actions{animation-delay:.26s;}
     @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
   }
+
+  /* ===== animations premium ===== */
+  .hero{position:relative;overflow:hidden;}
+  .prana-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+  .wrap{position:relative;z-index:1;}
+  section{position:relative;overflow:hidden;}
+  .orb{position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none;z-index:0;will-change:transform;}
+  .card,.benefit,.price{transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s ease;}
+  .card:hover,.benefit:hover{transform:translateY(-5px);}
+  @media (prefers-reduced-motion:reduce){
+    .card:hover,.benefit:hover{transform:none;}
+  }
 </style>
 
 <header class="hero">
+  <canvas class="prana-canvas" aria-hidden="true"></canvas>
+  <div class="orb" data-depth="0.10" aria-hidden="true" style="width:420px;height:420px;top:-120px;right:-90px;background:radial-gradient(circle, rgba(202,152,66,.34), transparent 70%);"></div>
+  <div class="orb" data-depth="0.16" aria-hidden="true" style="width:360px;height:360px;top:40%;left:-140px;background:radial-gradient(circle, rgba(111,84,112,.22), transparent 70%);"></div>
   <div class="wrap">
     <div class="brand">Home <b>Harmony</b> · <span>Harmonisation de l'habitat &amp; de l'énergie</span></div>
     <span class="badge">Niveau 2 · Praticien de guérison pranique</span>
@@ -350,6 +365,7 @@
 </section>
 
 <section class="alt">
+  <div class="orb" data-depth="0.15" aria-hidden="true" style="width:340px;height:340px;top:30%;right:-110px;background:radial-gradient(circle, rgba(202,152,66,.34), transparent 70%);"></div>
   <div class="wrap">
     <p class="eyebrow">Qui suis-je</p>
     <h2>Laurence Boudart, votre formatrice</h2>
@@ -392,6 +408,7 @@
 </section>
 
 <section id="reserver">
+  <div class="orb" data-depth="0.10" aria-hidden="true" style="width:420px;height:420px;top:10%;left:-160px;background:radial-gradient(circle, rgba(111,84,112,.22), transparent 70%);"></div>
   <div class="wrap center">
     <p class="eyebrow">Tarifs</p>
     <h2>Investir dans une compétence de praticien</h2>
@@ -433,6 +450,7 @@
 </section>
 
 <section id="decouverte" class="alt">
+  <div class="orb" data-depth="0.14" aria-hidden="true" style="width:380px;height:380px;top:-80px;right:-120px;background:radial-gradient(circle, rgba(202,152,66,.34), transparent 70%);"></div>
   <div class="wrap">
     <p class="eyebrow">Pas encore sûr·e&nbsp;?</p>
     <h2>Deux façons de découvrir avant de vous engager</h2>
@@ -539,5 +557,104 @@
       traitement médical. Toute pratique sur autrui requiert un consentement explicite.</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Particules d'énergie (pseudo-3D, sans bibliothèque) ---- */
+  var canvas = document.querySelector('.prana-canvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var COLORS = ['205,155,62','150,118,150','226,178,92'];
+    var w,h,dpr,P=[],N;
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio||1,2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w*dpr; canvas.height = h*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      N = w < 700 ? 40 : 90;
+      while(P.length < N) P.push(spawn({}, true));
+      P.length = N;
+    }
+    function spawn(p, anywhere){
+      p.z = Math.random()*560;
+      p.x = (Math.random()*2-1)*(w*0.62);
+      p.y = anywhere ? Math.random()*h : h + 20 + Math.random()*40;
+      p.r = 1.1 + Math.random()*2.6;
+      p.s = 0.12 + Math.random()*0.3;
+      p.ph = Math.random()*Math.PI*2;
+      p.c = COLORS[(Math.random()*COLORS.length)|0];
+      return p;
+    }
+    var tx=0,ty=0,mx=0,my=0;
+    window.addEventListener('pointermove', function(e){
+      var r = canvas.getBoundingClientRect();
+      tx = (e.clientX - r.left - w/2)/w; ty = (e.clientY - r.top - h/2)/h;
+    }, {passive:true});
+    var running = true;
+    document.addEventListener('visibilitychange', function(){
+      running = !document.hidden; if(running && !reduced) loop();
+    });
+    var FOV = 430;
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<P.length;i++){
+        var p = P[i];
+        var sc = FOV/(FOV+p.z);
+        var depth = 1 - p.z/560;
+        var sway = Math.sin(p.ph)*16;
+        var sx = w/2 + (p.x + sway + mx*90*depth)*sc;
+        var sy = p.y + my*46*depth;
+        var a = 0.16 + depth*0.5;
+        ctx.beginPath();
+        ctx.arc(sx, sy, p.r*sc*3.1, 0, 6.2832);
+        ctx.fillStyle = 'rgba('+p.c+','+(a*0.16).toFixed(3)+')';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(sx, sy, p.r*sc, 0, 6.2832);
+        ctx.fillStyle = 'rgba('+p.c+','+a.toFixed(3)+')';
+        ctx.fill();
+      }
+    }
+    function loop(){
+      if(!running) return;
+      mx += (tx-mx)*0.045; my += (ty-my)*0.045;
+      for(var i=0;i<P.length;i++){
+        var p = P[i];
+        p.y -= p.s; p.ph += 0.0085;
+        if(p.y < -30) spawn(p);
+      }
+      draw();
+      requestAnimationFrame(loop);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    if (reduced) { draw(); } else { loop(); }
+  }
+
+  /* ---- Parallaxe de profondeur ---- */
+  var orbs = Array.prototype.slice.call(document.querySelectorAll('[data-depth]'));
+  if (orbs.length && !reduced) {
+    var ticking = false;
+    function upd(){
+      ticking = false;
+      var vc = window.innerHeight/2;
+      for(var i=0;i<orbs.length;i++){
+        var el = orbs[i];
+        var host = el.parentElement;
+        var r = host.getBoundingClientRect();
+        var d = (r.top + r.height/2 - vc) * parseFloat(el.dataset.depth);
+        el.style.transform = 'translate3d(0,'+d.toFixed(1)+'px,0)';
+      }
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(upd); }
+    }, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  }
+})();
+</script>
 </body>
 </html>
