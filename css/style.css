@@ -247,6 +247,13 @@ p { margin-bottom: 1rem; }
 .footer-inner p { margin: 0; font-size: .9rem; }
 .site-footer a { color: var(--white); }
 
+/* Déroulement : 5 étapes, textes plus longs */
+#deroulement .steps { grid-template-columns: repeat(3, 1fr); }
+#deroulement .steps li { text-align: left; }
+#deroulement .steps li h3 { text-align: left; }
+@media (max-width: 860px) { #deroulement .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { #deroulement .steps { grid-template-columns: 1fr; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .grid-2, .cards { grid-template-columns: 1fr; }
