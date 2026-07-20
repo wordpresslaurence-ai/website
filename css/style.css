@@ -247,6 +247,19 @@ p { margin-bottom: 1rem; }
 .footer-inner p { margin: 0; font-size: .9rem; }
 .site-footer a { color: var(--white); }
 
+/* Bienfaits d'un lieu harmonisé : fond chaud, photo arrondie */
+.bienfaits { background: #b99772; }
+.bienfaits h2 { color: #ffffff; }
+.bienfaits-photo { width: min(440px, 100%); border-radius: 22px; display: block;
+  justify-self: center; box-shadow: 0 16px 38px rgba(0,0,0,.18); }
+.benefits-list { list-style: none; padding: 0; margin: 1.3rem 0 0; display: grid; gap: .95rem;
+  color: #faf4ea; }
+.benefits-list li { position: relative; padding-left: 32px; }
+.benefits-list li::before { content: "\2726"; position: absolute; left: 0; top: .05em;
+  color: #f2d4a7; }
+.benefits-list strong { color: #ffffff; }
+@media (max-width: 860px) { .bienfaits-photo { margin-bottom: 1.6rem; } }
+
 /* Qui suis-je : liste à puces cœur + photo ronde */
 .heart-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 1rem; }
 .heart-list li { position: relative; padding-left: 34px; }
