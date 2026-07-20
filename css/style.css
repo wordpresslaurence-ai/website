@@ -247,6 +247,15 @@ p { margin-bottom: 1rem; }
 .footer-inner p { margin: 0; font-size: .9rem; }
 .site-footer a { color: var(--white); }
 
+/* Qui suis-je : liste à puces cœur + photo ronde */
+.heart-list { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 1rem; }
+.heart-list li { position: relative; padding-left: 34px; }
+.heart-list li::before { content: "\2665"; position: absolute; left: 0; top: .05em;
+  color: #9db8a4; font-size: 1.15rem; }
+.bio-photo { width: min(340px, 88%); aspect-ratio: 1; border-radius: 50%; object-fit: cover;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14); justify-self: center; }
+@media (max-width: 860px) { .bio-photo { margin-top: 1.6rem; } }
+
 /* Services : image ronde + pastille + description */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; margin-top: 2.5rem; }
 .service { text-align: center; }
