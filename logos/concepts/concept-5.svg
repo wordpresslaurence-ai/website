@@ -1,6 +1,0 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home Harmony — deux feuilles en cœur">
-  <g id="icon">
-    <path id="leaves" d="M256 390 C 196 322 148 302 148 236 C 148 194 182 166 220 166 C 240 166 251 178 256 196 C 261 178 272 166 292 166 C 330 166 364 194 364 236 C 364 302 316 322 256 390 Z" fill="#6b8e6f"/>
-    <path id="veins" d="M256 200 L256 372 M256 262 L210 224 M256 300 L302 262" stroke="#3f5844" stroke-width="11" stroke-linecap="round" fill="none"/>
-  </g>
-</svg>

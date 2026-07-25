@@ -1,7 +1,0 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home Harmony — cercle zen et maison">
-  <g id="icon">
-    <path id="ring" d="M 268 100 A 158 158 0 1 1 148 158" fill="none" stroke="#6b8e6f" stroke-width="34" stroke-linecap="round"/>
-    <path id="house" d="M256 176 L344 246 L344 356 L168 356 L168 246 Z" fill="#3f5844"/>
-    <rect id="door" x="232" y="298" width="48" height="58" rx="8" fill="#e8efe8"/>
-  </g>
-</svg>

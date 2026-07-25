@@ -1,7 +1,0 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home Harmony — maison en traits avec écho">
-  <g id="icon" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path id="outline" d="M148 268 L256 160 L364 268 L364 372 L148 372 Z" stroke="#3f5844" stroke-width="28"/>
-    <path id="echo" d="M200 240 L256 196 L312 240" stroke="#6b8e6f" stroke-width="22"/>
-    <circle id="heart" cx="256" cy="320" r="26" fill="#6b8e6f"/>
-  </g>
-</svg>
