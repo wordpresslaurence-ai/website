@@ -1,0 +1,9 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home Harmony — maison à toit-feuille">
+  <g id="icon">
+    <rect id="badge" x="24" y="24" width="464" height="464" rx="112" fill="#f7f4ee"/>
+    <rect id="body" x="176" y="256" width="160" height="132" rx="18" fill="#6b8e6f"/>
+    <rect id="door" x="238" y="316" width="36" height="72" rx="10" fill="#f7f4ee"/>
+    <path id="roof" d="M256 124 C 318 166 344 218 338 264 C 300 250 212 250 174 264 C 168 218 194 166 256 124 Z" fill="#3f5844"/>
+    <path id="vein" d="M256 140 L256 260" stroke="#6b8e6f" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

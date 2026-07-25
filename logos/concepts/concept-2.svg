@@ -1,0 +1,15 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home Harmony — deux maisons formant un H">
+  <g id="icon">
+    <g id="houses" fill="#3f5844">
+      <path d="M120 248 L184 184 L248 248 Z"/>
+      <rect x="136" y="240" width="96" height="164" rx="14"/>
+      <path d="M264 248 L328 184 L392 248 Z"/>
+      <rect x="280" y="240" width="96" height="164" rx="14"/>
+    </g>
+    <g id="doors" fill="#e8efe8">
+      <rect x="166" y="332" width="36" height="72" rx="8"/>
+      <rect x="310" y="332" width="36" height="72" rx="8"/>
+    </g>
+    <rect id="beam" x="232" y="292" width="48" height="52" rx="6" fill="#6b8e6f"/>
+  </g>
+</svg>
