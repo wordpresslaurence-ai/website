@@ -296,7 +296,7 @@ function ficheHTML(f) {
     <span class="chevron" aria-hidden="true">›</span>
   </button>
   <div class="fiche-body">
-    ${resume}${points}${sources ? `<ul class="fiche-sources">${sources}</ul>` : ''}${tags}
+    ${tags}${resume}${points}${sources ? `<ul class="fiche-sources">${sources}</ul>` : ''}
     <details class="raw"><summary>Voir la réponse brute</summary><pre>${esc(f.raw || '')}</pre></details>
   </div>
   <div class="fiche-actions">
