@@ -167,6 +167,8 @@ select { -webkit-appearance: none; appearance: none; background-image: linear-gr
 .toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 20px 0; }
 .field-search { flex: 1 1 260px; margin: 0; }
 .toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.backup-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.backup-head .panel-title { margin: 0; }
 
 /* ---------- Fiches ---------- */
 .cards { display: grid; gap: 18px; }

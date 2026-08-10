@@ -147,9 +147,20 @@
           <div class="toolbar-actions">
             <button class="btn btn-ghost" id="exportBtn" type="button">Exporter</button>
             <button class="btn btn-ghost" id="importBtn" type="button">Importer</button>
-            <input type="file" id="importFile" accept="application/json" hidden>
           </div>
         </div>
+
+        <div class="panel" id="backupPanel" hidden>
+          <div class="backup-head">
+            <h2 class="panel-title" id="backupTitle">Sauvegarde</h2>
+            <button class="link-btn" id="backupClose" type="button">Fermer</button>
+          </div>
+          <p class="panel-hint" id="backupHint"></p>
+          <input type="file" id="importFile" accept=".json,application/json" hidden>
+          <textarea id="backupText" class="mono" rows="8" aria-label="Données de sauvegarde"></textarea>
+          <div class="btn-row" id="backupActions"></div>
+        </div>
+
         <div id="fichesList" class="cards"></div>
         <p class="empty-state" id="fichesEmpty" hidden>Aucune fiche pour l'instant. Va dans <button class="link-btn" data-view="assistant" type="button">l'Assistant</button> pour créer ta première recherche.</p>
       </div>

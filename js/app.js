@@ -329,38 +329,93 @@ function deleteFiche(id) {
   toast('Fiche supprimée.');
 }
 
-function initFiches() {
-  $('#ficheSearch').addEventListener('input', renderFiches);
-  $('#exportBtn').addEventListener('click', () => {
-    const data = JSON.stringify({ type: 'studio-horizon-fiches', version: 1, fiches: store.get('fiches', []) }, null, 2);
+// Tente le téléchargement d'un fichier de sauvegarde (peut être bloqué dans
+// certains environnements verrouillés — dans ce cas, on a la copie en secours).
+function downloadBackup(data) {
+  try {
     const blob = new Blob([data], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = `studio-horizon-fiches-${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
+    document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(a.href);
-    toast('Sauvegarde téléchargée.');
-  });
-  $('#importBtn').addEventListener('click', () => $('#importFile').click());
+    toast('Téléchargement lancé (si ton navigateur l\'autorise).');
+  } catch (e) {
+    toast('Téléchargement bloqué ici — utilise « Copier la sauvegarde ».');
+  }
+}
+
+// Importe des fiches à partir d'un texte JSON (fichier ou texte collé).
+function importFromString(str) {
+  try {
+    const parsed = JSON.parse(str);
+    const incoming = Array.isArray(parsed) ? parsed : parsed.fiches;
+    if (!Array.isArray(incoming)) throw new Error('format');
+    const current = store.get('fiches', []);
+    const known = new Set(current.map(f => f.id));
+    const added = incoming.filter(f => f && !known.has(f.id));
+    store.set('fiches', current.concat(added));
+    renderFiches();
+    toast(`${added.length} fiche(s) importée(s).`);
+    $('#backupPanel').hidden = true;
+  } catch (e) {
+    toast('Texte illisible : ce n\'est pas une sauvegarde valide.');
+  }
+}
+
+// Ouvre le panneau de sauvegarde en mode « export » ou « import ».
+function openBackup(mode) {
+  const panel = $('#backupPanel');
+  const text = $('#backupText');
+  const actions = $('#backupActions');
+  panel.hidden = false;
+  actions.innerHTML = '';
+
+  if (mode === 'export') {
+    $('#backupTitle').textContent = 'Exporter mes fiches';
+    $('#backupHint').textContent = "Copie ce texte et garde-le en lieu sûr (ou télécharge-le). Pour restaurer plus tard, reviens ici, clique « Importer » et colle-le.";
+    const data = JSON.stringify({ type: 'studio-horizon-fiches', version: 1, fiches: store.get('fiches', []) }, null, 2);
+    text.value = data; text.readOnly = true;
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'btn btn-primary'; copyBtn.type = 'button'; copyBtn.textContent = 'Copier la sauvegarde';
+    copyBtn.addEventListener('click', async () => {
+      const ok = await copyText(text.value);
+      toast(ok ? 'Sauvegarde copiée.' : 'Copie impossible : sélectionne le texte et fais Ctrl+C.');
+    });
+    const dlBtn = document.createElement('button');
+    dlBtn.className = 'btn btn-ghost'; dlBtn.type = 'button'; dlBtn.textContent = 'Télécharger un fichier';
+    dlBtn.addEventListener('click', () => downloadBackup(data));
+    actions.append(copyBtn, dlBtn);
+    text.focus(); text.select();
+  } else {
+    $('#backupTitle').textContent = 'Importer des fiches';
+    $('#backupHint').textContent = "Choisis un fichier de sauvegarde, ou colle son contenu ci-dessous, puis clique « Importer ».";
+    text.value = ''; text.readOnly = false;
+    text.placeholder = 'Colle ici ta sauvegarde (le texte JSON exporté)…';
+
+    const fileBtn = document.createElement('button');
+    fileBtn.className = 'btn btn-ghost'; fileBtn.type = 'button'; fileBtn.textContent = 'Choisir un fichier…';
+    fileBtn.addEventListener('click', () => $('#importFile').click());
+    const impBtn = document.createElement('button');
+    impBtn.className = 'btn btn-primary'; impBtn.type = 'button'; impBtn.textContent = 'Importer';
+    impBtn.addEventListener('click', () => importFromString(text.value));
+    actions.append(fileBtn, impBtn);
+    text.focus();
+  }
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function initFiches() {
+  $('#ficheSearch').addEventListener('input', renderFiches);
+  $('#exportBtn').addEventListener('click', () => openBackup('export'));
+  $('#importBtn').addEventListener('click', () => openBackup('import'));
+  $('#backupClose').addEventListener('click', () => { $('#backupPanel').hidden = true; });
   $('#importFile').addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(reader.result);
-        const incoming = Array.isArray(parsed) ? parsed : parsed.fiches;
-        if (!Array.isArray(incoming)) throw new Error('format');
-        const current = store.get('fiches', []);
-        const known = new Set(current.map(f => f.id));
-        store.set('fiches', current.concat(incoming.filter(f => f && !known.has(f.id))));
-        renderFiches();
-        toast(`${incoming.length} fiche(s) importée(s).`);
-      } catch (err) {
-        toast('Fichier illisible : ce n\'est pas une sauvegarde valide.');
-      }
-      e.target.value = '';
-    };
+    reader.onload = () => { $('#backupText').value = reader.result; importFromString(reader.result); e.target.value = ''; };
     reader.readAsText(file);
   });
 }
