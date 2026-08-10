@@ -6,175 +6,41 @@
   <title>Studio Horizon — Ton assistant de recherche, sans frais</title>
   <meta name="description" content="Studio Horizon : un assistant de recherche personnel qui prépare tes consignes pour ChatGPT, transforme les réponses en fiches, gère ta veille du vendredi et t'accompagne dans le parcours « Prana & les cinq Vayus ». Sans API, sans frais, données locales.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#efe6da">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%84%3C/text%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
 </head>
 <body>
 
+  <div class="app-bg" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Aller au contenu</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="logo" data-view="assistant">
-        <span class="logo-mark" aria-hidden="true">🌄</span>
-        <span class="logo-text">Studio <span>Horizon</span></span>
-      </a>
-      <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
-        <button class="nav-link is-active" data-view="assistant" type="button">Assistant</button>
-        <button class="nav-link" data-view="fiches" type="button">Mes fiches <span class="badge" id="fichesCount" hidden>0</span></button>
-        <button class="nav-link" data-view="veille" type="button">Veille du vendredi</button>
-        <button class="nav-link" data-view="parcours" type="button">Parcours</button>
-      </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo" data-view="parcours">
+          <span class="logo-sun" aria-hidden="true"></span>
+          <span class="logo-text">Studio <span>Horizon</span></span>
+        </a>
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <button class="nav-link is-active" data-view="parcours" type="button">Parcours</button>
+          <button class="nav-link" data-view="assistant" type="button">Assistant</button>
+          <button class="nav-link" data-view="fiches" type="button">Mes fiches <span class="badge" id="fichesCount" hidden>0</span></button>
+          <button class="nav-link" data-view="veille" type="button">Veille</button>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ============================ ASSISTANT ============================ -->
-    <section class="view is-active" id="view-assistant" aria-labelledby="assistant-title" tabindex="-1">
-      <div class="container">
-        <p class="eyebrow">Assistant · recherche sur le Web</p>
-        <h1 id="assistant-title">Pose ta question, je prépare la recherche pour ChatGPT</h1>
-        <p class="lead">
-          Studio Horizon ne dépense rien : il n'utilise aucune API. Tu écris ta question,
-          l'application prépare une <strong>consigne complète</strong> pour ChatGPT (qui, lui,
-          cherche sur Internet et cite ses sources), puis tu recolles la réponse ici pour la
-          transformer en <strong>fiche enregistrée sur ton appareil</strong>.
-        </p>
-
-        <ol class="steps-inline" aria-hidden="true">
-          <li><span class="step-num">1</span> Ta question</li>
-          <li><span class="step-num">2</span> Copier &amp; ouvrir ChatGPT</li>
-          <li><span class="step-num">3</span> Recoller la réponse → fiche</li>
-        </ol>
-
-        <!-- Étape 1 -->
-        <div class="panel">
-          <h2 class="panel-title"><span class="step-num">1</span> Ta question ou ton sujet</h2>
-          <label class="field">
-            <span class="field-label">Que veux-tu rechercher ?</span>
-            <textarea id="questionInput" rows="3" placeholder="Ex. : Quelles sont les bonnes pratiques d'accessibilité pour un quiz sur mobile en 2026 ?"></textarea>
-          </label>
-          <div class="field-row">
-            <label class="field field-inline">
-              <span class="field-label">Type de recherche</span>
-              <select id="researchType">
-                <option value="documentaire">Documentaire — comprendre un sujet, avec sources</option>
-                <option value="comparatif">Comparatif — comparer des options / outils</option>
-                <option value="pratique">Pratique — un guide « comment faire »</option>
-                <option value="actualite">Actualité — ce qui est récent / a changé</option>
-              </select>
-            </label>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="prepareBtn" type="button">Préparer la consigne</button>
-          </div>
-        </div>
-
-        <!-- Étape 2 -->
-        <div class="panel" id="promptPanel" hidden>
-          <h2 class="panel-title"><span class="step-num">2</span> Consigne prête — copie-la dans ChatGPT</h2>
-          <p class="panel-hint">
-            Clique sur le bouton : la consigne est copiée et ChatGPT s'ouvre dans un nouvel onglet.
-            Colle-la (Ctrl+V), lance la recherche, puis reviens ici avec la réponse.
-          </p>
-          <textarea id="promptOutput" class="mono" rows="12" readonly aria-label="Consigne générée"></textarea>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="copyOpenBtn" type="button">Copier la consigne &amp; ouvrir ChatGPT</button>
-            <button class="btn btn-ghost" id="copyOnlyBtn" type="button">Copier seulement</button>
-          </div>
-        </div>
-
-        <!-- Étape 3 -->
-        <div class="panel" id="pastePanel" hidden>
-          <h2 class="panel-title"><span class="step-num">3</span> Colle la réponse de ChatGPT</h2>
-          <p class="panel-hint">
-            Colle ci-dessous tout ce que ChatGPT t'a répondu. Studio Horizon en extrait
-            automatiquement le titre, le résumé, les sources et les mots-clés.
-          </p>
-          <label class="field">
-            <span class="field-label">Réponse de ChatGPT</span>
-            <textarea id="answerInput" rows="10" placeholder="Colle ici la réponse complète de ChatGPT…"></textarea>
-          </label>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="createFicheBtn" type="button">Créer la fiche</button>
-            <button class="btn btn-ghost" id="clearAssistantBtn" type="button">Tout effacer</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ FICHES ============================ -->
-    <section class="view" id="view-fiches" aria-labelledby="fiches-title" tabindex="-1">
-      <div class="container">
-        <p class="eyebrow">Mes fiches · enregistrées sur cet appareil</p>
-        <h1 id="fiches-title">Tes recherches, gardées au chaud</h1>
-        <p class="lead">
-          Chaque fiche est stockée <strong>localement dans ton navigateur</strong> — rien n'est
-          envoyé sur Internet. Tu peux les rechercher, les copier ou les exporter pour les sauvegarder.
-        </p>
-
-        <div class="toolbar">
-          <label class="field field-search">
-            <span class="visually-hidden">Rechercher dans mes fiches</span>
-            <input type="search" id="ficheSearch" placeholder="Rechercher un mot, un thème…">
-          </label>
-          <div class="toolbar-actions">
-            <button class="btn btn-ghost" id="exportBtn" type="button">Exporter (sauvegarde)</button>
-            <button class="btn btn-ghost" id="importBtn" type="button">Importer</button>
-            <input type="file" id="importFile" accept="application/json" hidden>
-          </div>
-        </div>
-
-        <div id="fichesList" class="cards"></div>
-        <p class="empty-state" id="fichesEmpty" hidden>
-          Aucune fiche pour l'instant. Va dans <button class="link-btn" data-view="assistant" type="button">l'Assistant</button> pour créer ta première recherche.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================ VEILLE ============================ -->
-    <section class="view" id="view-veille" aria-labelledby="veille-title" tabindex="-1">
-      <div class="container">
-        <p class="eyebrow">Veille du vendredi · 3 vidéos par semaine</p>
-        <h1 id="veille-title">Ta veille de la semaine est prête à être lancée</h1>
-        <p class="lead">
-          Un bouton prépare une consigne pour que ChatGPT te sélectionne <strong>trois vidéos</strong> :
-          une pour <em>apprendre</em>, une pour <em>pratiquer</em>, une pour <em>ouvrir</em> vers un autre
-          usage. Tu colles le résultat et il est enregistré localement.
-        </p>
-
-        <div class="panel">
-          <h2 class="panel-title">1 · Prépare ta consigne de veille</h2>
-          <textarea id="veillePrompt" class="mono" rows="10" readonly aria-label="Consigne de veille"></textarea>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="veilleCopyOpenBtn" type="button">Copier &amp; ouvrir ChatGPT</button>
-            <button class="btn btn-ghost" id="veilleCopyBtn" type="button">Copier seulement</button>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h2 class="panel-title">2 · Colle les 3 recommandations</h2>
-          <label class="field">
-            <span class="field-label">Réponse de ChatGPT</span>
-            <textarea id="veilleAnswer" rows="9" placeholder="Colle ici les 3 vidéos recommandées par ChatGPT…"></textarea>
-          </label>
-          <div class="btn-row">
-            <button class="btn btn-primary" id="veilleSaveBtn" type="button">Enregistrer cette veille</button>
-          </div>
-        </div>
-
-        <h2 class="section-sub">Mes veilles enregistrées</h2>
-        <div id="veilleList" class="veille-list"></div>
-        <p class="empty-state" id="veilleEmpty" hidden>Aucune veille enregistrée pour l'instant.</p>
-      </div>
-    </section>
-
-    <!-- ============================ PARCOURS ============================ -->
-    <section class="view" id="view-parcours" aria-labelledby="parcours-title" tabindex="-1">
+    <!-- ============================ PARCOURS (accueil) ============================ -->
+    <section class="view is-active" id="view-parcours" aria-labelledby="parcours-title" tabindex="-1">
       <div class="container">
         <p class="eyebrow">Parcours · projet fil rouge</p>
         <h1 id="parcours-title">Construire l'app « Prana &amp; les cinq Vayus »</h1>
@@ -201,9 +67,125 @@
         <div id="parcoursModules"></div>
 
         <p class="fine-print">
-          Les liens vidéo marqués « à vérifier » n'ont pas pu être contrôlés de façon fiable : vérifie-les avant de t'y fier.
+          Les liens marqués « lien à vérifier » n'ont pas pu être contrôlés de façon fiable : vérifie-les avant de t'y fier.
           La documentation officielle reste la référence la plus stable.
         </p>
+      </div>
+    </section>
+
+    <!-- ============================ ASSISTANT ============================ -->
+    <section class="view hero" id="view-assistant" aria-labelledby="assistant-title" tabindex="-1">
+      <span class="sun" aria-hidden="true"></span>
+      <div class="container">
+        <p class="eyebrow">Assistant · recherche sur le Web</p>
+        <h1 id="assistant-title">Pose ta question,<br>je prépare la recherche pour ChatGPT</h1>
+        <p class="lead">
+          Studio Horizon ne dépense rien : aucune API. Tu écris ta question, l'application prépare une
+          <strong>consigne complète</strong> pour ChatGPT (qui cherche sur Internet et cite ses sources),
+          puis tu recolles la réponse ici pour la transformer en <strong>fiche enregistrée sur ton appareil</strong>.
+        </p>
+
+        <ol class="steps-inline" aria-hidden="true">
+          <li><span class="step-num">1</span> Ta question</li>
+          <li><span class="step-num">2</span> Copier &amp; ouvrir ChatGPT</li>
+          <li><span class="step-num">3</span> Recoller → fiche</li>
+        </ol>
+
+        <div class="panel">
+          <h2 class="panel-title"><span class="step-num">1</span> Ta question ou ton sujet</h2>
+          <label class="field">
+            <span class="field-label">Que veux-tu rechercher ?</span>
+            <textarea id="questionInput" rows="3" placeholder="Ex. : Quelles sont les bonnes pratiques d'accessibilité pour un quiz sur mobile en 2026 ?"></textarea>
+          </label>
+          <div class="field-row">
+            <label class="field field-inline">
+              <span class="field-label">Type de recherche</span>
+              <select id="researchType">
+                <option value="documentaire">Documentaire — comprendre un sujet, avec sources</option>
+                <option value="comparatif">Comparatif — comparer des options / outils</option>
+                <option value="pratique">Pratique — un guide « comment faire »</option>
+                <option value="actualite">Actualité — ce qui est récent / a changé</option>
+              </select>
+            </label>
+          </div>
+          <div class="btn-row"><button class="btn btn-primary" id="prepareBtn" type="button">Préparer la consigne</button></div>
+        </div>
+
+        <div class="panel" id="promptPanel" hidden>
+          <h2 class="panel-title"><span class="step-num">2</span> Consigne prête — copie-la dans ChatGPT</h2>
+          <p class="panel-hint">Clique : la consigne est copiée et ChatGPT s'ouvre dans un nouvel onglet. Colle-la (Ctrl+V), lance la recherche, puis reviens avec la réponse.</p>
+          <textarea id="promptOutput" class="mono" rows="12" readonly aria-label="Consigne générée"></textarea>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="copyOpenBtn" type="button">Copier la consigne &amp; ouvrir ChatGPT</button>
+            <button class="btn btn-ghost" id="copyOnlyBtn" type="button">Copier seulement</button>
+          </div>
+        </div>
+
+        <div class="panel" id="pastePanel" hidden>
+          <h2 class="panel-title"><span class="step-num">3</span> Colle la réponse de ChatGPT</h2>
+          <p class="panel-hint">Colle tout ce que ChatGPT t'a répondu. Studio Horizon en extrait le titre, le résumé, les sources et les mots-clés.</p>
+          <label class="field">
+            <span class="field-label">Réponse de ChatGPT</span>
+            <textarea id="answerInput" rows="10" placeholder="Colle ici la réponse complète de ChatGPT…"></textarea>
+          </label>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="createFicheBtn" type="button">Créer la fiche</button>
+            <button class="btn btn-ghost" id="clearAssistantBtn" type="button">Tout effacer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ FICHES ============================ -->
+    <section class="view" id="view-fiches" aria-labelledby="fiches-title" tabindex="-1">
+      <div class="container">
+        <p class="eyebrow">Mes fiches · enregistrées sur cet appareil</p>
+        <h1 id="fiches-title">Tes recherches, gardées au chaud</h1>
+        <p class="lead">Chaque fiche est stockée <strong>localement dans ton navigateur</strong> — rien n'est envoyé sur Internet. Clique sur une fiche pour la déplier. Recherche-les, copie-les ou exporte-les pour les sauvegarder.</p>
+        <div class="toolbar">
+          <label class="field field-search"><span class="visually-hidden">Rechercher dans mes fiches</span><input type="search" id="ficheSearch" placeholder="Rechercher un mot, un thème…"></label>
+          <div class="toolbar-actions">
+            <button class="btn btn-ghost" id="exportBtn" type="button">Exporter</button>
+            <button class="btn btn-ghost" id="importBtn" type="button">Importer</button>
+            <input type="file" id="importFile" accept="application/json" hidden>
+          </div>
+        </div>
+        <div id="fichesList" class="cards"></div>
+        <p class="empty-state" id="fichesEmpty" hidden>Aucune fiche pour l'instant. Va dans <button class="link-btn" data-view="assistant" type="button">l'Assistant</button> pour créer ta première recherche.</p>
+      </div>
+    </section>
+
+    <!-- ============================ VEILLE ============================ -->
+    <section class="view" id="view-veille" aria-labelledby="veille-title" tabindex="-1">
+      <div class="container">
+        <p class="eyebrow">Veille du vendredi · 3 vidéos par semaine</p>
+        <h1 id="veille-title">Ta veille de la semaine est prête</h1>
+        <p class="lead">Un bouton prépare une consigne pour que ChatGPT te sélectionne <strong>trois vidéos</strong> : une pour <em>apprendre</em>, une pour <em>pratiquer</em>, une pour <em>ouvrir</em> vers un autre usage.</p>
+
+        <div class="friday-note" id="fridayNote" hidden>
+          <span class="fn-sun" aria-hidden="true"></span>
+          <p><strong>Rappel du vendredi</strong> — ta veille de la semaine est prête à lancer.</p>
+          <button class="btn btn-primary" id="fridayGoBtn" type="button">Préparer ma veille</button>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-title">1 · Prépare ta consigne de veille</h2>
+          <textarea id="veillePrompt" class="mono" rows="10" readonly aria-label="Consigne de veille"></textarea>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="veilleCopyOpenBtn" type="button">Copier &amp; ouvrir ChatGPT</button>
+            <button class="btn btn-ghost" id="veilleCopyBtn" type="button">Copier seulement</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 class="panel-title">2 · Colle les 3 recommandations</h2>
+          <label class="field"><span class="field-label">Réponse de ChatGPT</span><textarea id="veilleAnswer" rows="9" placeholder="Colle ici les 3 vidéos recommandées…"></textarea></label>
+          <div class="btn-row"><button class="btn btn-primary" id="veilleSaveBtn" type="button">Enregistrer cette veille</button></div>
+        </div>
+
+        <h2 class="section-sub">Mes veilles enregistrées</h2>
+        <div id="veilleList" class="veille-list"></div>
+        <p class="empty-state" id="veilleEmpty" hidden>Aucune veille enregistrée pour l'instant.</p>
       </div>
     </section>
 
@@ -212,11 +194,13 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>Studio Horizon — assistant guidé par copier-coller, sans API, données locales.</p>
-      <p><button class="link-btn" id="resetAllBtn" type="button">Réinitialiser toutes mes données</button></p>
+      <div class="footer-actions">
+        <button class="btn btn-primary btn-sm" id="installBtn" type="button" hidden>Installer l'app</button>
+        <button class="link-btn" id="resetAllBtn" type="button">Réinitialiser toutes mes données</button>
+      </div>
     </div>
   </footer>
 
-  <!-- Zone de notifications -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="js/app.js" defer></script>

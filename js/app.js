@@ -14,14 +14,12 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
 const CHATGPT_URL = 'https://chatgpt.com/';
 
-// Échappe le texte avant de l'insérer dans du HTML.
 function esc(str = '') {
   return String(str)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// Notification discrète en bas d'écran.
 let toastTimer;
 function toast(message) {
   const el = $('#toast');
@@ -42,27 +40,20 @@ async function copyText(text) {
   } catch (e) { /* on tente le repli ci-dessous */ }
   try {
     const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
     const ok = document.execCommand('copy');
     document.body.removeChild(ta);
     return ok;
-  } catch (e) {
-    return false;
-  }
+  } catch (e) { return false; }
 }
 
-// Copie puis ouvre ChatGPT dans un nouvel onglet.
 async function copyAndOpenChatGPT(text) {
   const ok = await copyText(text);
   toast(ok ? 'Consigne copiée — ouverture de ChatGPT…' : 'Copie impossible : sélectionne le texte et fais Ctrl+C.');
   window.open(CHATGPT_URL, '_blank', 'noopener');
 }
 
-// Petit stockage simple au-dessus de localStorage.
 const store = {
   get(key, fallback) {
     try { const v = localStorage.getItem('sh.' + key); return v ? JSON.parse(v) : fallback; }
@@ -89,10 +80,11 @@ function showView(name) {
   if (active) { active.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   $('#mainNav').classList.remove('open');
   $('#navToggle').setAttribute('aria-expanded', 'false');
+  // Les fiches ne peuvent être mesurées que lorsqu'elles deviennent visibles.
+  if (name === 'fiches') measureFiches();
 }
 
 function initNav() {
-  // Tout élément portant data-view devient un déclencheur de navigation.
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('[data-view]');
     if (trigger) { e.preventDefault(); showView(trigger.dataset.view); }
@@ -106,7 +98,6 @@ function initNav() {
 
 /* ============================ ASSISTANT ============================ */
 
-// Construit la consigne envoyée à ChatGPT selon le type de recherche.
 function buildResearchPrompt(question, type) {
   const consignes = {
     documentaire: "Cherche à comprendre le sujet en profondeur et donne une explication claire et neutre.",
@@ -141,7 +132,6 @@ SOURCES:
 MOTS-CLES: <5 à 8 mots-clés séparés par des virgules>`);
 }
 
-// Détecte une étiquette de section au début d'une ligne.
 function detectLabel(line) {
   const l = line.trim().toLowerCase().replace(/[*_`#]/g, '');
   if (/^titre\s*:/.test(l))                 return 'titre';
@@ -151,14 +141,23 @@ function detectLabel(line) {
   if (/^mots?[-\s]*cl[ée]s?\s*:/.test(l))   return 'motscles';
   return null;
 }
-
 function inlineValue(line) {
   const i = line.indexOf(':');
   return i === -1 ? '' : line.slice(i + 1).trim().replace(/^\*+|\*+$/g, '').trim();
 }
-
 function stripBullet(line) {
   return line.trim().replace(/^[-*•·]\s*/, '').replace(/^\d+[.)]\s*/, '').trim();
+}
+function splitKeywords(str) {
+  return str.split(/[,;·•]/).map(s => s.trim().replace(/^[-*]\s*/, '')).filter(Boolean);
+}
+function addSource(f, line) {
+  if (!line) return;
+  const urlMatch = line.match(/https?:\/\/[^\s)>\]]+/);
+  const url = urlMatch ? urlMatch[0] : '';
+  let titre = line.replace(url, '').replace(/[—–\-:]\s*$/, '').replace(/^[—–\-:]\s*/, '').trim();
+  if (!titre) titre = url ? new URL(url).hostname.replace(/^www\./, '') : line;
+  f.sources.push({ titre, url });
 }
 
 // Analyse la réponse de ChatGPT et en extrait les champs d'une fiche.
@@ -182,7 +181,6 @@ function parseFiche(text) {
       continue;
     }
     if (!rawLine.trim()) { if (section === 'resume') resumeLines.push(''); continue; }
-
     if (section === 'resume') resumeLines.push(rawLine.trim());
     else if (section === 'points') f.points.push(stripBullet(rawLine));
     else if (section === 'sources') addSource(f, stripBullet(rawLine));
@@ -192,69 +190,59 @@ function parseFiche(text) {
   f.resume = resumeLines.join('\n').trim();
   f.points = f.points.filter(Boolean);
   f.motsCles = f.motsCles.filter(Boolean);
-
-  // Repli : si le format n'a pas été respecté, on garde quand même une fiche utile.
   if (!f.titre) f.titre = (clean.split('\n').find(l => l.trim()) || 'Fiche sans titre').slice(0, 90);
   if (!f.resume && !f.points.length) f.resume = clean.slice(0, 600);
-
   return f;
-}
-
-function splitKeywords(str) {
-  return str.split(/[,;·•]/).map(s => s.trim().replace(/^[-*]\s*/, '')).filter(Boolean);
-}
-
-function addSource(f, line) {
-  if (!line) return;
-  const urlMatch = line.match(/https?:\/\/[^\s)>\]]+/);
-  const url = urlMatch ? urlMatch[0] : '';
-  let titre = line.replace(url, '').replace(/[—–\-:]\s*$/, '').replace(/^[—–\-:]\s*/, '').trim();
-  if (!titre) titre = url ? new URL(url).hostname.replace(/^www\./, '') : line;
-  f.sources.push({ titre, url });
 }
 
 function initAssistant() {
   $('#prepareBtn').addEventListener('click', () => {
     const q = $('#questionInput').value.trim();
     if (!q) { toast('Écris d\'abord ta question.'); $('#questionInput').focus(); return; }
-    const prompt = buildResearchPrompt(q, $('#researchType').value);
-    $('#promptOutput').value = prompt;
+    $('#promptOutput').value = buildResearchPrompt(q, $('#researchType').value);
     $('#promptPanel').hidden = false;
     $('#pastePanel').hidden = false;
     $('#promptPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
-
   $('#copyOpenBtn').addEventListener('click', () => copyAndOpenChatGPT($('#promptOutput').value));
   $('#copyOnlyBtn').addEventListener('click', async () => {
     const ok = await copyText($('#promptOutput').value);
     toast(ok ? 'Consigne copiée.' : 'Copie impossible : sélectionne le texte et fais Ctrl+C.');
   });
-
   $('#createFicheBtn').addEventListener('click', () => {
     const answer = $('#answerInput').value.trim();
     if (!answer) { toast('Colle d\'abord la réponse de ChatGPT.'); $('#answerInput').focus(); return; }
-    const parsed = parseFiche(answer);
-    const fiche = { id: uid(), date: Date.now(), dateLabel: todayLabel(), raw: answer, ...parsed };
+    const fiche = { id: uid(), date: Date.now(), dateLabel: todayLabel(), raw: answer, ...parseFiche(answer) };
     const fiches = store.get('fiches', []);
     fiches.unshift(fiche);
     store.set('fiches', fiches);
     renderFiches();
-    // On nettoie la zone de réponse et on emmène l'utilisateur vers sa fiche.
     $('#answerInput').value = '';
     toast('Fiche créée et enregistrée.');
     showView('fiches');
   });
-
   $('#clearAssistantBtn').addEventListener('click', () => {
-    $('#questionInput').value = '';
-    $('#answerInput').value = '';
-    $('#promptOutput').value = '';
-    $('#promptPanel').hidden = true;
-    $('#pastePanel').hidden = true;
+    $('#questionInput').value = ''; $('#answerInput').value = ''; $('#promptOutput').value = '';
+    $('#promptPanel').hidden = true; $('#pastePanel').hidden = true;
   });
 }
 
 /* ============================ FICHES ============================ */
+
+// Mesure chaque fiche (une seule fois, quand elle est visible) pour savoir
+// si son contenu dépasse ~3 lignes : sinon on retire le repli et le fondu.
+function measureFiches() {
+  $$('#fichesList .fiche').forEach(card => {
+    if (card.dataset.measured || card.offsetParent === null) return;
+    const body = $('.fiche-body', card);
+    const wasCollapsed = card.classList.contains('collapsed');
+    if (!wasCollapsed) card.classList.add('collapsed');
+    const overflow = body.scrollHeight - body.clientHeight;
+    if (!wasCollapsed) card.classList.remove('collapsed');
+    if (overflow < 6) { card.classList.add('is-short'); card.classList.remove('collapsed'); }
+    card.dataset.measured = '1';
+  });
+}
 
 function renderFiches() {
   const fiches = store.get('fiches', []);
@@ -265,24 +253,28 @@ function renderFiches() {
     return hay.includes(query);
   });
 
-  // Compteur dans la navigation.
   const badge = $('#fichesCount');
   badge.textContent = fiches.length;
   badge.hidden = fiches.length === 0;
 
   $('#fichesEmpty').hidden = fiches.length !== 0;
   list.innerHTML = filtered.map(ficheHTML).join('');
-
   if (fiches.length && !filtered.length) {
     list.innerHTML = '<p class="empty-state">Aucune fiche ne correspond à cette recherche.</p>';
   }
 
-  // Actions par fiche.
   $$('.fiche', list).forEach(card => {
     const id = card.dataset.id;
+    const toggle = $('.fiche-toggle', card);
+    toggle.addEventListener('click', () => {
+      if (card.classList.contains('is-short')) return;
+      const collapsed = card.classList.toggle('collapsed');
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+    });
     $('.js-copy', card)?.addEventListener('click', () => copyFiche(id));
     $('.js-del', card)?.addEventListener('click', () => deleteFiche(id));
   });
+  measureFiches();
 }
 
 function ficheHTML(f) {
@@ -298,16 +290,15 @@ function ficheHTML(f) {
   const resume = f.resume ? `<p class="fiche-resume">${esc(f.resume)}</p>` : '';
 
   return (
-`<article class="fiche" data-id="${f.id}">
-  <div class="fiche-head">
-    <h3>${esc(f.titre)}</h3>
-    <span class="fiche-date">${esc(f.dateLabel || '')}</span>
+`<article class="fiche collapsed" data-id="${f.id}">
+  <button class="fiche-toggle" type="button" aria-expanded="false">
+    <span class="fiche-titles"><span class="fiche-title">${esc(f.titre)}</span><span class="fiche-date">${esc(f.dateLabel || '')}</span></span>
+    <span class="chevron" aria-hidden="true">›</span>
+  </button>
+  <div class="fiche-body">
+    ${resume}${points}${sources ? `<ul class="fiche-sources">${sources}</ul>` : ''}${tags}
+    <details class="raw"><summary>Voir la réponse brute</summary><pre>${esc(f.raw || '')}</pre></details>
   </div>
-  ${resume}
-  ${points}
-  ${sources ? `<ul class="fiche-sources">${sources}</ul>` : ''}
-  ${tags}
-  <details class="raw"><summary>Voir la réponse brute</summary><pre>${esc(f.raw || '')}</pre></details>
   <div class="fiche-actions">
     <button class="btn btn-ghost btn-sm js-copy" type="button">Copier</button>
     <button class="btn btn-danger btn-sm js-del" type="button">Supprimer</button>
@@ -340,8 +331,6 @@ function deleteFiche(id) {
 
 function initFiches() {
   $('#ficheSearch').addEventListener('input', renderFiches);
-
-  // Export : télécharge toutes les fiches en JSON (sauvegarde).
   $('#exportBtn').addEventListener('click', () => {
     const data = JSON.stringify({ type: 'studio-horizon-fiches', version: 1, fiches: store.get('fiches', []) }, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
@@ -352,7 +341,6 @@ function initFiches() {
     URL.revokeObjectURL(a.href);
     toast('Sauvegarde téléchargée.');
   });
-
   $('#importBtn').addEventListener('click', () => $('#importFile').click());
   $('#importFile').addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -365,8 +353,7 @@ function initFiches() {
         if (!Array.isArray(incoming)) throw new Error('format');
         const current = store.get('fiches', []);
         const known = new Set(current.map(f => f.id));
-        const merged = current.concat(incoming.filter(f => f && !known.has(f.id)));
-        store.set('fiches', merged);
+        store.set('fiches', current.concat(incoming.filter(f => f && !known.has(f.id))));
         renderFiches();
         toast(`${incoming.length} fiche(s) importée(s).`);
       } catch (err) {
@@ -411,7 +398,6 @@ DUREE: ...
 LIEN: ...
 POURQUOI: ...`;
 
-// Analyse la réponse de veille en 3 blocs vidéo (avec repli sur le texte brut).
 function parseVeille(text) {
   const clean = text.replace(/\r/g, '').trim();
   const blocks = clean.split(/(?=^\s*VID[EÉ]O\s*\d)/im).map(b => b.trim()).filter(Boolean);
@@ -420,12 +406,8 @@ function parseVeille(text) {
     const cat = (b.match(/^\s*VID[EÉ]O\s*\d\s*[-–—:]?\s*(APPRENDRE|PRATIQUER|OUVRIR)/im) || [])[1] || '';
     const get = (label) => (b.match(new RegExp('^\\s*' + label + '\\s*:\\s*(.+)$', 'im')) || [])[1]?.trim() || '';
     const v = {
-      cat: cat.toUpperCase(),
-      titre: get('TITRE'),
-      chaine: get('CHAINE'),
-      duree: get('DUREE'),
-      lien: (b.match(/https?:\/\/[^\s)>\]]+/) || [])[0] || '',
-      pourquoi: get('POURQUOI')
+      cat: cat.toUpperCase(), titre: get('TITRE'), chaine: get('CHAINE'), duree: get('DUREE'),
+      lien: (b.match(/https?:\/\/[^\s)>\]]+/) || [])[0] || '', pourquoi: get('POURQUOI')
     };
     if (v.titre || v.lien) videos.push(v);
   }
@@ -457,7 +439,6 @@ function veilleHTML(v) {
         ${vid.pourquoi ? `<div class="vmeta">${esc(vid.pourquoi)}</div>` : ''}
       </div>`).join('')
     : `<div class="veille-raw">${esc(v.raw || '')}</div>`;
-
   return (
 `<article class="veille-entry" data-id="${v.id}">
   <header>
@@ -488,9 +469,19 @@ function initVeille() {
   });
 }
 
+// Rappel du vendredi : bannière + pastille sur l'onglet Veille, le vendredi.
+function initFriday() {
+  if (new Date().getDay() !== 5) return; // 5 = vendredi
+  $('#fridayNote').hidden = false;
+  document.querySelector('.nav-link[data-view="veille"]').classList.add('friday');
+  $('#fridayGoBtn')?.addEventListener('click', () => {
+    showView('veille');
+    $('#veillePrompt').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
 /* ============================ PARCOURS ============================ */
 
-// Le plan d'étude « Prana & les cinq Vayus », transcrit en données.
 const MODULES = [
   {
     num: 0, title: 'Le cadrage', goal: 'Décider le fond avant de toucher à un outil',
@@ -504,8 +495,7 @@ const MODULES = [
       'Lister 2 à 3 exercices par vayu (durée + instruction courte)',
       'Décrire le ton : ta voix, pas celle de ChatGPT'
     ],
-    resources: [],
-    prompts: [],
+    resources: [], prompts: [],
     livrable: 'Un fichier brief.md rempli, compréhensible par une autre personne. Tant qu\'il ne l\'est pas, ne passe pas au module 1.'
   },
   {
@@ -564,8 +554,7 @@ HTML / CSS / JavaScript. Pas de framework, pas de dépendances inutiles.
       'Créer contenus/exercices.md (les pratiques par vayu)',
       'Créer design/charte.md (couleurs, typo, références visuelles)'
     ],
-    resources: [],
-    prompts: [],
+    resources: [], prompts: [],
     livrable: 'L\'arborescence créée et questions.md rempli avec les 20 questions et leur mapping vayu.'
   },
   {
@@ -732,9 +721,8 @@ function moduleHTML(m) {
   const state = store.get('parcours', {});
   const tasks = m.tasks.map((t, i) => {
     const id = `m${m.num}-t${i}`;
-    const checked = state[id] ? 'checked' : '';
     return `<li>
-      <input type="checkbox" id="${id}" data-task="${id}" ${checked}>
+      <input type="checkbox" id="${id}" data-task="${id}" ${state[id] ? 'checked' : ''}>
       <label for="${id}">${esc(t)}</label>
     </li>`;
   }).join('');
@@ -795,7 +783,6 @@ function initParcours() {
   wrap.innerHTML = MODULES.map(moduleHTML).join('');
   updateProgress();
 
-  // Cases à cocher (livrables / tâches).
   wrap.addEventListener('change', (e) => {
     const state = store.get('parcours', {});
     if (e.target.matches('[data-task]')) {
@@ -808,13 +795,41 @@ function initParcours() {
     }
   });
 
-  // Boutons « Copier » des consignes.
   wrap.addEventListener('click', async (e) => {
     const btn = e.target.closest('.copy-prompt');
     if (!btn) return;
-    const pre = btn.parentElement.querySelector('pre');
-    const ok = await copyText(pre.textContent);
+    const ok = await copyText(btn.parentElement.querySelector('pre').textContent);
     toast(ok ? 'Consigne copiée.' : 'Copie impossible.');
+  });
+}
+
+/* ============================ PWA (installation) ============================ */
+
+function initPWA() {
+  // Enregistre le service worker (offline). Seulement en contexte sécurisé.
+  if ('serviceWorker' in navigator && window.isSecureContext) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => { /* silencieux */ });
+    });
+  }
+  // Bouton « Installer l'app » : n'apparaît que si le navigateur le propose.
+  let deferredPrompt = null;
+  const btn = $('#installBtn');
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (btn) btn.hidden = false;
+  });
+  btn?.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    btn.hidden = true;
+  });
+  window.addEventListener('appinstalled', () => {
+    if (btn) btn.hidden = true;
+    toast('Studio Horizon est installé.');
   });
 }
 
@@ -838,7 +853,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initAssistant();
   initFiches();
   initVeille();
+  initFriday();
   initParcours();
+  initPWA();
   initReset();
   renderFiches();
   renderVeilleList();

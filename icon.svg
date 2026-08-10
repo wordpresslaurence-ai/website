@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Studio Horizon">
+  <defs>
+    <radialGradient id="sun" cx="42%" cy="36%" r="72%">
+      <stop offset="0" stop-color="#ffc784"/>
+      <stop offset="52%" stop-color="#ff8a2b"/>
+      <stop offset="100%" stop-color="#ec5a20"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#efe6da"/>
+  <circle cx="256" cy="238" r="128" fill="url(#sun)"/>
+  <rect x="96" y="352" width="320" height="12" rx="6" fill="#d9c6ad"/>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "name": "Studio Horizon",
+  "short_name": "Horizon",
+  "description": "Assistant de recherche guidé par copier-coller avec ChatGPT. Sans API, données locales.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#efe6da",
+  "theme_color": "#efe6da",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
