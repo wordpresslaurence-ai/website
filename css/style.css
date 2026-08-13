@@ -363,9 +363,9 @@ details.raw pre { white-space: pre-wrap; font-family: var(--mono); font-size: .7
   .nav-toggle { display: inline-flex; }
   .gear-btn { order: 1; }
   .main-nav { position: fixed; top: 66px; right: 0; left: auto; width: min(72vw, 250px); z-index: 45; flex-direction: column; gap: 4px; padding: 12px; background: var(--menu-bg); border: 1px solid var(--glass-brd); border-top: none; border-right: none; border-radius: 0 0 0 18px; box-shadow: -8px 12px 28px rgba(66,63,74,.22); max-height: calc(100vh - 76px); overflow-y: auto; display: none; }
-  .main-nav.open { display: flex; animation: menuIn .28s ease; }
+  .main-nav.open { display: flex; animation: menuIn .34s cubic-bezier(.4,.15,.2,1); }
   .nav-link { justify-content: flex-start; }
 }
-@keyframes menuIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes menuIn { from { opacity: 0; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
