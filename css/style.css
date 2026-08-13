@@ -124,14 +124,18 @@ a:hover { color: var(--sun-2); }
 .nav-link.is-active .badge { background: var(--coal-txt); color: var(--coal); }
 
 /* Menu hamburger : cercle 3D, trois lignes droites, points lumineux qui glissent */
-.nav-toggle { display: none; margin-left: auto; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--glass-brd); background: var(--glass-2); cursor: pointer; padding: 0; align-items: center; justify-content: center; box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi); transition: background .2s; }
-.nav-toggle:hover { background: var(--menu-bg); }
+.nav-toggle { display: none; margin-left: auto; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--glass-brd); cursor: pointer; padding: 0; align-items: center; justify-content: center;
+  background: radial-gradient(132% 132% at 30% 22%, rgba(255,255,255,.6), var(--glass-2) 54%, rgba(66,63,74,.18));
+  box-shadow: 0 7px 16px rgba(66,63,74,.30), inset 0 2px 3px rgba(255,255,255,.65), inset 0 -4px 7px rgba(66,63,74,.22);
+  transition: box-shadow .2s ease, transform .12s ease; }
+.nav-toggle:hover { box-shadow: 0 10px 22px rgba(66,63,74,.36), inset 0 2px 3px rgba(255,255,255,.75), inset 0 -4px 7px rgba(66,63,74,.24); }
+.nav-toggle:active { transform: translateY(1px); }
 .breath-ico { overflow: visible; }
 .breath-ico .br { stroke: var(--breath); stroke-width: 1.8; stroke-linecap: round; }
 .breath-ico .dot { transform-box: fill-box; transform-origin: center; transition: transform .35s cubic-bezier(.6,.05,.2,1); }
 .breath-ico .dot-top { filter: drop-shadow(0 0 2.4px rgba(130,200,192,.9)); }
 .breath-ico .dot-mid { filter: drop-shadow(0 0 2.4px rgba(232,203,119,.95)); transition-delay: .05s; }
-.breath-ico .dot-bot { filter: drop-shadow(0 0 2.4px rgba(168,158,208,.9)); transition-delay: .1s; }
+.breath-ico .dot-bot { filter: drop-shadow(0 0 3px rgba(150,138,196,1)); transition-delay: .1s; }
 .nav-toggle:hover .dot-top, .nav-toggle:focus-visible .dot-top, .nav-toggle[aria-expanded="true"] .dot-top { transform: translateX(9px); }
 .nav-toggle:hover .dot-mid, .nav-toggle:focus-visible .dot-mid, .nav-toggle[aria-expanded="true"] .dot-mid { transform: translateX(-9px); }
 .nav-toggle:hover .dot-bot, .nav-toggle:focus-visible .dot-bot, .nav-toggle[aria-expanded="true"] .dot-bot { transform: translateX(7px); }
