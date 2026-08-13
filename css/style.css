@@ -112,8 +112,12 @@ a:hover { color: var(--sun-2); }
 
 /* ---------- Views ---------- */
 .view { display: none; padding: 40px 0 80px; }
-.view.is-active { display: block; animation: rise .4s ease; }
-@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.view.is-active { display: block; }
+
+/* Apparition douce des blocs au défilement (activée par JS via .reveal-ready). */
+.reveal-ready .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1); }
+.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal-ready .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
 /* ---------- Hero sun (Assistant) ---------- */
 .hero { position: relative; }

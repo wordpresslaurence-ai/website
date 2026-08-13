@@ -275,6 +275,7 @@ function renderFiches() {
     $('.js-del', card)?.addEventListener('click', () => deleteFiche(id));
   });
   measureFiches();
+  markAndObserveReveals();
 }
 
 function ficheHTML(f) {
@@ -482,6 +483,7 @@ function renderVeilleList() {
       toast('Veille supprimée.');
     });
   });
+  markAndObserveReveals();
 }
 
 function veilleHTML(v) {
@@ -837,6 +839,7 @@ function initParcours() {
   const wrap = $('#parcoursModules');
   wrap.innerHTML = MODULES.map(moduleHTML).join('');
   updateProgress();
+  markAndObserveReveals();
 
   wrap.addEventListener('change', (e) => {
     const state = store.get('parcours', {});
@@ -901,6 +904,43 @@ function initReset() {
   });
 }
 
+/* ============================ Apparition au défilement ============================ */
+
+// Les blocs se révèlent en fondu + léger glissement quand ils entrent à l'écran.
+const REVEAL_SEL = '.panel, .callout, .progress-wrap, .friday-note, .steps-inline, .module, .fiche, .veille-entry';
+let revealObserver = null;
+
+function observeReveal() {
+  $$('.reveal:not(.is-visible)').forEach(el => {
+    if (revealObserver) revealObserver.observe(el);
+    else el.classList.add('is-visible');
+  });
+}
+
+// Marque les blocs à révéler (avec un léger décalage en cascade dans les listes),
+// puis les met sous observation. Sans effet tant que reveal-ready n'est pas prêt.
+function markAndObserveReveals() {
+  if (!document.body.classList.contains('reveal-ready')) return;
+  $$(REVEAL_SEL).forEach(el => { if (!el.classList.contains('reveal')) el.classList.add('reveal'); });
+  ['#parcoursModules .module', '#fichesList .fiche', '#veilleList .veille-entry'].forEach(sel => {
+    $$(sel).forEach((el, i) => { if (!el.style.transitionDelay) el.style.transitionDelay = Math.min(i, 5) * 60 + 'ms'; });
+  });
+  observeReveal();
+}
+
+function initReveal() {
+  document.body.classList.add('reveal-ready');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  }
+  markAndObserveReveals();
+}
+
 /* ============================ Démarrage ============================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -914,4 +954,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initReset();
   renderFiches();
   renderVeilleList();
+  initReveal();
 });
