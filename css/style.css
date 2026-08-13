@@ -303,8 +303,12 @@ details.raw pre { white-space: pre-wrap; font-family: var(--mono); font-size: .7
 
 /* ---------- Progress ---------- */
 .progress-wrap { margin: 20px 0 12px; }
-.progress-bar { height: 14px; background: var(--glass-2); border: 1px solid var(--glass-brd); border-radius: 999px; overflow: hidden; }
-.progress-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--sun-1), var(--sun-3)); border-radius: 999px; transition: width .5s ease; }
+.progress-bar { height: 16px; background: var(--glass-2); border: 1px solid var(--glass-brd); border-radius: 999px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(66,63,74,.22), inset 0 -1px 0 var(--glass-hi); }
+.progress-bar span { display: block; height: 100%; width: 0; border-radius: 999px; transition: width .5s ease;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0) 48%, rgba(154,129,64,.28)),
+    linear-gradient(90deg, var(--sun-1), var(--sun-2) 55%, var(--sun-3));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 -3px 5px rgba(154,129,64,.3); }
 .progress-label { font-size: .88rem; color: var(--ink-soft); margin: 9px 0 0; }
 .progress-label #progressText { font-weight: 700; color: var(--sun-3); }
 
