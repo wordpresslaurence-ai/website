@@ -611,7 +611,45 @@ HTML / CSS / JavaScript. Pas de framework, pas de dépendances inutiles.
       'Créer contenus/exercices.md (les pratiques par vayu)',
       'Créer design/charte.md (couleurs, typo, références visuelles)'
     ],
-    resources: [], prompts: [],
+    resources: [],
+    prompts: [
+      { label: 'Modèle de design/charte.md (à remplir)', text:
+`# Charte graphique — App Prana & les cinq Vayus
+
+## Ambiance générale
+- Trois mots qui décrivent le ressenti visuel : [ex. calme, incarné, épuré]
+- Ce qu'on veut éviter : [ex. clinquant, agressif, « corporate »]
+
+## Couleurs
+- Fond principal : [#______]
+- Texte principal : [#______]
+- Couleur d'accent (boutons, liens) : [#______]
+- Accent secondaire : [#______]
+- Couleurs des cinq vayus (facultatif) :
+  - Prana  : [#______]
+  - Apana  : [#______]
+  - Samana : [#______]
+  - Udana  : [#______]
+  - Vyana  : [#______]
+
+## Typographie
+- Titres : [nom de la police] — [poids / style]
+- Texte courant : [nom de la police] — [taille de base, ex. 16px]
+- Sanskrit : en italique, avec traduction à la première occurrence
+
+## Espacements et formes
+- Coins arrondis : [ex. 12px]
+- Respiration : beaucoup d'espace blanc, lecture calme
+
+## Références visuelles
+- [lien ou description d'une inspiration 1]
+- [lien ou description d'une inspiration 2]
+- [captures d'écran de sites/apps que tu aimes]
+
+## À ne pas faire
+- [ex. pas plus de deux polices]
+- [ex. pas de rouge vif]` }
+    ],
     livrable: 'L\'arborescence créée et questions.md rempli avec les 20 questions et leur mapping vayu.'
   },
   {
