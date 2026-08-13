@@ -7,6 +7,7 @@
   <meta name="description" content="Studio Horizon : un assistant de recherche personnel qui prépare tes consignes pour ChatGPT, transforme les réponses en fiches, gère ta veille du vendredi et t'accompagne dans le parcours « Prana & les cinq Vayus ». Sans API, sans frais, données locales.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fbfaf7">
+  <script>try{var t=JSON.parse(localStorage.getItem('sh.theme'));if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -30,6 +31,13 @@
           <button class="nav-link" data-view="fiches" type="button">Mes fiches <span class="badge" id="fichesCount" hidden>0</span></button>
           <button class="nav-link" data-view="veille" type="button">Veille</button>
         </nav>
+        <div class="theme-switch" id="themeSwitch">
+          <span class="tt-ico tt-sun" aria-hidden="true">☀</span>
+          <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Basculer entre le thème jour et nuit">
+            <span class="tt-knob"></span>
+          </button>
+          <span class="tt-ico tt-moon" aria-hidden="true">☾</span>
+        </div>
         <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
           <span></span><span></span><span></span>
         </button>

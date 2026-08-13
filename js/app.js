@@ -929,6 +929,33 @@ function initPWA() {
   });
 }
 
+/* ============================ Thème jour / nuit ============================ */
+
+function currentTheme() {
+  const saved = store.get('theme', null);
+  if (saved === 'light' || saved === 'dark') return saved;
+  return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function updateThemeToggle(theme) {
+  const dark = theme === 'dark';
+  $('#themeToggle').setAttribute('aria-checked', String(dark));
+  $('#themeSwitch').classList.toggle('is-dark', dark);
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  store.set('theme', theme);
+  updateThemeToggle(theme);
+}
+
+function initTheme() {
+  updateThemeToggle(currentTheme());
+  $('#themeToggle').addEventListener('click', () => {
+    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+  });
+}
+
 /* ============================ Réinitialisation ============================ */
 
 function initReset() {
@@ -982,6 +1009,7 @@ function initReveal() {
 /* ============================ Démarrage ============================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initNav();
   initAssistant();
   initFiches();

@@ -122,6 +122,17 @@ a:hover { color: var(--sun-2); }
 .nav-toggle { display: none; margin-left: auto; background: var(--glass-2); border: 1px solid var(--glass-brd); border-radius: 50%; width: 44px; height: 44px; cursor: pointer; }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px auto; border-radius: 2px; }
 
+/* ---------- Bascule jour / nuit ---------- */
+.theme-switch { display: inline-flex; align-items: center; gap: 7px; flex: none; }
+.theme-switch .tt-ico { font-size: 14px; line-height: 1; transition: color .25s; }
+.theme-switch .tt-sun { color: var(--sun-3); }
+.theme-switch .tt-moon { color: var(--ink-mute); }
+.theme-switch.is-dark .tt-sun { color: var(--ink-mute); }
+.theme-switch.is-dark .tt-moon { color: var(--sun-3); }
+.theme-toggle { position: relative; width: 44px; height: 24px; border-radius: 999px; border: 1px solid var(--glass-brd); background: var(--glass-2); cursor: pointer; padding: 0; flex: none; }
+.theme-toggle .tt-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(140deg, var(--sun-1), var(--sun-2)); box-shadow: 0 1px 3px rgba(66,63,74,.3); transition: transform .25s ease, background .25s; }
+.theme-toggle[aria-checked="true"] .tt-knob { transform: translateX(20px); background: linear-gradient(140deg, var(--lavande), var(--eau)); }
+
 /* ---------- Views ---------- */
 .view { display: none; padding: 40px 0 80px; }
 .view.is-active { display: block; }
