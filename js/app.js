@@ -76,6 +76,7 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 function showView(name) {
   $$('.view').forEach(v => v.classList.toggle('is-active', v.id === 'view-' + name));
   $$('.nav-link').forEach(b => b.classList.toggle('is-active', b.dataset.view === name));
+  $('#gearBtn')?.classList.toggle('is-active', name === 'parametres');
   const active = $('#view-' + name);
   if (active) { active.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   $('#mainNav').classList.remove('open');
@@ -938,9 +939,7 @@ function currentTheme() {
 }
 
 function updateThemeToggle(theme) {
-  const dark = theme === 'dark';
-  $('#themeToggle').setAttribute('aria-checked', String(dark));
-  $('#themeSwitch').classList.toggle('is-dark', dark);
+  $('#dayNightToggle')?.setAttribute('aria-checked', String(theme === 'dark'));
 }
 
 function applyTheme(theme) {
@@ -951,7 +950,7 @@ function applyTheme(theme) {
 
 function initTheme() {
   updateThemeToggle(currentTheme());
-  $('#themeToggle').addEventListener('click', () => {
+  $('#dayNightToggle')?.addEventListener('click', () => {
     applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
   });
 }

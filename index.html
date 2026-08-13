@@ -31,13 +31,32 @@
           <button class="nav-link" data-view="fiches" type="button">Mes fiches <span class="badge" id="fichesCount" hidden>0</span></button>
           <button class="nav-link" data-view="veille" type="button">Veille</button>
         </nav>
-        <div class="theme-switch" id="themeSwitch">
-          <span class="tt-ico tt-sun" aria-hidden="true">☀</span>
-          <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Basculer entre le thème jour et nuit">
-            <span class="tt-knob"></span>
-          </button>
-          <span class="tt-ico tt-moon" aria-hidden="true">☾</span>
-        </div>
+        <button class="gear-btn" id="gearBtn" data-view="parametres" type="button" aria-label="Paramètres" title="Paramètres">
+          <svg class="gear-ico" viewBox="0 0 48 48" width="24" height="24" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="gearGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f2e2ad"/>
+                <stop offset="1" stop-color="#9a8140"/>
+              </linearGradient>
+              <radialGradient id="gearHub" cx="42%" cy="38%" r="65%">
+                <stop offset="0" stop-color="#fbfaf7"/>
+                <stop offset="1" stop-color="#e6e2d2"/>
+              </radialGradient>
+            </defs>
+            <g fill="url(#gearGrad)">
+              <rect x="21" y="1.5" width="6" height="12" rx="2"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(45 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(90 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(135 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(180 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(225 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(270 24 24)"/>
+              <rect x="21" y="1.5" width="6" height="12" rx="2" transform="rotate(315 24 24)"/>
+            </g>
+            <circle cx="24" cy="24" r="15" fill="url(#gearGrad)"/>
+            <circle cx="24" cy="24" r="8.5" fill="url(#gearHub)"/>
+          </svg>
+        </button>
         <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
           <span></span><span></span><span></span>
         </button>
@@ -205,6 +224,27 @@
         <h2 class="section-sub">Mes veilles enregistrées</h2>
         <div id="veilleList" class="veille-list"></div>
         <p class="empty-state" id="veilleEmpty" hidden>Aucune veille enregistrée pour l'instant.</p>
+      </div>
+    </section>
+
+    <!-- ============================ PARAMÈTRES ============================ -->
+    <section class="view" id="view-parametres" aria-labelledby="param-title" tabindex="-1">
+      <div class="container">
+        <p class="eyebrow">Paramètres</p>
+        <h1 id="param-title">Réglages</h1>
+        <p class="lead">Personnalise Studio Horizon. Tes réglages restent sur cet appareil.</p>
+
+        <div class="panel setting-row">
+          <div class="setting-text">
+            <h2 class="setting-title">Apparence — jour ou nuit</h2>
+            <p class="panel-hint">Fond clair (jour) ou sombre (nuit). Par défaut, l'application suit le réglage de ton appareil ; dès que tu choisis, c'est ton choix qui prime.</p>
+          </div>
+          <button class="daynight" id="dayNightToggle" type="button" role="switch" aria-checked="false" aria-label="Basculer entre le thème jour et nuit">
+            <span class="dn-clouds" aria-hidden="true"></span>
+            <span class="dn-stars" aria-hidden="true"></span>
+            <span class="dn-knob"><i class="dn-crater c1"></i><i class="dn-crater c2"></i><i class="dn-crater c3"></i></span>
+          </button>
+        </div>
       </div>
     </section>
 
