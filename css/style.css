@@ -108,10 +108,8 @@ a:hover { color: var(--sun-2); }
 .lead { font-size: 1.06rem; color: var(--ink-soft); max-width: 62ch; }
 
 /* ---------- Header ---------- */
-.site-header { position: sticky; top: 0; z-index: 40; }
-.header-inner { display: flex; align-items: center; gap: 16px; min-height: 70px; margin-top: 14px;
-  background: var(--menu-bg);
-  border: 1px solid var(--glass-brd); border-radius: 999px; padding: 8px 10px 8px 22px; box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi); }
+.site-header { position: sticky; top: 0; z-index: 40; background: var(--menu-bg); border-bottom: 1px solid var(--glass-brd); border-radius: 0 0 22px 22px; box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-hi); }
+.header-inner { display: flex; align-items: center; gap: 16px; min-height: 66px; }
 .logo { display: inline-flex; align-items: center; gap: 11px; font-weight: 600; text-decoration: none; color: var(--ink); font-size: 1.1rem; letter-spacing: -.01em; }
 .logo-sun { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--sun-1), var(--sun-2) 55%, var(--sun-3)); box-shadow: 0 0 14px rgba(232,203,119,.6); flex: none; }
 .logo-text span { color: var(--sun-3); font-weight: 400; }
@@ -364,7 +362,7 @@ details.raw pre { white-space: pre-wrap; font-family: var(--mono); font-size: .7
 @media (max-width: 720px) {
   .nav-toggle { display: inline-flex; }
   .gear-btn { order: 1; }
-  .main-nav { position: fixed; top: 84px; left: 0; right: 0; width: 100%; z-index: 45; flex-direction: column; gap: 4px; padding: 12px 16px 18px; background: var(--menu-bg); border: 1px solid var(--glass-brd); border-top: none; border-radius: 0 0 20px 20px; box-shadow: var(--shadow); display: none; }
+  .main-nav { position: absolute; top: 66px; left: 0; right: 0; z-index: 45; flex-direction: column; gap: 3px; padding: 12px; background: var(--menu-bg); border: 1px solid var(--glass-brd); border-radius: 0 0 20px 20px; box-shadow: var(--shadow); display: none; }
   .main-nav.open { display: flex; }
   .nav-link { justify-content: flex-start; }
 }
