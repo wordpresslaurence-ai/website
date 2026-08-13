@@ -1,6 +1,6 @@
 {
-  "name": "Studio Horizon",
-  "short_name": "Horizon",
+  "name": "App Builder",
+  "short_name": "App Builder",
   "description": "Assistant de recherche guidé par copier-coller avec ChatGPT. Sans API, données locales.",
   "lang": "fr",
   "dir": "ltr",

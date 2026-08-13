@@ -1,14 +1,14 @@
-# Studio Horizon
+# App Builder
 
 Assistant de recherche personnel, **guidé par copier-coller avec ChatGPT** — sans API, sans frais, données locales.
 
 ## Idée
 
-Studio Horizon n'appelle aucune API et ne dépense rien. Il te fait gagner du temps en préparant les bonnes consignes pour ChatGPT, puis en rangeant les réponses :
+App Builder n'appelle aucune API et ne dépense rien. Il te fait gagner du temps en préparant les bonnes consignes pour ChatGPT, puis en rangeant les réponses :
 
 1. Tu écris ta question → l'application prépare une **consigne complète** (recherche Web + citations + format structuré).
 2. Un bouton **copie la consigne et ouvre ChatGPT**. Tu la colles, tu lances la recherche.
-3. Tu recolles la réponse → Studio Horizon en fait une **fiche** (titre, résumé, points clés, sources, mots-clés) **enregistrée sur ton appareil**.
+3. Tu recolles la réponse → App Builder en fait une **fiche** (titre, résumé, points clés, sources, mots-clés) **enregistrée sur ton appareil**.
 
 ## Les quatre espaces
 

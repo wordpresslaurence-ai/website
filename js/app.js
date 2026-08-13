@@ -1,5 +1,5 @@
 /* =========================================================
-   Studio Horizon — logique de l'application
+   App Builder — logique de l'application
    Tout se passe dans le navigateur : aucune donnée n'est envoyée
    sur Internet. Les fiches, veilles et progression sont stockées
    dans le localStorage de l'appareil.
@@ -338,7 +338,7 @@ function downloadBackup(data) {
     const blob = new Blob([data], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `studio-horizon-fiches-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `app-builder-fiches-${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(a.href);
     toast('Téléchargement lancé (si ton navigateur l\'autorise).');
@@ -376,7 +376,7 @@ function openBackup(mode) {
   if (mode === 'export') {
     $('#backupTitle').textContent = 'Exporter mes fiches';
     $('#backupHint').textContent = "Copie ce texte et garde-le en lieu sûr (ou télécharge-le). Pour restaurer plus tard, reviens ici, clique « Importer » et colle-le.";
-    const data = JSON.stringify({ type: 'studio-horizon-fiches', version: 1, fiches: store.get('fiches', []) }, null, 2);
+    const data = JSON.stringify({ type: 'app-builder-fiches', version: 1, fiches: store.get('fiches', []) }, null, 2);
     text.value = data; text.readOnly = true;
 
     const copyBtn = document.createElement('button');
@@ -926,7 +926,7 @@ function initPWA() {
   });
   window.addEventListener('appinstalled', () => {
     if (btn) btn.hidden = true;
-    toast('Studio Horizon est installé.');
+    toast('App Builder est installé.');
   });
 }
 
