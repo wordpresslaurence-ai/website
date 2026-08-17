@@ -18,8 +18,8 @@ function reliefWord(level: number): string {
 }
 
 function openWord(ratio: number): string {
-  if (ratio > 0.62) return 'Le cercle s’ouvre';
-  if (ratio < 0.38) return 'Le cercle se resserre';
+  if (ratio > 0.62) return 'Anxiété qui s’apaise';
+  if (ratio < 0.38) return 'Anxiété entretenue';
   return 'En observation';
 }
 
@@ -60,9 +60,9 @@ export function Indicators({ answers, currentCategory }: Props) {
           />
         </div>
         <div className="axis-labels" aria-hidden="true">
-          <span>Le cercle se resserre</span>
+          <span>Anxiété entretenue</span>
           <span>En observation</span>
-          <span>Le cercle s’ouvre</span>
+          <span>Anxiété qui s’apaise</span>
         </div>
 
         <div className="tally">
