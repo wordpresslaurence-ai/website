@@ -22,27 +22,17 @@ function OpenCircleIllustration() {
         </linearGradient>
       </defs>
       <ellipse cx="120" cy="104" rx="96" ry="80" fill="rgba(212,154,137,0.12)" />
-      {/* Spirale ouverte : le cercle ne se referme pas complètement. */}
+      {/* Un cercle simple, ouvert : le trait évolue du terracotta vers le sauge. */}
       <path
-        d="M188 150
-           C 214 118, 208 60, 158 40
-           C 104 18, 44 44, 36 100
-           C 30 146, 70 182, 120 178
-           C 150 176, 176 160, 182 138"
+        d="M150 178
+           C 96 188, 40 156, 34 100
+           C 28 44, 84 16, 140 26
+           C 196 36, 216 96, 190 140"
         fill="none"
         stroke="url(#welcomeArc)"
         strokeWidth="7"
         strokeLinecap="round"
       />
-      {/* Petite flèche manuscrite d'ouverture. */}
-      <path
-        d="M182 138 l 14 -6 M182 138 l 8 12"
-        fill="none"
-        stroke="#6F8876"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-      <circle cx="188" cy="150" r="6" fill="#A3543D" />
     </svg>
   );
 }

@@ -31,7 +31,7 @@ export function Indicators({ answers, currentCategory }: Props) {
   return (
     <div className="panel indicators zone-indic" aria-label="Indicateurs pédagogiques">
       <div className="indicator">
-        <h3>Soulagement recherché maintenant</h3>
+        <h3>Soulagement immédiat</h3>
         <div
           className="meter"
           role="img"
@@ -49,7 +49,7 @@ export function Indicators({ answers, currentCategory }: Props) {
       </div>
 
       <div className="indicator">
-        <h3>Cercle entretenu ou progressivement ouvert</h3>
+        <h3>Anxiété de fond (long terme)</h3>
         <div className="axis">
           <div className="axis-track" aria-hidden="true" />
           <div
