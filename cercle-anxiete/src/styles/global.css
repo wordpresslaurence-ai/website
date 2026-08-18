@@ -377,6 +377,87 @@ strong {
   color: var(--terracotta-dark);
 }
 
+/* Accueil guidé en étapes */
+.intro-steps {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.intro-dots {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.intro-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--beige-rose);
+  transition:
+    width 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.intro-dot.active {
+  width: 28px;
+  background: var(--terracotta);
+}
+.intro-nav {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.primer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 0.4rem 0;
+}
+.primer-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--pc, var(--rose));
+  background: var(--cream-light);
+  padding: 1.1rem 1.2rem;
+}
+.primer-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--terracotta-dark);
+  font-size: 1.05rem;
+}
+.primer-card .ex {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.6rem 0 0;
+}
+.primer-note {
+  border-left: 4px solid var(--sage);
+  background: color-mix(in srgb, var(--sage) 8%, #fff);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  color: var(--sage-dark);
+}
+.primer-note strong {
+  color: var(--sage-dark);
+}
+@media (max-width: 680px) {
+  .primer {
+    grid-template-columns: 1fr;
+  }
+  .intro-nav {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .intro-nav .btn {
+    width: 100%;
+  }
+  .intro-nav > span {
+    display: none;
+  }
+}
+
 /* ===========================================================================
    SIMULATEUR — grille à 3 zones
 =========================================================================== */

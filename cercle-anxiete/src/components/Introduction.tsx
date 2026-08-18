@@ -1,31 +1,163 @@
+import { useEffect, useState } from 'react';
+import { WEBSITE_URL } from '../config';
+
 interface Props {
   onContinue: () => void;
 }
 
+const TOTAL_STEPS = 3;
+
 export function Introduction({ onContinue }: Props) {
+  const [step, setStep] = useState(0);
+
+  // Focus déplacé sur le titre de l'étape à chaque changement.
+  useEffect(() => {
+    document.getElementById('intro-step-title')?.focus();
+  }, [step]);
+
+  const next = () => {
+    if (step < TOTAL_STEPS - 1) setStep((s) => s + 1);
+    else onContinue();
+  };
+  const prev = () => setStep((s) => Math.max(0, s - 1));
+
   return (
-    <section className="intro fade-in panel stack" aria-labelledby="intro-title">
-      <span className="hand" id="intro-title">
-        Avant de commencer…
-      </span>
-      <p>
-        Certaines réactions apparaissent automatiquement lorsque l’angoisse
-        monte. Elles ne disent rien de ta force ou de ta volonté : elles ont
-        souvent été apprises pour te protéger.
-      </p>
-      <p>
-        Cette expérience va simplement t’aider à observer ce qui se passe entre
-        la situation, le soulagement recherché et la peur qui revient parfois
-        ensuite.
-      </p>
-      <div className="callout">
-        Choisis ce que tu ferais spontanément aujourd’hui, et non ce que tu
-        penses devoir faire.
+    <section className="intro-steps" aria-labelledby="intro-step-title">
+      <div className="intro-dots" aria-hidden="true">
+        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+          <span
+            key={i}
+            className={`intro-dot${i === step ? ' active' : ''}`}
+          />
+        ))}
       </div>
-      <div>
-        <button type="button" className="btn" onClick={onContinue}>
-          J’ai compris, commencer
-        </button>
+      <p className="visually-hidden" aria-live="polite">
+        Étape {step + 1} sur {TOTAL_STEPS}.
+      </p>
+
+      <div className="panel stack fade-in" key={step}>
+        {step === 0 && (
+          <>
+            <span className="hand" id="intro-step-title" tabIndex={-1}>
+              Hello
+            </span>
+            <p>
+              Je m’appelle Marjorie et je suis thérapeute spécialisée en gestion
+              de l’anxiété. Si j’ai choisi ce métier, c’est parce que je sais à
+              quel point l’anxiété peut peser sur la vie quotidienne.
+            </p>
+            <p>
+              Pendant plus de 20 ans, j’ai vécu avec une anxiété intense, marquée
+              par des périodes de stress chronique et les séquelles d’un
+              traumatisme.
+            </p>
+            <p>
+              Depuis bientôt 5 ans, j’accompagne des personnes qui vivent avec des
+              crises d’angoisse, des troubles anxieux et la peur d’avoir peur à
+              retrouver progressivement davantage de liberté.
+            </p>
+            <p className="text-muted" style={{ margin: 0 }}>
+              <a href={WEBSITE_URL} target="_blank" rel="noopener noreferrer">
+                www.marjorie-goubin.com
+              </a>
+            </p>
+          </>
+        )}
+
+        {step === 1 && (
+          <>
+            <h2 id="intro-step-title" tabIndex={-1}>
+              Pourquoi la peur persiste-t-elle ?
+            </h2>
+            <p>
+              Tu te demandes peut-être pourquoi les crises d’angoisse et la peur
+              d’avoir peur persistent, malgré tous tes efforts ?
+            </p>
+            <p>
+              Il est possible que certaines habitudes — mises en place pour te
+              rassurer ou éviter l’anxiété — fassent en réalité l’effet inverse.
+              Ces comportements sont souvent invisibles et presque automatiques.
+              Et pourtant, ils peuvent entretenir la peur d’avoir peur et
+              alimenter le cercle de l’anxiété.
+            </p>
+            <div className="callout">
+              Prendre conscience de leur impact est une première étape pour t’en
+              libérer.
+            </div>
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <h2 id="intro-step-title" tabIndex={-1}>
+              Deux habitudes à observer
+            </h2>
+            <p>
+              Au fil des situations, tu vas explorer deux grandes familles de
+              réactions.
+            </p>
+
+            <div className="primer">
+              <div
+                className="primer-card"
+                style={{ ['--pc' as string]: 'var(--terracotta)' }}
+              >
+                <h3>Les comportements d’évitement</h3>
+                <p style={{ margin: 0 }}>
+                  Des actions pour éviter ce qui déclenche l’anxiété. Elles
+                  soulagent sur le moment… mais peuvent renforcer la peur sur le
+                  long terme.
+                </p>
+                <p className="ex">
+                  Par exemple : éviter les transports ou les lieux bondés,
+                  annuler des sorties, ou se distraire dès qu’une sensation
+                  apparaît.
+                </p>
+              </div>
+
+              <div
+                className="primer-card"
+                style={{ ['--pc' as string]: 'var(--rose)' }}
+              >
+                <h3>Les comportements sécuritaires</h3>
+                <p style={{ margin: 0 }}>
+                  Des « béquilles » pour te rassurer quand l’anxiété monte. Elles
+                  rassurent sur le moment… mais peuvent amplifier la peur sur le
+                  long terme.
+                </p>
+                <p className="ex">
+                  Par exemple : garder un médicament « au cas où », vérifier son
+                  pouls, appeler un proche, ou recourir sans cesse à une technique
+                  de relaxation pour faire disparaître chaque sensation.
+                </p>
+              </div>
+            </div>
+
+            <div className="primer-note">
+              Tu découvriras aussi une troisième voie : les <strong>réponses
+              progressives</strong>, qui consistent à rester en contact avec la
+              situation, à ton rythme, en tolérant une part d’inconfort.
+            </div>
+
+            <div className="callout">
+              Choisis ce que tu ferais spontanément aujourd’hui, et non ce que tu
+              penses devoir faire.
+            </div>
+          </>
+        )}
+
+        <div className="intro-nav">
+          {step > 0 ? (
+            <button type="button" className="btn btn-secondary" onClick={prev}>
+              ← Précédent
+            </button>
+          ) : (
+            <span />
+          )}
+          <button type="button" className="btn" onClick={next}>
+            {step < TOTAL_STEPS - 1 ? 'Suivant' : 'J’ai compris, commencer'}
+          </button>
+        </div>
       </div>
     </section>
   );
