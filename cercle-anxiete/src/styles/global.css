@@ -386,24 +386,17 @@ strong {
 
 .sim-grid {
   display: grid;
-  grid-template-columns: 42% 14% 44%;
+  grid-template-columns: 48% 52%;
   grid-template-areas:
-    'card circle indic'
-    'next circle indic';
+    'card indic'
+    'next indic';
   grid-template-rows: 1fr auto;
-  gap: clamp(1rem, 2.2vw, 1.6rem);
+  gap: clamp(1rem, 2.4vw, 1.8rem);
   align-items: start;
 }
 
 .zone-card {
   grid-area: card;
-}
-.zone-circle {
-  grid-area: circle;
-  position: sticky;
-  top: 1rem;
-  align-self: stretch;
-  display: flex;
 }
 .zone-indic {
   grid-area: indic;
@@ -594,39 +587,7 @@ strong {
 }
 
 /* ===========================================================================
-   ZONE 2 — cercle
-=========================================================================== */
-.circle-panel {
-  width: 100%;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  padding: 1.1rem 0.8rem 1.3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-.circle-panel svg {
-  width: 100%;
-  height: auto;
-  max-width: 190px;
-}
-.circle-caption {
-  text-align: center;
-  font-family: var(--font-alt);
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  min-height: 2.4em;
-}
-.circle-caption strong {
-  display: block;
-  font-size: 0.95rem;
-}
-
-/* ===========================================================================
-   ZONE 3 — indicateurs
+   ZONE 2 — indicateurs
 =========================================================================== */
 .indicators {
   display: flex;
@@ -1070,17 +1031,14 @@ strong {
    RESPONSIVE
 =========================================================================== */
 @media (max-width: 980px) {
-  /* Tablette : situation pleine largeur ; cercle + indicateurs en dessous. */
+  /* Tablette : situation pleine largeur, indicateurs en dessous. */
   .sim-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      'card card'
-      'circle indic'
-      'next next';
+      'card'
+      'indic'
+      'next';
     grid-template-rows: auto auto auto;
-  }
-  .zone-circle {
-    position: static;
   }
   .debrief-cards {
     grid-template-columns: 1fr;
@@ -1097,7 +1055,6 @@ strong {
     grid-template-columns: 1fr;
     grid-template-areas:
       'card'
-      'circle'
       'indic'
       'next';
   }

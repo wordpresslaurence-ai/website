@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { Category } from '../types';
 import { SCENARIOS, TOTAL_SCENARIOS } from '../data/scenarios';
 import { ScenarioCard } from './ScenarioCard';
-import { OrganicCircle } from './OrganicCircle';
 import { Indicators } from './Indicators';
 
 interface Props {
@@ -25,9 +24,6 @@ export function AnxietySimulator({
   const answered = selectedChoice !== null && selectedChoice !== undefined;
   const isLast = currentIndex === TOTAL_SCENARIOS - 1;
 
-  // « tick » relance l'animation du cercle à chaque sélection.
-  const [tick, setTick] = useState(0);
-
   // Focus déplacé sur l'énoncé à chaque changement de situation.
   useEffect(() => {
     document.getElementById('current-situation')?.focus();
@@ -39,7 +35,6 @@ export function AnxietySimulator({
 
   const handleSelect = (choiceIndex: number) => {
     onSelect(currentIndex, choiceIndex);
-    setTick((t) => t + 1);
   };
 
   return (
@@ -59,10 +54,6 @@ export function AnxietySimulator({
           selectedChoice={answered ? selectedChoice : null}
           onSelect={handleSelect}
         />
-
-        <div className="zone-circle">
-          <OrganicCircle category={currentCategory} tick={tick} />
-        </div>
 
         <Indicators answers={answers} currentCategory={currentCategory} />
 
