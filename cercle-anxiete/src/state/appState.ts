@@ -1,6 +1,6 @@
 import type { AppState, FirstStepData } from '../types';
 import { STORAGE_KEY } from '../config';
-import { TOTAL_SCENARIOS } from '../data/scenarios';
+import { SCENARIOS, TOTAL_SCENARIOS } from '../data/scenarios';
 
 export const initialFirstStep: FirstStepData = {
   habitScenarioId: null,
@@ -103,9 +103,11 @@ export function loadState(): AppState | null {
     return {
       ...base,
       ...parsed,
-      answers: parsed.answers.map((a) =>
-        typeof a === 'number' && a >= 0 && a <= 2 ? a : null,
-      ),
+      answers: parsed.answers.map((a, i) => {
+        // On n'accepte qu'un index de choix réellement présent dans la situation.
+        const nbChoices = SCENARIOS[i]?.choices.length ?? 0;
+        return typeof a === 'number' && a >= 0 && a < nbChoices ? a : null;
+      }),
       firstStep: { ...base.firstStep, ...(parsed.firstStep ?? {}) },
     };
   } catch {

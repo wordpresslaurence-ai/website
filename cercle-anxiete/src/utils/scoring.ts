@@ -9,7 +9,9 @@ export function answerCategory(
 ): Category | null {
   const choiceIndex = answers[index];
   if (choiceIndex === null || choiceIndex === undefined) return null;
-  return SCENARIOS[index].choices[choiceIndex].category;
+  const choice = SCENARIOS[index]?.choices[choiceIndex];
+  // Garde-fou : un index de choix hors limites (ancien enregistrement) est ignoré.
+  return choice ? choice.category : null;
 }
 
 export interface Counts {
