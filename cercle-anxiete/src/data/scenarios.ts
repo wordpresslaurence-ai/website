@@ -2,7 +2,7 @@ import type { Scenario } from '../types';
 
 // -----------------------------------------------------------------------------
 // Les huit situations.
-// Ordre des choix toujours identique : A = évitement, B = sécurité, C = progression.
+// Ordre des choix toujours identique : A = évitement, B = sécurité.
 // Contenus rédigés, sans texte de remplissage. Calculs entièrement déterministes.
 // -----------------------------------------------------------------------------
 
@@ -39,18 +39,6 @@ export const SCENARIOS: Scenario[] = [
             'Une précaution n’est pas mauvaise en soi. Observe simplement si elle est devenue indispensable pour oser y aller.',
         },
       },
-      {
-        category: 'progression',
-        text: 'Je choisis une étape réaliste, par exemple un trajet court et préparé.',
-        feedback: {
-          shortTerm:
-            'La tension peut rester présente : une étape adaptée ne la supprime pas immédiatement.',
-          brainLearning:
-            '« J’ai pu traverser un trajet court, même en ressentant de l’inconfort. »',
-          nuance:
-            'Progresser ne veut pas dire te forcer. Choisis une étape réaliste, préparée et compatible avec ton rythme.',
-        },
-      },
     ],
   },
 
@@ -84,18 +72,6 @@ export const SCENARIOS: Scenario[] = [
             '« Je ne tiendrais pas sans pouvoir partir à tout instant. »',
           nuance:
             'Ces aménagements peuvent être utiles au début. Surveille surtout s’ils deviennent une condition obligatoire.',
-        },
-      },
-      {
-        category: 'progression',
-        text: 'Je cherche une manière réaliste d’y aller, éventuellement pour une durée plus courte.',
-        feedback: {
-          shortTerm:
-            'Y aller pour un temps limité laisse une part d’inconfort présente.',
-          brainLearning:
-            '« J’ai pu partager un moment, même sans rester jusqu’au bout. »',
-          nuance:
-            'Une durée plus courte est une étape valable, pas un échec. Tu ajusteras au fil du temps.',
         },
       },
     ],
@@ -134,18 +110,6 @@ export const SCENARIOS: Scenario[] = [
             'Une vérification ponctuelle est logique. La surveillance répétée, elle, entretient souvent l’attention portée aux sensations.',
         },
       },
-      {
-        category: 'progression',
-        text: 'J’observe la sensation quelques instants sans la contrôler immédiatement.',
-        feedback: {
-          shortTerm:
-            'Laisser la sensation exister sans agir peut sembler inconfortable au début.',
-          brainLearning:
-            '« Mon cœur peut s’accélérer, puis se calmer, sans que j’aie à intervenir. »',
-          nuance:
-            'Observer ne veut pas dire ignorer un vrai signal. En cas de doute médical, un avis reste légitime.',
-        },
-      },
     ],
   },
 
@@ -180,18 +144,6 @@ export const SCENARIOS: Scenario[] = [
             '« Je ne peux partir que si j’ai éliminé le moindre imprévu. »',
           nuance:
             'Se préparer est utile. C’est la quête d’une certitude totale qui peut, elle, entretenir l’inquiétude.',
-        },
-      },
-      {
-        category: 'progression',
-        text: 'Je prépare ce qui est réellement nécessaire, puis j’accepte qu’une petite part d’incertitude demeure.',
-        feedback: {
-          shortTerm:
-            'Accepter une part d’imprévu laisse subsister un léger inconfort.',
-          brainLearning:
-            '« Je peux partir même sans avoir tout anticipé. »',
-          nuance:
-            'Emporter un traitement prescrit fait partie du nécessaire. Ne modifie jamais un traitement sans avis médical.',
         },
       },
     ],
@@ -229,18 +181,6 @@ export const SCENARIOS: Scenario[] = [
             'S’appuyer sur un proche est précieux. Surveille si l’appel devient le seul moyen de faire redescendre chaque sensation.',
         },
       },
-      {
-        category: 'progression',
-        text: 'Si je suis en sécurité, j’essaie d’observer ce qui se passe avant de décider de ce dont j’ai besoin.',
-        feedback: {
-          shortTerm:
-            'Prendre un instant pour observer laisse la sensation présente un moment.',
-          brainLearning:
-            '« Je peux accueillir ce qui monte, puis choisir ce dont j’ai vraiment besoin. »',
-          nuance:
-            'Observer d’abord ne veut pas dire te priver d’aide. Tu restes libre de la solliciter ensuite.',
-        },
-      },
     ],
   },
 
@@ -274,18 +214,6 @@ export const SCENARIOS: Scenario[] = [
             '« Je dois obtenir une réponse immédiate pour que cette pensée s’arrête. »',
           nuance:
             'Se renseigner peut être utile. La recherche répétée de certitude, elle, tend souvent à nourrir le doute.',
-        },
-      },
-      {
-        category: 'progression',
-        text: 'Je remarque la pensée sans essayer immédiatement de la résoudre ou de la chasser.',
-        feedback: {
-          shortTerm:
-            'Laisser la pensée passer sans agir peut être inconfortable au début.',
-          brainLearning:
-            '« Une pensée peut apparaître, puis s’éloigner, sans que j’aie à la résoudre. »',
-          nuance:
-            'Ne pas répondre à une pensée n’est pas de la négligence : c’est lui laisser moins de pouvoir.',
         },
       },
     ],
@@ -324,18 +252,6 @@ export const SCENARIOS: Scenario[] = [
             'Des conditions favorables sont utiles. Surveille si elles deviennent des exigences sans lesquelles tu ne prends plus le volant.',
         },
       },
-      {
-        category: 'progression',
-        text: 'Je choisis une étape progressive compatible avec ma sécurité et mes capacités actuelles.',
-        feedback: {
-          shortTerm:
-            'Une étape mesurée laisse un peu d’appréhension présente.',
-          brainLearning:
-            '« Je peux avancer sur un trajet adapté, à mon rythme. »',
-          nuance:
-            'La sécurité routière reste prioritaire. Ne conduis pas si ton état ou un traitement rend la conduite dangereuse.',
-        },
-      },
     ],
   },
 
@@ -370,18 +286,6 @@ export const SCENARIOS: Scenario[] = [
             '« La vague ne s’arrêtera que si j’applique parfaitement mes techniques. »',
           nuance:
             'Une technique d’apaisement est une ressource. C’est son usage compulsif, pour supprimer chaque sensation, qui mérite d’être observé.',
-        },
-      },
-      {
-        category: 'progression',
-        text: 'J’essaie de laisser la vague évoluer sans exiger qu’elle disparaisse immédiatement.',
-        feedback: {
-          shortTerm:
-            'Laisser la vague monter puis redescendre demande de tolérer un moment d’inconfort.',
-          brainLearning:
-            '« Une vague d’angoisse peut évoluer d’elle-même sans que je la combatte. »',
-          nuance:
-            'Respirer, méditer ou chercher du soutien restent des ressources. L’essentiel est d’observer si elles t’aident avec souplesse ou si elles deviennent indispensables.',
         },
       },
     ],

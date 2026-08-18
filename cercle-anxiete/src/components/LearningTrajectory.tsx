@@ -11,14 +11,12 @@ interface Props {
 const CAT_COLOR: Record<Category, string> = {
   evitement: '#A3543D',
   securite: '#D49A89',
-  progression: '#6F8876',
 };
 
-// Hauteur (Y) associée à chaque catégorie : plus bas = se resserre, plus haut = s'ouvre.
+// Hauteur (Y) associée à chaque catégorie.
 const CAT_Y: Record<Category, number> = {
-  evitement: 150,
-  securite: 105,
-  progression: 55,
+  evitement: 145,
+  securite: 70,
 };
 
 const W = 640;
@@ -70,12 +68,7 @@ export function LearningTrajectory({ answers }: Props) {
   // Description textuelle de la trajectoire (accessibilité).
   const textual = points
     .map((p) => {
-      const label =
-        p.cat === 'evitement'
-          ? 'évitement'
-          : p.cat === 'securite'
-            ? 'sécurité'
-            : 'progression';
+      const label = p.cat === 'evitement' ? 'évitement' : 'sécurité';
       return `situation ${p.index} : ${label}`;
     })
     .join(' ; ');
@@ -84,7 +77,7 @@ export function LearningTrajectory({ answers }: Props) {
     <div className="trajectory-panel">
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Trajectoire de tes choix — ${textual}.`}>
         {/* Repères horizontaux discrets. */}
-        {(['progression', 'securite', 'evitement'] as Category[]).map((c) => (
+        {(['securite', 'evitement'] as Category[]).map((c) => (
           <line
             key={c}
             x1={PADDING}
@@ -128,15 +121,11 @@ export function LearningTrajectory({ answers }: Props) {
       <div className="legend">
         <span>
           <span className="dot" style={{ background: CAT_COLOR.evitement }} />
-          terracotta : le cercle tend à se resserrer
+          terracotta : comportement d’évitement
         </span>
         <span>
           <span className="dot" style={{ background: CAT_COLOR.securite }} />
-          rose poudré : recherche de sécurité
-        </span>
-        <span>
-          <span className="dot" style={{ background: CAT_COLOR.progression }} />
-          vert sauge : nouvel apprentissage progressif
+          rose poudré : comportement de sécurité
         </span>
       </div>
 

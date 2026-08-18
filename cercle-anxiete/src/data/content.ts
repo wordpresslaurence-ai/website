@@ -17,11 +17,6 @@ export const CATEGORY_CARD: Record<
     explanation:
       'Les comportements de sécurité rendent une situation possible grâce à une précaution ou une réassurance. Ils méritent d’être observés lorsqu’ils semblent devenir indispensables.',
   },
-  progression: {
-    title: 'Réponses progressives',
-    explanation:
-      'Les réponses progressives consistent à rester en contact avec la situation, à un rythme adapté, en tolérant une part d’inconfort.',
-  },
 };
 
 // -----------------------------------------------------------------------------
@@ -34,10 +29,8 @@ export const DOMINANT_MESSAGE: Record<Dominant, string> = {
     'L’évitement semble être une stratégie importante pour toi. C’est compréhensible : il permet souvent de faire retomber rapidement la tension. Tu pourrais commencer par observer les situations que tu évites et le soulagement que tu ressens juste après.',
   securite:
     'Tu sembles souvent chercher à te rassurer ou à garder une solution de secours. Ces stratégies peuvent être utiles ponctuellement. Observe surtout si elles sont devenues indispensables pour te sentir capable d’avancer.',
-  progression:
-    'Tu sembles déjà essayer de rester en contact avec certaines situations malgré l’inconfort. L’objectif n’est pas de tout affronter, mais de continuer à avancer d’une manière suffisamment progressive et sécurisante.',
   equilibre:
-    'Tes réactions varient selon les situations. C’est souvent le cas : on peut éviter certaines expériences, chercher à se rassurer dans d’autres et déjà avancer progressivement ailleurs.',
+    'Tes réactions varient selon les situations : tu évites certaines expériences et cherches à te rassurer dans d’autres. C’est souvent le cas — ces deux stratégies soulagent sur le moment, tout en pouvant entretenir la peur sur le long terme.',
 };
 
 // -----------------------------------------------------------------------------

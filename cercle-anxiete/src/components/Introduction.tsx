@@ -133,12 +133,6 @@ export function Introduction({ onContinue }: Props) {
               </div>
             </div>
 
-            <div className="primer-note">
-              Tu découvriras aussi une troisième voie : les <strong>réponses
-              progressives</strong>, qui consistent à rester en contact avec la
-              situation, à ton rythme, en tolérant une part d’inconfort.
-            </div>
-
             <div className="callout">
               Choisis ce que tu ferais spontanément aujourd’hui, et non ce que tu
               penses devoir faire.

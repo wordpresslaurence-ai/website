@@ -34,12 +34,12 @@ function habitsFrom(answers: (number | null)[]): HabitOption[] {
 
 export function FirstSmallStep({ answers, firstStep, onUpdate }: Props) {
   const habits = habitsFrom(answers);
-  const noHabits = habits.length === 0;
 
-  // Repli bienveillant si l'utilisateur n'a choisi que des réponses progressives.
-  const options: HabitOption[] = noHabits
-    ? SCENARIOS.map((s) => ({ scenarioId: s.id, label: s.title }))
-    : habits;
+  // Repli prudent si aucune habitude n'a encore été repérée.
+  const options: HabitOption[] =
+    habits.length > 0
+      ? habits
+      : SCENARIOS.map((s) => ({ scenarioId: s.id, label: s.title }));
 
   return (
     <section aria-labelledby="step-title">
@@ -55,17 +55,7 @@ export function FirstSmallStep({ answers, firstStep, onUpdate }: Props) {
 
       {/* Étape 1 */}
       <div className="step-block">
-        <h3>
-          {noHabits
-            ? 'Une situation à continuer d’observer'
-            : 'Laquelle aimerais-tu mieux comprendre ?'}
-        </h3>
-        {noHabits && (
-          <p className="text-muted">
-            Tu as surtout choisi des réponses progressives. Tu peux tout de même
-            choisir une situation que tu aimerais continuer à observer.
-          </p>
-        )}
+        <h3>Laquelle aimerais-tu mieux comprendre ?</h3>
         <fieldset className="option-grid">
           <legend className="visually-hidden">
             Choisis une habitude à observer

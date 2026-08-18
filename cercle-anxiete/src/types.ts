@@ -1,4 +1,4 @@
-export type Category = 'evitement' | 'securite' | 'progression';
+export type Category = 'evitement' | 'securite';
 
 export type Phase = 'welcome' | 'intro' | 'simulator' | 'debrief';
 
@@ -30,8 +30,8 @@ export interface Scenario {
   situation: string;
   /** Note de sécurité (médicale, routière…) affichée sous la situation. */
   note?: string;
-  /** Ordre fixe : A = évitement, B = sécurité, C = progression. */
-  choices: [Choice, Choice, Choice];
+  /** Ordre fixe : A = évitement, B = sécurité. */
+  choices: [Choice, Choice];
 }
 
 export interface FirstStepData {
@@ -69,10 +69,5 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: 'sécurité',
     kind: 'Je cherche à me rassurer',
     colorVar: 'var(--rose)',
-  },
-  progression: {
-    label: 'progression',
-    kind: "J'essaie une réponse progressive",
-    colorVar: 'var(--sage)',
   },
 };

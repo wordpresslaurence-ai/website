@@ -18,10 +18,9 @@ interface Props {
 const CAT_COLOR: Record<Category, string> = {
   evitement: 'var(--terracotta)',
   securite: 'var(--rose)',
-  progression: 'var(--sage)',
 };
 
-const ORDER: Category[] = ['evitement', 'securite', 'progression'];
+const ORDER: Category[] = ['evitement', 'securite'];
 
 function examplesFor(answers: (number | null)[], category: Category): string[] {
   const out: string[] = [];
@@ -39,14 +38,10 @@ export function PersonalizedDebrief({ answers }: Props) {
     counts.evitement,
     'réaction d’évitement',
     'réactions d’évitement',
-  )}, ${plural(
+  )} et ${plural(
     counts.securite,
     'comportement de sécurité',
     'comportements de sécurité',
-  )} et ${plural(
-    counts.progression,
-    'réponse progressive',
-    'réponses progressives',
   )}.`;
 
   return (

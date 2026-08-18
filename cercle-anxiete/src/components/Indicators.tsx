@@ -2,7 +2,7 @@ import type { Category } from '../types';
 import {
   countCategories,
   immediateReliefLevel,
-  opennessRatio,
+  maintenanceRatio,
 } from '../utils/scoring';
 
 interface Props {
@@ -17,16 +17,17 @@ function reliefWord(level: number): string {
   return 'en attente d’un choix';
 }
 
-function openWord(ratio: number): string {
-  if (ratio > 0.62) return 'Anxiété qui s’apaise';
-  if (ratio < 0.38) return 'Anxiété entretenue';
-  return 'En observation';
+function maintenanceWord(ratio: number): string {
+  if (ratio >= 0.66) return 'le cercle a nettement tendance à se maintenir';
+  if (ratio >= 0.33) return 'le cercle a tendance à se maintenir';
+  if (ratio > 0) return 'quelques habitudes commencent à l’entretenir';
+  return 'aucune habitude repérée pour l’instant';
 }
 
 export function Indicators({ answers, currentCategory }: Props) {
   const counts = countCategories(answers);
   const relief = immediateReliefLevel(currentCategory);
-  const openness = opennessRatio(counts);
+  const maintenance = maintenanceRatio(counts);
 
   return (
     <div className="panel indicators zone-indic" aria-label="Indicateurs pédagogiques">
@@ -40,30 +41,30 @@ export function Indicators({ answers, currentCategory }: Props) {
           <div className="meter-fill" style={{ width: `${relief * 100}%` }} />
         </div>
         <p className="meter-note">
-          {currentCategory === 'progression'
-            ? 'Moins de soulagement immédiat, davantage de place pour un nouvel apprentissage.'
-            : currentCategory
-              ? 'Un apaisement rapide est recherché sur le moment.'
-              : 'Sélectionne une réaction pour voir son effet immédiat.'}
+          {currentCategory
+            ? 'Un apaisement rapide est recherché sur le moment.'
+            : 'Sélectionne une réaction pour voir son effet immédiat.'}
         </p>
       </div>
 
       <div className="indicator">
         <h3>Anxiété de fond (long terme)</h3>
-        <div className="axis">
-          <div className="axis-track" aria-hidden="true" />
+        <div
+          className="meter"
+          role="img"
+          aria-label={`Anxiété de fond sur le long terme : ${maintenanceWord(
+            maintenance,
+          )}.`}
+        >
           <div
-            className="axis-marker"
-            style={{ left: `${openness * 100}%` }}
-            role="img"
-            aria-label={`Position actuelle : ${openWord(openness)}.`}
+            className="meter-fill"
+            style={{ width: `${maintenance * 100}%` }}
           />
         </div>
-        <div className="axis-labels" aria-hidden="true">
-          <span>Anxiété entretenue</span>
-          <span>En observation</span>
-          <span>Anxiété qui s’apaise</span>
-        </div>
+        <p className="meter-note">
+          Répétées, ces habitudes ont tendance à entretenir le cercle sur le long
+          terme.
+        </p>
 
         <div className="tally">
           <span className="tally-chip">
@@ -71,9 +72,6 @@ export function Indicators({ answers, currentCategory }: Props) {
           </span>
           <span className="tally-chip">
             Sécurité <b>{counts.securite}</b>
-          </span>
-          <span className="tally-chip">
-            Progression <b>{counts.progression}</b>
           </span>
         </div>
       </div>

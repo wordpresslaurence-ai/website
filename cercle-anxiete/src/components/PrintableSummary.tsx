@@ -17,7 +17,6 @@ interface Props {
 const CAT_BG: Record<Category, string> = {
   evitement: '#A3543D',
   securite: '#D49A89',
-  progression: '#6F8876',
 };
 
 export function PrintableSummary({ state, onPrenomChange }: Props) {
@@ -114,16 +113,11 @@ export function PrintableSummary({ state, onPrenomChange }: Props) {
 
         <div className="summary-line">
           <span className="q">Tendances observées : </span>
-          {plural(counts.evitement, 'évitement', 'évitements')},{' '}
+          {plural(counts.evitement, 'évitement', 'évitements')} et{' '}
           {plural(
             counts.securite,
             'comportement de sécurité',
             'comportements de sécurité',
-          )},{' '}
-          {plural(
-            counts.progression,
-            'réponse progressive',
-            'réponses progressives',
           )}
           .
           <p style={{ margin: '0.5rem 0 0' }}>{DOMINANT_MESSAGE[dominant]}</p>

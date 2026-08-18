@@ -1,5 +1,5 @@
 import type { AppState, Category } from '../types';
-import { SCENARIOS } from '../data/scenarios';
+import { SCENARIOS, TOTAL_SCENARIOS } from '../data/scenarios';
 import type { Dominant } from '../data/content';
 
 /** Renvoie la catégorie du choix retenu pour une situation, ou null. */
@@ -15,16 +15,14 @@ export function answerCategory(
 export interface Counts {
   evitement: number;
   securite: number;
-  progression: number;
   answered: number;
 }
 
-/** Comptage déterministe des trois catégories. */
+/** Comptage déterministe des deux catégories. */
 export function countCategories(answers: (number | null)[]): Counts {
   const counts: Counts = {
     evitement: 0,
     securite: 0,
-    progression: 0,
     answered: 0,
   };
   answers.forEach((_, i) => {
@@ -45,7 +43,6 @@ export function dominantCategory(counts: Counts): Dominant {
   const entries: [Category, number][] = [
     ['evitement', counts.evitement],
     ['securite', counts.securite],
-    ['progression', counts.progression],
   ];
   const max = Math.max(...entries.map(([, n]) => n));
   const leaders = entries.filter(([, n]) => n === max);
@@ -54,15 +51,14 @@ export function dominantCategory(counts: Counts): Dominant {
 }
 
 /**
- * Position pédagogique du cercle sur l'axe « se resserre / en observation / s'ouvre ».
- * Renvoie une valeur de 0 (se resserre) à 1 (s'ouvre), 0,5 = en observation.
- * Déterministe : progression tire vers l'ouverture, évitement/sécurité vers le resserrement.
+ * Indicateur pédagogique « anxiété de fond (long terme) ».
+ * Renvoie une valeur de 0 à 1 : plus l'utilisateur accumule d'habitudes
+ * (évitement + sécurité), plus le cercle a tendance à se maintenir.
+ * Déterministe, rapporté au nombre total de situations.
  */
-export function opennessRatio(counts: Counts): number {
-  if (counts.answered === 0) return 0.5;
-  const net = counts.progression - (counts.evitement + counts.securite);
-  const ratio = 0.5 + net / (2 * counts.answered);
-  return Math.min(1, Math.max(0, ratio));
+export function maintenanceRatio(counts: Counts): number {
+  const protective = counts.evitement + counts.securite;
+  return Math.min(1, Math.max(0, protective / TOTAL_SCENARIOS));
 }
 
 /** Intensité pédagogique du « soulagement immédiat recherché » pour une catégorie. */
@@ -72,8 +68,6 @@ export function immediateReliefLevel(category: Category | null): number {
       return 0.9;
     case 'securite':
       return 0.78;
-    case 'progression':
-      return 0.28;
     default:
       return 0;
   }
