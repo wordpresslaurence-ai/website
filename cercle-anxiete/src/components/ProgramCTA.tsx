@@ -23,7 +23,7 @@ export function ProgramCTA() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Découvrir le programme
+          Découvrir les programmes
         </a>
         <a
           className="btn btn-secondary"

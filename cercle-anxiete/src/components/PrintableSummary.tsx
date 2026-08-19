@@ -19,10 +19,29 @@ const CAT_BG: Record<Category, string> = {
   securite: '#D49A89',
 };
 
+// Vrai lorsque l'app est affichée dans un cadre intégré (aperçu),
+// où l'impression et les téléchargements peuvent être bloqués par le navigateur.
+const isEmbedded = (): boolean => {
+  try {
+    return typeof window !== 'undefined' && window.self !== window.top;
+  } catch {
+    return true; // accès inter-frame refusé = on est bien intégré
+  }
+};
+
 export function PrintableSummary({ state, onPrenomChange }: Props) {
   const { answers, firstStep, prenom } = state;
   const counts = countCategories(answers);
   const dominant = dominantCategory(counts);
+  const embedded = isEmbedded();
+
+  const handleDownload = () => {
+    try {
+      window.print();
+    } catch {
+      /* impression indisponible dans certains contextes intégrés */
+    }
+  };
   const dateStr = new Date().toLocaleDateString('fr-FR', {
     day: 'numeric',
     month: 'long',
@@ -161,9 +180,19 @@ export function PrintableSummary({ state, onPrenomChange }: Props) {
       </div>
 
       <div className="no-print" style={{ marginTop: '1.2rem' }}>
-        <button type="button" className="btn" onClick={() => window.print()}>
+        <button type="button" className="btn" onClick={handleDownload}>
           Télécharger mon récapitulatif
         </button>
+        {embedded && (
+          <p
+            className="text-muted"
+            style={{ fontSize: '0.85rem', marginTop: '0.6rem', maxWidth: '48ch' }}
+          >
+            Astuce : dans cet aperçu intégré, l’impression peut être bloquée par
+            le navigateur. Sur le site en ligne, ce bouton ouvre la fenêtre
+            d’impression pour enregistrer ton récapitulatif en PDF.
+          </p>
+        )}
       </div>
     </section>
   );

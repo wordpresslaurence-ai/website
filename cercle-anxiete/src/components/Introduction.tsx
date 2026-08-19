@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { WEBSITE_URL } from '../config';
 
 interface Props {
   onContinue: () => void;
 }
 
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 2;
 
 export function Introduction({ onContinue }: Props) {
   const [step, setStep] = useState(0);
@@ -38,34 +37,6 @@ export function Introduction({ onContinue }: Props) {
       <div className="panel stack fade-in" key={step}>
         {step === 0 && (
           <>
-            <span className="hand" id="intro-step-title" tabIndex={-1}>
-              Hello
-            </span>
-            <p>
-              Je m’appelle Marjorie et je suis thérapeute spécialisée en gestion
-              de l’anxiété. Si j’ai choisi ce métier, c’est parce que je sais à
-              quel point l’anxiété peut peser sur la vie quotidienne.
-            </p>
-            <p>
-              Pendant plus de 20 ans, j’ai vécu avec une anxiété intense, marquée
-              par des périodes de stress chronique et les séquelles d’un
-              traumatisme.
-            </p>
-            <p>
-              Depuis bientôt 5 ans, j’accompagne des personnes qui vivent avec des
-              crises d’angoisse, des troubles anxieux et la peur d’avoir peur à
-              retrouver progressivement davantage de liberté.
-            </p>
-            <p className="text-muted" style={{ margin: 0 }}>
-              <a href={WEBSITE_URL} target="_blank" rel="noopener noreferrer">
-                www.marjorie-goubin.com
-              </a>
-            </p>
-          </>
-        )}
-
-        {step === 1 && (
-          <>
             <h2 id="intro-step-title" tabIndex={-1}>
               Pourquoi la peur persiste-t-elle ?
             </h2>
@@ -87,7 +58,7 @@ export function Introduction({ onContinue }: Props) {
           </>
         )}
 
-        {step === 2 && (
+        {step === 1 && (
           <>
             <h2 id="intro-step-title" tabIndex={-1}>
               Deux habitudes à observer
