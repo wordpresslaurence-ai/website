@@ -1,0 +1,41 @@
+/* -----------------------------------------------------------------------------
+   Déclarations @font-face.
+   Dépose les fichiers de police dans src/fonts/ (formats .woff2 recommandés)
+   puis décommente / ajuste les src ci-dessous.
+   En attendant, des polices de repli sont utilisées automatiquement :
+     Nourd        → Nunito Sans
+     Mistrully    → Caveat
+     TT Norms Pro → Manrope
+   Les repli sont appelés par nom : s'ils sont présents sur le système ils
+   seront utilisés ; sinon les génériques (sans-serif / cursive) prennent le
+   relais. Aucune ressource externe n'est chargée, aucune donnée n'est transmise.
+----------------------------------------------------------------------------- */
+
+/* @font-face {
+  font-family: 'Nourd';
+  src: url('../fonts/Nourd-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nourd';
+  src: url('../fonts/Nourd-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mistrully';
+  src: url('../fonts/Mistrully-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('../fonts/TTNormsPro-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */

@@ -1,0 +1,71 @@
+/* -----------------------------------------------------------------------------
+   Feuille de style d'impression.
+   Seul le récapitulatif (.printable) est imprimé, sur fond blanc et sobre.
+   Technique d'isolation par visibility : on masque tout, puis on ré-affiche
+   uniquement le récapitulatif et ses descendants (les ancêtres restent
+   « invisibles » mais laissent voir leur contenu visible).
+----------------------------------------------------------------------------- */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  body {
+    background: #fff !important;
+    color: #333 !important;
+    font-size: 12pt;
+  }
+
+  body * {
+    visibility: hidden;
+    box-shadow: none !important;
+  }
+
+  .printable,
+  .printable * {
+    visibility: visible;
+  }
+
+  /* Le récapitulatif est remonté en haut de la page imprimée. */
+  .printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none !important;
+    padding: 0 !important;
+    background: #fff !important;
+    max-width: 100% !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .printable h1,
+  .printable h2,
+  .printable h3,
+  .printable .q {
+    color: #8f3f26 !important;
+  }
+
+  .printable .summary-answers .cat {
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .printable a {
+    color: #333 !important;
+    text-decoration: none;
+  }
+}
